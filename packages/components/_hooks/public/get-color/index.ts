@@ -1,7 +1,7 @@
 /**
  * @name get-color
  * @Time 2023年05月05日
- * @author dk-plus-ui(范先生) <https://github.com/dk-plus-ui>
+ * @author dk-plus-ui(范先生) <https://github.com/isMrFan>
  * @param { Function } getDeepen 加深方法
  * @param { Function } getDodge 减淡方法
  * @description 颜色处理的hooks 主要用于颜色的加深和减淡 防止样式直接控制导致CSS样式嘎嘎多
@@ -10,6 +10,8 @@
 export interface getColorType {
   getDeepen: (value?: number) => string
   getDodge: (value?: number) => string
+  hexToRgba: (opacity: number) => string
+  rgbaToHex: () => string
 }
 
 const englishColor = {
@@ -39,6 +41,8 @@ export type Color = keyof typeof englishColor | string
  * @returns { Object } 加深原色 减淡颜色
  * @param { Function } getDeepen 加深方法
  * @param { Function } getDodge 减淡方法
+ * @param { Function } hexToRgba Hex convert to rgba
+ * @param { Function } rgbaToHex Rgba to hex
  * @description 根据传入的值计算颜色的加深和减淡 目前支持16进制色号 rgb色号 rgba色号 英文色号
  */
 
@@ -234,8 +238,46 @@ export const getColor = (color: Color): getColorType => {
     }
     return color
   }
+
+  /**
+   * @name hexToRgba
+   * @description Hex convert to rgba
+   * @param { number } opacity Opacity
+   * @returns { string } rgba color
+   */
+  const hexToRgba = (opacity: number): string => {
+    const hexColor = color.replace('#', '')
+    const r = parseInt(hexColor.substring(0, 2), 16)
+    const g = parseInt(hexColor.substring(2, 4), 16)
+    const b = parseInt(hexColor.substring(4, 6), 16)
+    return `rgba(${r}, ${g}, ${b}, ${opacity})`
+  }
+
+  /**
+   * @name rgbaToHex
+   * @description Rgba to hex 
+   * @returns
+   */
+  const rgbaToHex = (): string => {
+    const rgbaValues = color.replace(/[rgba()]/g, '').split(',')
+
+    const r = parseInt(rgbaValues[0])
+    const g = parseInt(rgbaValues[1])
+    const b = parseInt(rgbaValues[2])
+
+    const rHex = r.toString(16).padStart(2, '0')
+    const gHex = g.toString(16).padStart(2, '0')
+    const bHex = b.toString(16).padStart(2, '0')
+
+    const hexColor = `#${rHex}${gHex}${bHex}`
+
+    return hexColor
+  }
+
   return {
     getDeepen,
-    getDodge
+    getDodge,
+    hexToRgba,
+    rgbaToHex
   }
 }

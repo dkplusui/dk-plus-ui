@@ -50,7 +50,7 @@ if (typeof window !== 'undefined') {
 
       for (let i = 0; i < len; i++) {
         VPSwitchAppearanceList[i].addEventListener('click', (): void => {
-          setTimeout(() => { 
+          setTimeout(() => {
             this.theme = window.localStorage.getItem('vitepress-theme-appearance')
             this.loadThemeStyle()
           }, 0)
@@ -62,7 +62,7 @@ if (typeof window !== 'undefined') {
      * @name loadThemeStyle
      * @description 主题样式 黑白主题
      */
-    loadThemeStyle = (): void => {  
+    loadThemeStyle = (): void => {
       const isDark = this.theme === 'dark'
       const homeStyleList: Record<string, string> = {
         '--theme-color': '#3eaf7c',
@@ -72,7 +72,11 @@ if (typeof window !== 'undefined') {
         '--grey-background-color': isDark ? '#252525' : '#f6f6f6',
         '--dark-grey-background-color': isDark ? '#1e1e20' : '#e3e3e6',
         '--border-color': isDark ? '#333' : '#eaecef',
-        '--hover-border-color': isDark ? '#656464' : '#eaecef'
+        '--hover-border-color': isDark ? '#656464' : '#eaecef',
+        '--dk-alert-bg-color': isDark ? '#202121' : '#f4f4f5',
+        '--dk-alert-success-bg-color': isDark ? '#1c2518' : '#f0f9eb',
+        '--dk-alert-warning-bg-color': isDark ? '#292218' : '#fdf6ec',
+        '--dk-alert-error-bg-color': isDark ? '#2b1d1d' : '#fef0f0'
       }
       const keyList: string[] = Object.keys(homeStyleList)
       const len: number = keyList.length

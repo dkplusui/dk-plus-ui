@@ -1,0 +1,44 @@
+@use '../mixin.scss' as *;
+
+$checkbox-theme-colors: (
+  // none
+  'none': #fff,
+  // 文字颜色
+  'text': #606266,
+  // 主要颜色
+  'primary': #409eff,
+  // 成功颜色
+  'success': #67c23a,
+  // 警告颜色
+  'warning': #e6a23c,
+  // 危险颜色
+  'danger': #f56c6c,
+  // 信息颜色
+  'info': #909399,
+  // 边框颜色
+  'border': #dddfe5,
+  // 鼠标悬浮颜色
+  'hover': #c1c4cb,
+  // 背景颜色
+  'background': #fff,
+  // 禁用颜色
+  'disabled': #f5f7fa,
+  'disabled-text': '#c0c4cc',
+  // 默认颜色
+  '': #c0c4cc
+);
+
+@function getInputColor($color: 'primary') {
+  @return map-get($checkbox-theme-colors, $color);
+}
+
+@include block(checkbox){
+  --checkbox-text-color: #{getInputColor('text')};
+  --checkbox-checked-color: #{getInputColor('primary')};
+  --checkbox-disabled-color: #{getInputColor('disabled')};
+  --checkbox-disabled-text-color: #{getInputColor('disabled-text')};
+  --checkbox-hover-color: #{getInputColor('hover')};
+  --checkbox-border-color: #{getInputColor('border')};
+  --checkbox-background-color: #{getInputColor('background')};
+  --checkbox-border-radius: 4px;
+}

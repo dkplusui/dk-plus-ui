@@ -22,7 +22,8 @@ module.exports = {
         'deps', // 依赖升级
         'perfect', // 完善之前代码块
         'utils', // 工具类
-        'interface' // 全局接口文件
+        'interface', // 全局接口文件
+        'merge' //合并代码
       ]
     ],
     'type-empty': [2, 'never'], // never: type不能为空; always: type必须为空

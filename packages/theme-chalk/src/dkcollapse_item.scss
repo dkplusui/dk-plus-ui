@@ -1,0 +1,40 @@
+@use '../mixins/mixin.scss' as *;
+@use '../mixins/configuration/var-dkcollapse-item.scss' as *;
+
+.#{$namespace}-collapseItem_title{
+  width: 100%;
+  display: flex;
+  padding: 10px 0px;
+  box-sizing: border-box;
+  border-top:1px solid var(--title-border-color);
+  user-select: none;
+  
+  cursor: var(--title-cursor);
+  .#{$namespace}-collapseItem_left{
+    width: 50%;
+    padding-left: 5px;
+    box-sizing: border-box;
+  }
+  .#{$namespace}-collapseItem_right{
+    width: 50%;
+    display: flex;
+    padding-right: 5px;
+    box-sizing: border-box;
+    justify-content: flex-end;
+    @include block(down){
+      .dk-icon{
+        transform: rotate(0deg);
+        transition: all 0.2s;
+      }
+    }
+    @include block(up){
+      .dk-icon{
+        transform: rotate(90deg);
+        transition: all 0.2s;
+      }
+    }
+  }
+}
+.#{$namespace}-collapseItem_title_active{
+  border-bottom:1px solid var(--title-border-color);
+}

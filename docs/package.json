@@ -15,6 +15,7 @@
   "devDependencies": {
     "markdown-it": "^13.0.1",
     "markdown-it-container": "^3.0.0",
-    "search-insights": "^2.6.0"
+    "search-insights": "^2.6.0",
+    "vite-plugin-copy": "^0.1.6"
   }
 }

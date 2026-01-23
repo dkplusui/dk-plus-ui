@@ -10,8 +10,11 @@
  * DK_TYPE  组件Type类型
  * DK_TARGET 该属性指定在何处显示链接的资源
  * DK_TYPE_COLOR 组件Type类型颜色
+ * DK_ALERT_TYPE 组件ALERT类型
  */
 export * from './component/input-attrs'
 export * from './component/button-attrs'
 export * from './component/input-number-attrs'
+export * from './component/alert-attrs'
 export * from './public'
+export * from './emits'

@@ -1,0 +1,8 @@
+User-Agent: *
+Sitemap: https://dk-plus.com/sitemap.xml
+Sitemap: https://dk-plus.com/sitemap-zh.xml
+Sitemap: https://dk-plus.com/sitemap-en.xml
+Sitemap: https://dk-plus.com/sitemap-expansion-zh.xml
+Sitemap: https://dk-plus.com/sitemap-expansion-en.xml
+Sitemap: https://dk-plus.com/sitemap-other-zh.xml
+Sitemap: https://dk-plus.com/sitemap-other-en.xml

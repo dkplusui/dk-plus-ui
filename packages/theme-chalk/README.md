@@ -30,7 +30,33 @@ theme-chalk               主题样式目录
 
 例如使用 `mixin.scss` 中的 `block` `peerBlock` `element` `modifier` 进行样式的命名，如下：
 
-**注意： 这里声明方法必须采用 sass 的嵌套写法，不可以采用 css 的写法，否则会导致样式无法生效**
+**注意⚠️： 这里声明方法必须采用 sass 的嵌套写法，不可以采用 css 的写法，否则会导致样式无法生效**
+> 内置符号 `>` 和 `*`
+> `>` 表示级联选择, 添加 `>` 后，会自动添加父级的样式名 如:
+```scss
+.dk-input{
+  @include block('>input-number'){
+    // ... 
+  }
+}
+/** 生成的css就是 */
+.dk-input .dk-input-number{
+  // ...
+}
+```
+> `*` 表示不需要再定义的基础上添加父级的样式名
+> 顺序: 如果同时存在 `>` 和 `*`，则 `>` 要在 `*` 的前面: 例如
+```scss
+.dk-input{
+  @include block('>*input-number'){
+    // ... 
+  }
+}
+/** 生成的css就是 */
+.dk-input-number{
+  // ...
+}
+```
 
 ```scss
 // block   就是块，组件的唯一包装样式  -
@@ -46,7 +72,7 @@ theme-chalk               主题样式目录
     //解析后是  .dk-xxx
     //...... styles
   }
-  @include block(>xxx){
+  @include block(>xxx){ // 加 > 表示级联选择
     //解析后是  .dk-input .dk-input-xxx
     //...... styles
   }

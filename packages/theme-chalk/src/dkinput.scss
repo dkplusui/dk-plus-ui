@@ -1,7 +1,6 @@
 @use '../mixins/mixin.scss' as *;
 @use '../mixins/configuration/var-input.scss' as *;
 
-
 @include block(('input')) {
   width: var(--input-width, 100%);
   height: var(--input-height, 30px);
@@ -9,11 +8,10 @@
   font-size: var(--input-font-size, 13px);
   display: inline-flex;
   flex-wrap: nowrap;
-  overflow: hidden;
   transition: all 0.2s;
 
   @include block('>*icon') {
-    color: var(--input-icon-color);
+    color: var(--input-border);
     width: var(--input-icon-size);
     height: var(--input-icon-size);
 
@@ -24,17 +22,16 @@
 
   @include block(wrapper) {
     width: inherit;
-    overflow: hidden;
     border: 1px solid var(--input-border);
     border-radius: var(--input-border-radius, 4px);
-    box-sizing: border-box;
+    box-sizing: content-box;
     display: inline-flex;
     align-items: center;
     background-color: var(--input-color);
     padding: 0 10px;
     &:hover {
       border: 1px solid var(--input-hover-border);
-      
+
       @include block('>*input') {
         @include block(clearable) {
           display: block;
@@ -108,7 +105,6 @@
       bottom: 6px;
       right: 10px;
     }
-
   }
 
   @include element(('prefix', 'suffix')) {
@@ -150,7 +146,7 @@
     background-color: var(--pend-background);
     font-size: inherit;
     border: 1px solid var(--input-border);
-    box-sizing: border-box;
+    box-sizing: content-box;
 
     &:hover {
       background-color: var(--pend-hover-background);
@@ -159,30 +155,30 @@
 
   @include element(prepend) {
     border-right: none;
-    border-radius: var(--input-border-radius) 0 0 var(--input-border-radius)
+    border-radius: var(--input-border-radius) 0 0 var(--input-border-radius);
   }
 
   @include element(append) {
     border-left: none;
-    border-radius: 0 var(--input-border-radius) var(--input-border-radius) 0
+    border-radius: 0 var(--input-border-radius) var(--input-border-radius) 0;
   }
 
   @include element(wrapper) {
     @include block(prepend) {
       @include element(text) {
-        border-radius: 0 var(--input-border-radius) var(--input-border-radius) 0
+        border-radius: 0 var(--input-border-radius) var(--input-border-radius) 0;
       }
     }
 
     @include block(append) {
       @include element(text) {
-        border-radius: var(--input-border-radius) 0 0 var(--input-border-radius)
+        border-radius: var(--input-border-radius) 0 0 var(--input-border-radius);
       }
     }
 
     @include block(pend) {
       @include element(text) {
-        border-radius: 0
+        border-radius: 0;
       }
     }
   }
@@ -254,7 +250,7 @@
     color: var(--input-info-color);
     padding-left: 5px;
   }
-  @include element('>readonly'){
+  @include element('>readonly') {
     border-color: var(--input-border);
   }
 }

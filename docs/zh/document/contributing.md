@@ -254,6 +254,22 @@ Git 允许我们在每次提交时，附带一个提交信息作为说明，当�
 
 可通过 [Markdown Emoji](https://tianyuhao.cn/emoji) 在 message 后面加入表情
 
+## 🪧 路由规范
+
+在你创建新的组件时，不需要在`router/index.ts`中注册，只需在`play/views/components/当前组件目录`中创建`page.ts`文件即可，`page.ts`文件中的内容如下：
+
+```ts 
+export default {
+  path: '/DkLoading',
+  order: 9,
+  title: 'loading 加载中'
+}
+```
+> 参数说明：
+> - `path`: 路由地址（必须保持当前组件目录名称和组件文件名称一致）
+> - `order`: 路由排序
+> - `title`: 路由标题
+
 ## ✏️ 关于 PR
 
 在你提交 `PR` 之前，请务必保证你 `fork` 的仓库是当前最新的代码，以免发生冲突。

@@ -131,9 +131,28 @@ $dark-border-color: #8a8a8e; // 暗黑边框题色
       .dk-input_pend{
         background-color: var(--vp-c-bg);
         border-color: var(--vp-c-border);
+        &:focus-within{
+          border-color: #409eff;
+        }
       }
-      .dk-input_inner{
-        color: #ccc;
+      .dk-input-wrapper.dk-input_warning{
+        border-color: var(--input-border);
+      }
+      .dk-input-wrapper.dk-input_error{
+        border-color: var(--input-border);
+      }
+      .dk-input-personality-wrapper{
+        width: var(--input-width);
+        &::after{
+          bottom: 0;
+        }
+      }
+    }
+    &input.dk-input_disabled{
+      .dk-input-wrapper,
+      .dk-input_pend{
+        background-color: var(--vp-code-tab-text-color);
+        border-color: var(--vp-c-border);
       }
     }
     &number{
@@ -155,5 +174,24 @@ $dark-border-color: #8a8a8e; // 暗黑边框题色
         }
       }
     }
+    &alert {
+      background-color: var(--dk-alert-bg-color);
+      // color: var(--vp-c-text-1);
+      // border-color: var(--vp-c-border);
+      &_success{
+        background-color: var(--dk-alert-success-bg-color);
+        // color: var(--vp-c-text-1);
+      }
+      &_warning{
+        background-color: var(--dk-alert-warning-bg-color);
+        // color: var(--vp-c-text-1);
+      }
+      &_error{
+        background-color: var(--dk-alert-error-bg-color);
+        // color: var(--vp-c-text-1);
+      }
+
+    }
   }
 }
+

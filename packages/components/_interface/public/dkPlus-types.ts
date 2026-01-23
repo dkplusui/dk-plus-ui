@@ -45,6 +45,46 @@ export type dkPlusSize = 'large' | 'medium' | 'small' | 'mini'
 export type dkTarget = '_blank' | '_self' | '_parent' | '_top'
 
 /**
+ * @name dkPlusJustify
+ * @Time July 27, 2023
+ * @param { string }  [center] Center
+ * @param { string }  [end] End
+ * @param { string } [flex-end] Flex end
+ * @param { string }  [flex-start] Flex start
+ * @param { string }  [inherit] Inherit
+ * @param { string }  [initial] Initial
+ * @param { string }  [left] Left
+ * @param { string }  [normal] Normal
+ * @param { string }  [revert] Revert
+ * @param { string }  [right] Right
+ * @param { string }  [space-around] Around
+ * @param { string }  [space-between] Between
+ * @param { string } [space-evenly] Evenly
+ * @param { string }  [start] Starting from scratch
+ * @param { string }  [stretch] Stretch
+ * @param { string }  [unset] Unset
+ * @description Different component justification public type
+ */
+
+export type dkPlusJustify =
+  | 'center'
+  | 'end'
+  | 'flex-end'
+  | 'flex-start'
+  | 'inherit'
+  | 'initial'
+  | 'left'
+  | 'normal'
+  | 'revert'
+  | 'right'
+  | 'space-around'
+  | 'space-between'
+  | 'space-evenly'
+  | 'start'
+  | 'stretch'
+  | 'unset'
+
+/**
  * @name MouseEventType
  * @see MouseEvent https://developer.mozilla.org/zh-CN/docs/Web/API/MouseEvent/MouseEvent
  * @param { Object } evt 事件对象
@@ -62,10 +102,26 @@ export type DkIcon = VNode | Component
 /**
  * @name KeyboardEventType
  * @param { Object } evt 事件对象
- * 
+ *
  */
 
 export type KeyboardEventType = (evt: KeyboardEvent) => void
+
+/**
+ * @name dkInputPersonalityType
+ * @Time July 18, 2023
+ * @param { string }  [underline]
+ * @param { string }  [borderRadius]
+ */
+export type dkInputPersonalityType = 'underline' | 'borderRadius'
+
+/**
+ * @name dkInputStatusType
+ * @Time July 19, 2023
+ * @param { string } [warning]
+ * @param { string } [error]
+ */
+export type dkInputStatusType = 'warning' | 'error'
 
 /**
  * @name DkPlusAlign
@@ -76,7 +132,7 @@ export type KeyboardEventType = (evt: KeyboardEvent) => void
  * @description 不同的组件对齐方式公共类型
  */
 
-export type DkPlusAlign = 'left' | 'center' | 'right';
+export type DkPlusAlign = 'left' | 'center' | 'right'
 
 /**
  * @name DkPlusPosition
@@ -88,4 +144,48 @@ export type DkPlusAlign = 'left' | 'center' | 'right';
  * @description Different component position public type
  */
 
-export type DkPlusPosition = 'top' | 'right' | 'bottom' | 'left';
+export type DkPlusPosition = 'top' | 'right' | 'bottom' | 'left'
+
+/**
+ * @name dkPlusBasicType
+ * @Time 2023年07月07日
+ * @param { string }  [success] 成功
+ * @param { string }  [info] 信息
+ * @param { string }  [warning] 警告
+ * @description 不同的组件基本类型公共类型
+ */
+
+// export type dkPlusBasicType = 'success' | 'info' | 'warning';
+
+/**
+ * @name dkPlusAlertType
+ * @Time 2023年07月07日
+ * @param { string }  [error] 错误
+ * @description 拓展Alert类型
+ */
+// export type dkPlusAlertType = dkPlusBasicType & 'error';
+export type dkPlusAlertType = 'success' | 'info' | 'warning' | 'error'
+
+/**
+ * @name dkPlusPlaceMent
+ * @Time September 14, 2023
+ * @param { string }  [top] on the top
+ * @param { string }  [bottom] on the bottom
+ * @param { string }  [left] on the left
+ * @param { string }  [right] on the right
+ * @param { string }  [left-top] on the top left
+ * @param { string }  [bottom-top] on the top right
+ * @param { string }  [bottom-left] on the bottom left
+ * @param { string }  [bottom-right] on the bottom right
+ * @description The position of the component
+ */
+
+export type dkPlusPlaceMent =
+  | 'top'
+  | 'bottom'
+  | 'left'
+  | 'right'
+  | 'top-left'
+  | 'top-right'
+  | 'bottom-left'
+  | 'bottom-right'

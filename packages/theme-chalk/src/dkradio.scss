@@ -1,0 +1,130 @@
+@use '../mixins/mixin.scss' as *;
+
+@include block(radio) {
+  display: inline-block;
+  user-select: none;
+  margin-right: 10px;
+  font-family: Arial, sans-serif;
+  align-items: center;
+
+  &:hover{
+    .dk-radio_circle {
+      border-color: var(--radio-hover-color);
+    }
+    &.dk-radio_disabled {
+      .dk-radio_circle {
+        border-color: var(--radio-unchecked-color);
+      }
+    }
+  }
+
+  @include block(wrapper) {
+    cursor: pointer;
+    display: inline-block;
+    white-space: nowrap;
+    margin-right: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    position: relative;
+    span {
+      position: relative;
+      padding-left: calc(var(--radio-size) + 10px);
+      font-size: var(--radio-size);
+      transition: all 0.1s ease-in-out;
+      color: #666;
+    }
+  }
+
+  @include element(circle) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: var(--radio-size);
+    height: var(--radio-size);
+    border: 2px solid var(--radio-unchecked-color);
+    border-radius: 50%;
+    transition: all 0.1s ease-in-out;
+    &:before {
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      border: 2px solid var(--radio-unchecked-color);
+      border-radius: 50%;
+      transition: all 0.1s ease-in-out;
+    }
+    &:after {
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      border-radius: 50%;
+      background-color: var(--radio-unchecked-color);
+      opacity: 0;
+      transition: all 0.1s ease-in-out;
+    }
+  }
+
+  @include element(inner) {
+    display: none;
+    &:checked + .dk-radio_circle {
+      border-color: var(--radio-checked-color);
+      &:before {
+        background-color: #fff;
+        z-index: 1;
+        transform: translate(-50%, -50%) scale(0.4);
+      }
+      &:after {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.15);
+        background-color: var(--radio-checked-color);
+      }
+      & + span {
+        color: var(--radio-checked-color);
+      }
+    }
+  }
+
+  @include element(disabled) {
+    cursor: not-allowed;
+    opacity: 0.5;
+    @include block('>*radio') {
+      @include block(wrapper) {
+        cursor: not-allowed;
+      }
+    }
+  }
+  
+  @include element(border){
+    padding: 5px 10px;
+    span{
+      &:before{
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: calc(100% + 20px);
+        height: calc(100% + 10px);
+        border: 1px solid var(--radio-unchecked-color);
+        border-radius: 4px;
+        transition: all 0.1s ease-in-out;
+      }
+    }
+    .dk-radio_inner{
+      &:checked + .dk-radio_circle + span{
+        &:before{
+          border-color: var(--radio-checked-color);
+        }
+      }
+    }
+  }
+}

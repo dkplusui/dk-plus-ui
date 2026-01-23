@@ -1,6 +1,7 @@
 # CONTRIBUTING
 
 Chinese | [English](https://github.com/dk-plus-ui/dk-plus-ui/blob/master/contribution.en-us.md)
+
 # Contribution
 
 ## 🙋 Before contributing, please read the following information
@@ -21,8 +22,8 @@ If you have any specific questions or need further guidance on how to contribute
 
 Before contributing, you need to get the project up and running so that you can better understand its structure and how to develop it.
 
-- Install  [node](http://nodejs.cn), version  >= 16
-- Install  [pnpm](https://pnpm.io/zh)the latest version is recommended.
+- Install [node](http://nodejs.cn), version >= 16
+- Install [pnpm](https://pnpm.io/zh)the latest version is recommended.
 
 If you have completed the previous preparations, you can skip ahead and start from here:
 
@@ -30,7 +31,7 @@ If you have completed the previous preparations, you can skip ahead and start fr
 
 - Clone your fork to your local machine.
 
-### 📖  Directory Structure
+### 📖 Directory Structure
 
 ```bash
 ├── .github     # github配置文件
@@ -131,6 +132,7 @@ If you have completed the previous preparations, you can skip ahead and start fr
 ├── ├── dkloading     #加载中指令用的组件
 ├── ├── dkmain        #页面布局组件-中级布局
 ├── ├── dkshadow  #盒模型阴影组件
+├── ├── dkalert   #警示组件
 ├── ├── index.ts  #组件入口文件
 ├── ├── utils         # 存放工具方法
 ├── ├── theme-chalk   # 存放对应的样式,样式打包工具箱
@@ -213,7 +215,7 @@ Please read first [IDE 支持](https://cn.vuejs.org/guide/typescript/overview.ht
 The editor is highly recommended [Visual Studio Code](https://code.visualstudio.com/)，Please be sure to install the following plug-ins:
 
 - [Vue Language Features (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.volar)Vue3 official development plugin:
-- [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) Used to support importing `*.vue`  files in TS
+- [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) Used to support importing `*.vue` files in TS
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) Code format verification, if not installed, then [dk-eslint](https://github.com/dk-plus-ui/dk-plus-ui/tree/master/packages/dk-eslint) Do not take effect
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) Code format verification, if not installed, then [dk-eslint](https://github.com/dk-plus-ui/dk-plus-ui/tree/master/packages/dk-eslint) Do not take effect
 
@@ -223,19 +225,19 @@ The editor is highly recommended [Visual Studio Code](https://code.visualstudio.
 
 dk-plus Internally set up a lot of commands in [package.json](https://github.com/dk-plus-ui/dk-plus-ui/blob/master/package.json) Is available for viewing. Each command is described in detail below:
 
-| script fields | Corresponding command                                                   | Command description        |
-| ----------- | ------------------------------------------------------------------------- | ---------------- |
-| dev:play    | pnpm -C play dev                                                          | Start the test development project |
-| build:play  | pnpm -C play build                                                        | Package test development projects |
-| build       | gulp -f build/gulpfile.ts                                                 | Packaging component library       |
-| dev:docs    | pnpm -C docs dev:docs                                                     | Start the development documentation project |
-| build:docs  | pnpm -C docs build:docs                                                   | Package development documentation projects |
-| format      | prettier --write \"\*_/_.{ts,tsx,js,json,css,scss,json,md,vue,yml,yaml}\" | Project code formatting   |
-| deploy:docs | cross-env NODE_ENV=docs node ./deploy                                     | test             |
-| test        | vitest                                                                    | Test process         |
-| coverage    | vitest run --coverage                                                     | Generate test logs     |
-| lint        | pnpm lint                                                                 | Project code review     |
-| prepare     | pnpm prepare                                                              | Run cell tests   |
+| script fields | Corresponding command                                                     | Command description                         |
+| ------------- | ------------------------------------------------------------------------- | ------------------------------------------- |
+| dev:play      | pnpm -C play dev                                                          | Start the test development project          |
+| build:play    | pnpm -C play build                                                        | Package test development projects           |
+| build         | gulp -f build/gulpfile.ts                                                 | Packaging component library                 |
+| dev:docs      | pnpm -C docs dev:docs                                                     | Start the development documentation project |
+| build:docs    | pnpm -C docs build:docs                                                   | Package development documentation projects  |
+| format        | prettier --write \"\*_/_.{ts,tsx,js,json,css,scss,json,md,vue,yml,yaml}\" | Project code formatting                     |
+| deploy:docs   | cross-env NODE_ENV=docs node ./deploy                                     | test                                        |
+| test          | vitest                                                                    | Test process                                |
+| coverage      | vitest run --coverage                                                     | Generate test logs                          |
+| lint          | pnpm lint                                                                 | Project code review                         |
+| prepare       | pnpm prepare                                                              | Run cell tests                              |
 
 ## 🚨 Development specification
 
@@ -250,32 +252,31 @@ Git allows us to commit each time, with a commit information as a description wh
 
 The type must be one of the following and be entered against the type description.
 
-| type      | Give an example                                 | Description                       |
-| --------- | ------------------------------------------------ | -------------------------- |
-| build     | git commit -m 'build: 打包\*\*\*配置'            | Modifying the packaging configuration               |
-| ci        | git commit -m 'ci: 修改 ci 配置'                 | Modifying ci Configuration               |
-| docs      | git commit -m 'docs: 修改文档'                   | Modify a document                   |
-| feat      | git commit -m 'feat: 新增\*\*\*组件'             | New component                   |
-| fix       | git commit -m 'fix: 修复\*\*\*bug'               | Fix bugs                  |
-| perf      | git commit -m 'perf: 优化\*\*\*性能'             | Optimized performance                   |
-| refactor  | git commit -m 'refactor: 重构\*\*\*代码'         | Refactoring code                   |
-| style     | git commit -m 'style: 修改\*\*\*样式'            | Modify style                   |
-| test      | git commit -m 'test: 新增\*\*\*测试用例'         | Added test cases               |
-| revert    | git commit -m 'revert: 回滚\*\*\*代码'           | Rollback code                   |
-| chore     | git commit -m 'chore: 修改\*\*\*配置'            | Modify configuration                   |
-| release   | git commit -m 'release: 发布\*\*\*版本'          | Release version                   |
-| hooks     | git commit -m 'hooks: 新增\*\*\*                 | exploit                       |
+| type      | Give an example                                  | Description                                  |
+| --------- | ------------------------------------------------ | -------------------------------------------- |
+| build     | git commit -m 'build: 打包\*\*\*配置'            | Modifying the packaging configuration        |
+| ci        | git commit -m 'ci: 修改 ci 配置'                 | Modifying ci Configuration                   |
+| docs      | git commit -m 'docs: 修改文档'                   | Modify a document                            |
+| feat      | git commit -m 'feat: 新增\*\*\*组件'             | New component                                |
+| fix       | git commit -m 'fix: 修复\*\*\*bug'               | Fix bugs                                     |
+| perf      | git commit -m 'perf: 优化\*\*\*性能'             | Optimized performance                        |
+| refactor  | git commit -m 'refactor: 重构\*\*\*代码'         | Refactoring code                             |
+| style     | git commit -m 'style: 修改\*\*\*样式'            | Modify style                                 |
+| test      | git commit -m 'test: 新增\*\*\*测试用例'         | Added test cases                             |
+| revert    | git commit -m 'revert: 回滚\*\*\*代码'           | Rollback code                                |
+| chore     | git commit -m 'chore: 修改\*\*\*配置'            | Modify configuration                         |
+| release   | git commit -m 'release: 发布\*\*\*版本'          | Release version                              |
+| hooks     | git commit -m 'hooks: 新增\*\*\*                 | exploit                                      |
 | perfect   | git commit -m 'perfect: 完善\*\*\* '             | Perfect previous code block Where code block |
-| utils     | git commit -m 'utils: 组件工具箱\*\*\*           | Update toolbox                 |
-| interface | git commit -m 'interface: 增加组件全局接口\*\*\* | Global interface                   |
-| deps      | git commit -m 'deps: 依赖升级                    | Dependent upgrade                   |
+| utils     | git commit -m 'utils: 组件工具箱\*\*\*           | Update toolbox                               |
+| interface | git commit -m 'interface: 增加组件全局接口\*\*\* | Global interface                             |
+| deps      | git commit -m 'deps: 依赖升级                    | Dependent upgrade                            |
 
 Available by [Markdown Emoji](https://tianyuhao.cn/emoji) Add emoticons after "message"
 
 ## ✏️ About PR
 
 Before you commit `PR`, make sure that your `fork` repository is up to date to avoid conflicts.
-
 
 1. Clone the remote repository to the local:
 
@@ -303,7 +304,7 @@ git commit -m 'feat: 新增***组件'
     ```
 
 5. Create a PR in the remote repository
-On a code hosting platform like GitHub or GitLab, find the branch you just pushed and create a PR. You can provide details about the changes you have made and any other comments about PR in the PR.
+   On a code hosting platform like GitHub or GitLab, find the branch you just pushed and create a PR. You can provide details about the changes you have made and any other comments about PR in the PR.
 
 6.Pending review and consolidation:
 Once your PR is submitted, team members will review and discuss your code and may suggest changes. Once all issues have been resolved and approved, your PR will be merged into the main branch.

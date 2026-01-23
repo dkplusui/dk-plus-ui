@@ -1,0 +1,10 @@
+@use '../mixins/mixin.scss' as *;
+@use '../mixins/configuration/var-row.scss' as *;
+
+@include block(row){
+  width: var(--row-width);
+  height: fit-content;
+  display: flex;
+  gap: var(--row-gutter);
+  justify-content: var(--row-justify);
+}

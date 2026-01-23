@@ -74,3 +74,77 @@ export const DK_TARGET = ['_blank', '_self', '_parent', '_top'] as const
  */
 
 export const DK_POSITION = ['top', 'bottom', 'left', 'right'] as const
+
+export const DK_ALERTTYPE = [
+  'success',
+  'info',
+  'warning',
+  'error'
+] as const
+
+/**
+ * @name DK_JUSTIFY
+ * @Time July 27, 2023
+ * @param { string }  [center] Center
+ * @param { string }  [end] End
+ * @param { string } [flex-end] Flex end
+ * @param { string }  [flex-start] Flex start
+ * @param { string }  [inherit] Inherit
+ * @param { string }  [initial] Initial
+ * @param { string }  [left] Left
+ * @param { string }  [normal] Normal 
+ * @param { string }  [revert] Revert
+ * @param { string }  [right] Right
+ * @param { string }  [space-around] Around
+ * @param { string }  [space-between] Between
+ * @param { string } [space-evenly] Evenly
+ * @param { string }  [start] Starting from scratch
+ * @param { string }  [stretch] Stretch
+ * @param { string }  [unset] Unset
+ * @description Different component justification public type
+ */
+
+export const DK_JUSTIFY = [
+  'center',
+  'end',
+  'flex-end',
+  'flex-start',
+  'inherit',
+  'initial',
+  'left',
+  'normal',
+  'revert',
+  'right',
+  'space-around',
+  'space-between',
+  'space-evenly',
+  'start',
+  'stretch',
+  'unset'
+] as const
+
+/**
+ * @name DK_PLACEMENT
+ * @Time September 14, 2023
+ * @param { string }  [top] on the top
+ * @param { string }  [bottom] on the bottom
+ * @param { string }  [left] on the left
+ * @param { string }  [right] on the right
+ * @param { string }  [left-top] on the top left
+ * @param { string }  [bottom-top] on the top right
+ * @param { string }  [bottom-left] on the bottom left
+ * @param { string }  [bottom-right] on the bottom right
+ * @description The position of the component
+ * @description 组件的位置
+ */
+
+export const DK_PLACEMENT = [
+  'top',
+  'bottom',
+  'left',
+  'right',
+  'top-left',
+  'top-right',
+  'bottom-left',
+  'bottom-right'
+] as const

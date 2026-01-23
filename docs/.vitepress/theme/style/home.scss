@@ -60,6 +60,7 @@
         align-items: center;
         flex-wrap: wrap;
         gap: 1%;
+        // height: 142px;
 
         .list-item {
           flex: 1;
@@ -106,8 +107,17 @@
           }
         }
       }
+     
     }
-
+    @media screen and (min-width: 1000px) {
+  // 当屏幕宽度小于等于 600px 时应用的样式
+   .banner-list{
+    .list-item{
+      height: 118px;
+    }
+    
+  }
+}
     .contributions {
       display: flex;
       flex-direction: column;

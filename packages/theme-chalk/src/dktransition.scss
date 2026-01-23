@@ -1,0 +1,10 @@
+@use '../mixins/mixin.scss' as *;
+.#{$namespace}-Transition{
+  width: 100%;
+  overflow: hidden;
+  transition: all 0.2s;
+  .#{$namespace}-TransitionContent{
+    padding: 10px;
+    box-sizing: border-box;
+  }
+}

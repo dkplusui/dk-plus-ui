@@ -5,3 +5,59 @@ $common-separator: '-' !default; // 通用分隔符
 $element-separator: '_' !default; // 元素分隔符
 $modifier-separator: '--' !default; // 修饰符分隔符
 $state-prefix: 'is-' !default; // 状态前缀
+
+//全局色调设置
+//font-color
+$dk-font-1-color:#262626;
+$dk-font-2-color:#434343;
+$dk-font-3-color:#595959;
+$dk-font-4-color:#8C8C8C;
+$dk-font-5-color:#BFBFBF;
+$dk-font-6-color:#D9D9D9;
+$dk-font-disabled-color:#CCCCCC;
+$dk-font-active-color:#ffffff;
+
+//brand&&hue
+$dk-primary-color:#409eff;
+$dk-primary-hover-color:#79bbff;
+$dk-primary-active-color:#337ecc;
+$dk-primary-disabled-color:#67a1db;
+$dk-primary-light-default:#add3f8;
+$dk-primary-light-hover:#90c5fa;
+$dk-primary-light-active-color:#5dadfd;
+
+//success
+$dk-success-color:#47A43C;
+$dk-success-hover-color:#56B551;
+$dk-success-active-color:#3D8E37;
+$dk-success-disabled-color:#6EC76C;
+$dk-success-light-default:#E5F6E5;
+$dk-success-light-hover:#BAEBB9;
+$dk-success-light-active-color:#8FD98E;
+
+//info
+$dk-info-color: #909399;
+$dk-info-hover-color: #A0A3AC; 
+$dk-info-active-color: #7E8086; 
+$dk-info-disabled-color: #B5B7BD; 
+$dk-info-light-default: #E8E8EA; 
+$dk-info-light-hover: #D3D4D9; 
+$dk-info-light-active-color: #BCBEC4; 
+
+//warning
+$dk-warning-color: #E17E29;
+$dk-warning-hover-color: #E79A42;
+$dk-warning-active-color: #BB621F; 
+$dk-warning-disabled-color: #EBB467;
+$dk-warning-light-default: #FEF8EA; 
+$dk-warning-light-hover: #F7E3BC; 
+$dk-warning-light-active-color: #F2CE90;
+
+//danger
+$dk-danger-color: #D4544A;
+$dk-danger-hover-color: #DB7167;
+$dk-danger-active-color: #B03B35; 
+$dk-danger-disabled-color: #E29086;
+$dk-danger-light-default: #FCEDE9; 
+$dk-danger-light-hover: #F3CEC6; 
+$dk-danger-light-active-color: #EAAFA5;

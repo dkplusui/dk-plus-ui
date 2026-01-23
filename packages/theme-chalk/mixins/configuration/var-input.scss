@@ -31,7 +31,7 @@ $input-theme-colors: (
   @return map-get($input-theme-colors, $color);
 }
 
-@include block('input') {
+@include block(('input', 'input-personality')) {
   --input-color: #{getInputColor('none')};
   --input-border: #{getInputColor('border')};
   --input-width: 100%;
@@ -51,7 +51,7 @@ $input-theme-colors: (
   --pend-background: #{getInputColor('disabled')};
   --pend-hover-background: #{getInputColor('disabled')};
   --pend-color: #{getInputColor('text')};
-  --input-icon-size: 19px;
+  --input-icon-size: 17px;
   --input-info-color: #{getInputColor('info')};
   --input-align: 'left';
 }

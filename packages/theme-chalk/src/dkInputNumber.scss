@@ -16,6 +16,10 @@
     border: solid 1px var(--input-number-border-color--hover);
   }
 
+  .dk-input-wrapper{
+    border: none;
+  }
+
   @include element(inner) {
     width: calc(100%);
     height: 100%;
@@ -40,19 +44,22 @@
 
   .dk-button {
     margin: 0;
-
+    border: none;
     @include block(box) {
+      --button-width: var(--input-number-button-width);
       --button-height: var(--input-number-height);
-      --button-padding: 6px 20px;
+      --button-padding: 6px 0px;
       --button-border-radius: 0px;
       --button-borderColor: transparent;
       --button-hover-borderColor: transparent;
       // --button-hover-background: transparent;
       --button-active-borderColor: transparent;
       --button-background: transparent;
+      --button-font-size: 13px;
+      &:hover {
+        --button-hover-background: transparent;
+      }
     }
-
-    border: none;
   }
   @include element(disabled) {
     background-color: var(--input-number-background-color);
@@ -61,36 +68,80 @@
     }
   }
 
-  @include element(left) {
+  @include element(position) {
     position: relative;
-    .dk-input-number_reduce,
-    .dk-input-number_plus {
-      position: absolute;
-      right: -1px;
-      height: 42%;
-      overflow: hidden;
-      --input-number-height: 100%;
-      display: flex;
-      .dk-button-box{
-        --button-padding: 6px 15px;
-        .dk-icon{
-          --icon-size: 13px;
-        }
-        &:hover{
-          --button-hover-borderColor: transparent;
+    @include block('>*input-number') {
+      @include element(('reduce', 'plus')) {
+        position: absolute;
+        height: 50%;
+        overflow: hidden;
+        z-index: 1;
+        --input-number-height: 100%;
+        display: flex;
+        .dk-button-box {
+          --button-padding: 6px 15px;
+          .dk-icon {
+            --icon-size: 13px;
+          }
+          &:hover {
+            --button-hover-borderColor: transparent;
+          }
+          &:active {
+            --button-active-background: transparent;
+          }
         }
       }
+
+      @include element(reduce) {
+        bottom: var(--input-number-position-button);
+        align-items: end;
+        padding-bottom: 1px;
+      }
+
+      @include element(plus) {
+        top: -1px;
+        align-items: start;
+        padding-top: 1px;
+      }
     }
-    .dk-input-number_reduce {
-      bottom: -1px;
-      align-items: end;
-      padding-bottom: 2px;
+    @include block('>*input') {
+      height: 100%;
+      // width: 100%;
+      @include block(wrapper) {
+        border: none;
+        padding: 0;
+      }
     }
-    
-    .dk-input-number_plus {
-      top: -1px;
-      align-items: start;
-      padding-top: 2px;
+  }
+
+  @include element(left) {
+    justify-content: flex-end;
+    @include block('>*input-number') {
+      @include element(('reduce', 'plus')) {
+      }
+    }
+    @include block('>*input') {
+      margin-right: var(--input-number-input-margin-right);
+      order: 1;
+      @include block(wrapper) {
+        border-right: solid 1px var(--input-number-border-color);
+      }
+    }
+  }
+  
+  @include element(right) {
+    justify-content: flex-start;
+    @include block('>*input-number') {
+      @include element(('reduce', 'plus')) {
+        order: 1;
+      }
+    }
+
+    @include block('>*input') {
+      margin-left: var(--input-number-button-width);
+      @include block(wrapper) {
+        border-left: solid 1px var(--input-number-border-color);
+      }
     }
   }
 }

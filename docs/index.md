@@ -1,6 +1,7 @@
 ---
 layout: home
 title: dk-plus
+
 ---
 
 <HomeContent/>

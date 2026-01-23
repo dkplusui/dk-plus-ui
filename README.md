@@ -1,8 +1,8 @@
 <p align="center">
-   <img height="160px"  src="https://oss.cadwaladerss.com/dk-plus/images/isicon.jpg">
+   <img height="160px"  src="https://oss.cadwaladerss.com/dk-plus/images/isicon.png">
 </p>
 <p align="center" style="margin-top:-50px">
-  DK-plus 可在 vue3 的web应用中快速构建交互界面,全面的组件和便捷的工具会让您信手拈来，如鱼得水
+  DK-plus 可在 vue3 的web应用中快速构建交互界面,全面的组件和便捷的工具会让您信手拈来，如鱼得水.
 </p>
 <p align="center">
   中文 | <a href="https://github.com/dk-plus-ui/dk-plus-ui/blob/master/README.en-US.md">English</a>
@@ -24,7 +24,7 @@
 
 ## ✨ 特性
 
-- 🪐 10+ 常用组件
+- 🪐 15+ 常用组件
 - 🏆 支持完整引入和按需引入
 - 🤟 配置简单，上手容易
 - ❤️ 根据实际需求开发
@@ -81,7 +81,7 @@ createApp(App).use(dkPlus).mount('#app')
     <dk-button type="danger">成功按钮</dk-button>
     <dk-button type="warning">警告按钮</dk-button>
   </div>
-  <script src="https://unpkg.com/vue@next/dist/vue.global.js"></script>
+  <script src="https://unpkg.com/vue@3.5.13/dist/vue.global.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dk-plus"></script>
   <script type="module">
     const { createApp, ref } = Vue
@@ -106,7 +106,7 @@ createApp(App).use(dkPlus).mount('#app')
 
 ## 🌈 加入 DK-plus
 
-添加微信请备注 `Github` 用户名
+添加微信请备注 `Github` 用户名(最近太忙暂停更新)
 
 <img height="200px"  src="https://oss.cadwaladerss.com/dk-plus/images/wxcrcoder.jpg">
 

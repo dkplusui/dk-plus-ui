@@ -52,11 +52,6 @@
     justify-content: flex-start;
 
     .box-icon_comp {
-      .icon-name {
-        font-size: 10px;
-        color: var(--vp-c-text-2);
-      }
-
       cursor: pointer;
       display: flex;
       width: 110px;
@@ -66,6 +61,10 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      .icon-name {
+        font-size: 10px;
+        color: var(--vp-c-text-2);
+      }
     }
   }
 </style>

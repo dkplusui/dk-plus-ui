@@ -1,0 +1,6 @@
+@use '../../mixins/mixin.scss' as *;
+
+@include block(row){
+  --row-width: 100%;
+  --row-gutter: 0px;
+}

@@ -2,15 +2,43 @@ import type { RouteRecordRaw, RouteLocationNormalized } from 'vue-router'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+
+// interface PageType {
+//   path: string
+//   title: string
+//   order: number
+// }
+
+const pageList = import.meta.glob('../views/component/**/page.ts', {
+  eager: true,
+  import: 'default'
+})
+const componentList = import.meta.glob('../views/component/**/**.vue', {})
+
+const routerList: RouteRecordRaw[] = []
+
+for (const key in pageList) {
+  const { order, title, path } = pageList[key]
+  if (path === '/index') continue
+  const tPath = path.replace('/', '')
+
+  const targetComponent = key.replace('page.ts', tPath + '.vue')
+
+  const route: RouteRecordRaw = {
+    path: path,
+    name: tPath,
+    component: componentList[targetComponent],
+    meta: {
+      title: title,
+      keepAlive: false,
+      isunnewList: false,
+      order
+    }
+  }
+  routerList.push(route)
+}
+
 const Index: Object = () => import('../views/component/index/index.vue')
-const DkShadow: Object = () => import('../views/component/DkShadow/DkShadow.vue')
-const DkIcon: Object = () => import('../views/component/icon/icon.vue')
-const DkContainer: Object = () => import('../views/component/Dkcontainer/Dkcontainer.vue')
-const DkInterval: Object = () => import('../views/component/DkInterval/DkInterval.vue')
-const Dkbutton: Object = () => import('../views/component/Dkbutton/Dkbutton.vue')
-const DkInput: Object = () => import('../views/component/DkInput/DkInput.vue')
-const DkLoading: Object = () => import('../views/component/DkLoading/DkLoading.vue')
-const DKcollapse: Object = () => import('../views/component/DKcollapse/DKcollapse.vue')
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -29,98 +57,7 @@ const routes: RouteRecordRaw[] = [
       keepAlive: false,
       isunnewList: false
     },
-    children: [
-      {
-        path: '/DkShadow',
-        name: 'DkShadow',
-        component: DkShadow,
-        meta: {
-          title: '自定义盒子DkShadow',
-          keepAlive: false,
-          isunnewList: false
-        }
-      },
-      {
-        path: '/DkIcon',
-        name: 'DkIcon',
-        component: DkIcon,
-        meta: {
-          title: '图标中心',
-          keepAlive: false,
-          isunnewList: false
-        }
-      },
-      {
-        path: '/DkContainer',
-        name: 'DkContainer',
-        component: DkContainer,
-        meta: {
-          title: '布局容器',
-          keepAlive: false,
-          isunnewList: false
-        }
-      },
-      {
-        path: '/DkInterval',
-        name: 'DkInterval',
-        component: DkInterval,
-        meta: {
-          title: '间距',
-          keepAlive: false,
-          isunnewList: false
-        }
-      },
-      {
-        path: '/DkLoading',
-        name: 'DkLoading',
-        component: DkLoading,
-        meta: {
-          title: '加载中',
-          keepAlive: false,
-          isunnewList: false
-        }
-      },
-      {
-        path: '/DKcollapse',
-        name: 'DKcollapse',
-        component: DKcollapse,
-        meta: {
-          title: '折叠面板',
-          keepAlive: false,
-          isunnewList: false
-        }
-      },
-      {
-        path: '/Dkbutton',
-        name: 'Dkbutton',
-        component: Dkbutton,
-        meta: {
-          title: '按钮Dkbutton',
-          keepAlive: false,
-          isunnewList: false
-        }
-      },
-      {
-        path: '/DkInput',
-        name: 'DkInput',
-        component: DkInput,
-        meta: {
-          title: '输入框DkInput',
-          keepAlive: false,
-          isunnewList: false
-        }
-      },
-      {
-        path: '/DkNumber',
-        name: 'DkNumber',
-        component: () => import('../views/component/DkNumber/dkNumber.vue'),
-        meta: {
-          title: '数字输入框DkNumber',
-          keepAlive: false,
-          isunnewList: false
-        }
-      }
-    ]
+    children: routerList
   }
 ]
 const router = createRouter({

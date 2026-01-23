@@ -13,7 +13,7 @@
       }
 
       const handleToGitClick = (): void => {
-        window.open('https://github.com/dk-plus-ui/dk-plus-ui')
+        window.open('https://github.com/isMrFan/dk-plus-ui')
       }
 
       const data = reactive({
@@ -47,8 +47,21 @@
         FriendlyLink: friendlyLinks.friendlyList
       })
 
-      const handleToGitUserClick = (url: string): void => {
-        window.open(url)
+      const handleToGitUserClick = (item: Record<string, string | undefined>): void => {
+        if (item.avatar) {
+          window.open(item.avatar)
+        } else {
+          const input = document.createElement('input')
+          input.setAttribute('readonly', 'readonly')
+          const email = item.email ? item.email : ''
+          input.setAttribute('value', email)
+          document.body.appendChild(input)
+          input.select()
+          input.setSelectionRange(0, 9999)
+          document.execCommand('copy')
+          document.body.removeChild(input)
+          alert('已复制邮箱到剪切板')
+        }
       }
 
       return {
@@ -94,7 +107,7 @@
             :key="item.avatar"
             class="list-item"
             :title="item.name"
-            @click="handleToGitUserClick(item.avatar)"
+            @click="handleToGitUserClick({ avatar: item.avatar })"
           >
             <div class="avatar">
               <img :src="item.imgUrl" alt="avatar" />

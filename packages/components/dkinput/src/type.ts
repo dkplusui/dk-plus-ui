@@ -1,4 +1,12 @@
-import type { dkInputType } from '../../_interface';
+import type {
+  ComputedRef,
+  CSSProperties,
+  Ref,
+  InputHTMLAttributes,
+  ShallowRef,
+  TextareaHTMLAttributes
+} from 'vue'
+import type { dkInputType, ClassListName } from '../../_interface'
 export interface UseInputProps {
   value: string | number
   type: string
@@ -23,6 +31,8 @@ export interface UseEmitType {
 }
 
 export interface propDataModel {
+  personalityProp: boolean
+  labelTextProp: string
   prependText: string
   appendText: string
   placeholder: string
@@ -48,7 +58,9 @@ export interface propDataModel {
   showLengthProp: boolean
 }
 
-export interface dataType {
+export interface DataType {
+  personality: boolean
+  labelText: string
   /**
    * @description Is there prepend text
    * @type {boolean} [true | false]
@@ -83,9 +95,44 @@ export interface dataType {
   showLength: boolean
 }
 
-export interface pendType {
+export interface PendType {
   /** Is there prepend text */
   isPrependText: boolean
   /** Is there append text */
   isAppendText: boolean
 }
+
+/**
+ * @name SetupReturns
+ * @Time July 14, 2023
+ * @description Setup return type
+ */
+export interface SetupReturns {
+  clear: () => void
+  togglePassword: () => void
+  AppendIconEventClick: (event: MouseEvent) => void
+  PrependIconEventClick: (event: MouseEvent) => void
+  onKeydownEnter: (event: KeyboardEvent) => void
+  prefixIconClass: string[]
+  suffixIconClass: string[]
+  showPasswordClass: string[]
+  appendClassList: string[]
+  classList: ComputedRef<ClassListName>
+  wrapperClassList: ComputedRef<ClassListName>
+  pendStyleList: ComputedRef<CSSProperties>
+  isShowClear: ComputedRef<boolean>
+  styleList: CSSProperties
+  value: Ref<string | number>
+  inputAttrs: InputHTMLAttributes
+  input: ShallowRef<HTMLInputElement | undefined>
+  textarea: ShallowRef<HTMLTextAreaElement | undefined>
+  textareaAttrs: TextareaHTMLAttributes
+  prependClassList: string[]
+  lengthLimit: string
+  valueLength: Ref<number>
+  showPasswordIcon: Ref<string>
+  inputType: Ref<dkInputType>
+}
+type ValuesType<T> = T[keyof T]
+
+export type SetupReturnsType = ValuesType<SetupReturns> | boolean

@@ -2,8 +2,14 @@ import * as components from './components'
 import * as componentsIcon from './components-icon'
 import { version } from '../components/package.json'
 import { DkLoading } from './dkloading'
+import { DkScroll } from './dkscrollbar'
 import { objectEntries } from './_utils'
 import type { App } from 'vue'
+
+const directiveList = {
+  'dk-loading': DkLoading,
+  'dk-scroll': DkScroll
+}
 
 /**
  * 注册组件
@@ -25,7 +31,10 @@ const install = (app: App): App => {
   objectEntries(componentsIcon).forEach(([key, value]): void => {
     app.component(key, value)
   })
-  app.directive('dk-loading', DkLoading.directive)
+  for(const key in directiveList) {
+    const target = directiveList[key as keyof typeof directiveList]
+    app.directive(key, target.directive)
+  }
 
   return app
 }

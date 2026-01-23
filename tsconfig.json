@@ -38,7 +38,8 @@
   "types": [
     // 类型声明
     "node",
-    "vue"
+    "vue",
+    "vite/client"
   ],
   "paths": {
     "*": [

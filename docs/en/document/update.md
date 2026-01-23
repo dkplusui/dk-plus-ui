@@ -1,5 +1,24 @@
 # Update log
 
+## 1.0.27-alpha.1 (2024-08-31)
+
+- Added `dk-rate` rate
+- Added `dk-watermark` watermark
+
+## 1.0.26-alpha.1 (2023-12-10)
+
+- Added `dk-radio` radio
+- Added `dk-switch` switch
+
+## 1.0.25-alpha.1 (2023-10-10)
+
+- Added `Dk-input` Input
+- Added `dk-checkbox` checkbox
+
+## 1.0.24-alpha.1 (2023-07-10)
+
+- Added `Dk-alert` alert
+
 ## 1.0.22-alpha.1 (2023-07-10)
 
 - Change the packaging method. Change the reference method. See the Getting Started documentation

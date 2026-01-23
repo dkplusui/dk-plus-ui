@@ -1,0 +1,137 @@
+@use '../mixins/mixin.scss' as *;
+
+@include block(switch) {
+  width: var(--switch-width);
+  min-width: var(--switch-min-width);
+  height: var(--switch-height);
+  border-radius: var(--switch-height);
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  @include block(wrapper) {
+    display: block;
+    width: calc(var(--switch-width) - 20px);
+    min-width: var(--switch-min-width);
+    height: var(--switch-height);
+    position: relative;
+  }
+  @include element(slider) {
+    width: var(--switch-width);
+    min-width: var(--switch-min-width);
+    height: inherit;
+    padding: 0 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    border-radius: var(--switch-height);
+    overflow: hidden;
+    box-sizing: border-box;
+
+    .dk-switch_title {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      transform: translateX(6px);
+      transition: all 0.2s;
+      user-select: none;
+    }
+
+    &:before {
+      content: '';
+      display: inline-block;
+      width: 100%;
+      height: var(--switch-height);
+      border-radius: var(--switch-height);
+      position: absolute;
+      top: 0;
+      background-color: var(--switch-unchecked-color);
+      left: 0;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    &:after {
+      content: '';
+      display: inline-block;
+      width: calc(var(--switch-height) - 4px);
+      height: calc(var(--switch-height) - 4px);
+      background-color: #fff;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 2px;
+      transition: all 0.2s;
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    & > .dk-icon {
+      font-size: calc(var(--switch-height) - 6px);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 3px;
+      z-index: 3;
+      color: var(--switch-checked-color);
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+  }
+  @include element(inner) {
+    display: none;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    opacity: 0;
+    &:checked + .dk-switch_slider {
+      .dk-switch_title {
+        transform: translateX(-6px);
+      }
+      &:before {
+        background-color: var(--switch-checked-color);
+      }
+      &:after {
+        left: calc(100% - var(--switch-height) + 2px);
+      }
+      & > .dk-icon {
+        left: calc(100% - var(--switch-height) + 3px);
+        transform: translateY(-50%);
+      }
+    }
+  }
+
+  @include element(title) {
+    position: relative;
+    z-index: 1;
+    font-size: 12px;
+    color: #fff;
+    padding: 0 6px;
+    transition: all 0.2s;
+  }
+
+  @include element(disabled) {
+    opacity: 0.6;
+    cursor: not-allowed;
+    * {
+      pointer-events: none;
+    }
+    .dk-switch_title {
+      cursor: not-allowed;
+    }
+    .dk-switch_slider {
+      &:before {
+        cursor: not-allowed;
+      }
+      &:after {
+        cursor: not-allowed;
+      }
+    }
+  }
+}

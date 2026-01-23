@@ -1,5 +1,21 @@
 # milestone
 
+## 2024-08-15
+
+The warehouse has welcomed a fourth contributor [兔爷](https://github.com/qiheizidan)
+
+## 2024-07-15
+
+Starting to update version after version
+
+## 2023-12-15
+
+Temporarily suspended due to personal debt issues
+
+## 2023-07-15
+
+The warehouse has welcomed a third contributor [usertutu](https://github.com/usertutu)
+
 ## 2023-07-10
 
 Because the next technical gulp packaging declaration file is always set doll leafing through a lot of documents failed to solve so changed to vite packaging

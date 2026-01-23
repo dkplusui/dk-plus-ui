@@ -1,0 +1,59 @@
+@use '../mixin.scss' as *;
+
+
+
+.#{$namespace}-alert {
+  // dk-alert默认样式
+  --alert-margin:5px;
+  --alert-border-radius: 4px;
+  --alert-padding: 8px 16px;
+  --alert-font-size: 16px;
+
+  // dk-alert Type为success样式
+  --alert-success-color:#67c23a;
+  --alert-success-background-color: #f0f9eb;
+
+  // dk-alert Type为info样式
+  --alert-info-color:#909399;
+  --alert-info-background-color: #f4f4f5;
+
+  // dk-alert Type为warning样式
+  --alert-warning-color: #e6a23c;
+  --alert-warning-background-color: #fdf6ec;
+
+  // dk-alert Type为error样式
+  --alert-error-color: #f56c6c;
+  --alert-error-background-color: #fef0f0;
+
+  // dk-alert关闭按钮默认样式
+  &-close-btn{
+    opacity: 1;
+    position: absolute;
+    top: 8px;
+    right: 15px;
+    cursor: pointer;
+  }
+
+  // dk-alert内容默认样式
+  &-content{
+    padding: 0 8px;
+    display: table-cell;
+  }
+
+  // dk-alert描述默认样式
+  &-description {
+    margin: 5px 0 0;
+    white-space: normal;
+  }
+
+  // dk-alert居中样式
+  &-is-center{
+    justify-content: center;
+  }
+
+  // dk-alert标题加粗
+  &-is-bold {
+    font-weight: 700;
+  }
+  
+}

@@ -1,0 +1,6 @@
+@use '../mixin.scss' as *;
+
+.#{$namespace}-collapseItem_title{
+  --title-border-color: #ebeef5;
+  --title-cursor:pointer;
+}

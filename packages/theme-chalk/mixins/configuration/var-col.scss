@@ -1,0 +1,5 @@
+@use '../mixin.scss' as *;
+
+@include block(col){
+  --col-span: 1;
+}

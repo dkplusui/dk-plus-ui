@@ -1,0 +1,55 @@
+@use '../mixins/mixin.scss' as *;
+
+@include block(rate){
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  width: fit-content;
+  &_list{
+    display: inline-flex;
+    .dk-rate_star{
+      cursor: pointer;
+      transition: 0.4s;
+      position: relative;
+      &:hover {
+        transform: scale(1.25);
+      }
+      &.dk-rate_star-readonly:hover{
+        transform: scale(1);
+      }
+    }
+    .dk-rate_star_forbidden{
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+  &__text{
+    // color: #fcc202;
+    padding-left: 3px;
+    font-size: 16px;
+  }
+  // &:hover{
+  //   cursor: pointer;
+  //   animation: dkrate 0.2s ease-in-out;
+  // }
+
+  &:active{
+    cursor: pointer;
+    animation: dkrate 0.2s ease-in-out;
+  }
+
+  @keyframes dkrate{
+    0%{
+      transform: scale(1);
+    }
+    30%{
+      transform: scale(.9);
+    }
+    100%{
+      transform: scale(1);
+    }
+  }
+
+  
+}

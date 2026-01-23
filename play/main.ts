@@ -15,7 +15,8 @@ import dkPlus from 'dk-plus'
 import '@dk-plus/theme-chalk'
 // 打包后测试时，使用打包后的组件库
 // import dkPlus from '../dist'
-// import '../dist/dist/index.css'
+// import '../dist/dist/theme-chalk/index.css'
+// import '../dist/theme-chalk/index.css'
 const app = createApp(App)
 app.use(router)
 app.use(dkPlus)

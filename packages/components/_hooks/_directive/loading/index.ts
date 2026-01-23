@@ -95,7 +95,7 @@ export const DirectiveLoading = (): Directive => {
      * @param { Object } el 指令绑定到的元素。这可以用于直接操作 DOM
      * @param { Object } binding 一个对象，包含一些配置参数
      */
-    mounted: (el: LoadingInterface, binding: DirectiveBinding): void => {
+    mounted: (el: LoadingInterface, binding: DirectiveBinding): void => {      
       const originalPosition: string = getComputedStyle(el)['position'] || 'static'
       el.originalPosition = originalPosition
       binding.value && renderLoading(el, binding)

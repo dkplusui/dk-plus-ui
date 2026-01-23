@@ -16,8 +16,18 @@ export default function getNavs() {
       items: [
         {
           text: '1.Flutter',
-          activeMatch: '^/expansion/Flutter/',
-          link: '/expansion/Flutter/windows/WinInstall'
+          activeMatch: '^/zh/expansion/Flutter/',
+          link: '/zh/expansion/Flutter/windows/WinInstall'
+        }
+      ]
+    },
+    {
+      text: 'other',
+      items: [
+        {
+          text: 'Electronic book',
+          activeMatch: '^/en/electronicBook/',
+          link: '/en/electronicBook/StereotypedWriting'
         }
       ]
     },

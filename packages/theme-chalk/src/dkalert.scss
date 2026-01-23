@@ -1,0 +1,33 @@
+@use '../mixins/configuration/var-alert.scss' as *;
+@use '../mixins/mixin.scss' as *;
+
+
+.#{$namespace}-alert {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: var(--alert-margin);
+  border-radius: var(--alert-border-radius);
+  font-size: var(--alert-font-size);
+  padding: var(--alert-padding);
+}
+
+.is-alert-success{
+  color: var(--alert-success-color);
+  background: var(--alert-success-background-color);
+}
+
+.is-alert-info {
+  color: var(--alert-info-color);
+  background: var(--alert-info-background-color);
+}
+
+.is-alert-warning {
+  color: var(--alert-warning-color);
+  background: var(--alert-warning-background-color);
+}
+
+.is-alert-error {
+  color: var(--alert-error-color);
+  background: var(--alert-error-background-color);
+}

@@ -85,6 +85,7 @@
       background-color: rgba($color: var(--vp-c-bg), $alpha: 1);
       background-image: radial-gradient(transparent 1px, var(--vp-c-bg) 1px);
       background-size: 5px 5px;
+      backdrop-filter: blur(8px);
       .fill{
         background-color: transparent;
       }

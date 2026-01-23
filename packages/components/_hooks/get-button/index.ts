@@ -37,7 +37,7 @@ export interface getButtonType {
 /**
  * @name getButton
  * @Time 2023年05月04日
- * @author dk-plus-ui(范先生) <https://github.com/dk-plus-ui>
+ * @author dk-plus-ui(范先生) <https://github.com/isMrFan>
  * @description button组件方法封装
  * @return classList 传统按钮类名
  * @return styleList 传统按钮style
@@ -56,7 +56,7 @@ export const getButton = (props: MergedParams): getButtonType => {
    * @description 获取当前组件的插槽
    */
   const slot: Slots = useSlots()
-  const isSlot = computed(
+  const isSlot= computed(
     (): boolean => !(slot.default && slot.default() && slot.default()[0].children)
   )
 

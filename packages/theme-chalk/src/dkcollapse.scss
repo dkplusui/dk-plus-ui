@@ -1,0 +1,5 @@
+@use '../mixins/mixin.scss' as *;
+
+.#{$namespace}-collapse {
+  width: 100%;
+}

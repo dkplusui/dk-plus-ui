@@ -18,7 +18,7 @@
       const handleFixClick = (): void => {
         console.log('handleFixClick')
       }
-      const msg = ref('asdf')
+      const msg = ref<string | number>('asdf')
       const input = ref(null)
 
       const handlePendClick = (): void => {
@@ -34,6 +34,10 @@
       }
 
       const isDisabled = ref(true)
+      const handleChange = (val: string): void => {
+        msg.value = val
+        console.log('msg=', msg.value)
+      }
       return {
         oncopy,
         handleFixClick,
@@ -44,15 +48,17 @@
         isDisabled,
         handlePendClick,
         handleKeydown,
-        onFocus
+        onFocus,
+        handleChange
       }
     }
   })
 </script>
 
 <template>
-  msg: {{ msg }}
-  <div class="input">
+  <!-- msg: {{ msg }} -->
+  <dk-input v-if="false" v-model="msg" @change="handleChange" @enter="handleChange" @focus="handleChange" @blur="handleChange"></dk-input>
+  <div v-if="!false" class="input">
     <h4>前后置内容</h4>
     <dk-input v-model="msg" prepend-text="http://" append-text=".com"></dk-input>
 
@@ -63,7 +69,7 @@
 
     <dk-input clearable placeholder="prefix插槽形式">
       <template #prefix>
-        <dk-icon class="icon-shanchu1" />
+        <dk-icon icon="IconShanchu1" />
       </template>
     </dk-input>
 
@@ -108,7 +114,7 @@
     <dk-input type="number" placeholder="数字框" />
 
     <h4>密码框</h4>
-    <dk-input v-model='msg' type="password" placeholder="密码框" show-password />
+    <dk-input v-model="msg" type="password" placeholder="密码框" show-password />
 
     <h4>前后缀</h4>
     <dk-input></dk-input>
@@ -138,6 +144,37 @@
     <div class="box">
       {{ msg }}
     </div>
+    <h4>个性化</h4>
+    <p>设置label-text</p>
+    <dk-input label-text="用户名" placeholder="请输入用户名"></dk-input>
+    <p>设置 personality personality-type="underline" </p>
+    <dk-input 
+      personality 
+      personality-type="underline" 
+      label-text="个性-标签文字"
+      placeholder="个性-下划线输入框"
+      prefix-icon="IconFile"
+      suffix-icon="IconFile"
+    ></dk-input>
+    <p>设置personality personality-type="borderRadius" </p>
+    <dk-input 
+      personality 
+      personality-type="borderRadius" 
+      placeholder="个性-下划线+圆角转换"
+      prefix-icon="IconFile"
+    ></dk-input>
+    <dk-input 
+      placeholder="warning"
+      prefix-icon="IconSysInformation"
+      status="warning"
+    ></dk-input>
+    <dk-input 
+      placeholder="error"
+      prefix-icon="IconSysInformation"
+      status="error"
+    ></dk-input>
+  </div>
+  <div class="input">
   </div>
 </template>
 

@@ -148,3 +148,31 @@ export const setFunction = <T extends Function>(
     default: () => defaultVal
   } as const
 }
+
+/**
+ * @name setColorProp
+ * @Time September 8, 2023
+ * @param { string } color
+ * @returns Set the color type props parameter
+ * @default null
+ */
+export const setColorProp = (
+  color?: string | null
+): { type: StringConstructor; default: () => string | null } => {
+  const hexRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
+  const rgbRegex = /^rgb\((\d{1,3}),(\d{1,3}),(\d{1,3})\)$/
+  const rgbaRegex = /^rgba\((\d{1,3}),(\d{1,3}),(\d{1,3}),([01](\.\d+)?)\)$/
+
+  return {
+    type: String,
+    default: (): string | null => {
+      if (
+        color &&
+        (hexRegex.test(color) || rgbRegex.test(color) || rgbaRegex.test(color))
+      ) {
+        return color
+      }
+      return null
+    }
+  }
+}

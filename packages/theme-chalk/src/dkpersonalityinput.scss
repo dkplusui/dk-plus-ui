@@ -1,0 +1,107 @@
+@use '../mixins/mixin.scss' as *;
+@use '../mixins/configuration/var-input.scss' as *;
+
+@include block(('input-personality', 'input')) {
+  position: relative;
+  margin-top: var(--input-margin-top);
+  width: var(--input-width);
+  height: var(--input-height);
+  @include block(wrapper) {
+    width: calc(var(--input-width) - 20px);
+    height: inherit;
+    transition: all 0.3s ease;
+    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  @include element(inner) {
+    width: 100%;
+    height: inherit;
+    line-height: var(--input-height);
+    font-size: var(--input-font-size);
+    color: var(--input-text-color);
+    outline: none;
+    border: none;
+  }
+
+  &:focus-within {
+    @include block('>*input_label-text') {
+      top: -55%;
+      left: 0;
+      opacity: 1;
+      z-index: 1;
+      transform: scale(0.9);
+    }
+  }
+  &:not(:focus-within) {
+    @include block('>*input_label-text') {
+      top: 0;
+      opacity: 0;
+      z-index: -1;
+      left: 1%;
+      transform: scale(1);
+    }
+  }
+  @include block('>*input_label-text') {
+    transition: all 0.2s;
+    font-size: var(--input-font-size);
+    color: var(--input-focus-border);
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 1%;
+    z-index: -1;
+  }
+}
+
+// 圆角转换 聚焦圆角为0
+@include block(input-personality_borderRadius) {
+  @include block('>*input-personality-wrapper') {
+    border: 1px solid var(--input-border);
+    border-radius: calc(var(--input-height) / 2);
+    &::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background-color: var(--input-focus-border);
+      transition: width 0.3s ease;
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    &:focus-within {
+      border-radius: 0;
+    }
+    &:focus-within::after {
+      transition: all 0.3s ease;
+      width: calc(100%);
+      left: 0;
+      transform: translateX(0);
+    }
+  }
+}
+
+// 下划线 聚焦下划线宽度为100%
+@include block('input-personality_underline') {
+  margin-bottom: 2px;
+  @include block('>*input-personality-wrapper') {
+    border-bottom: 2px solid var(--input-border);
+    &::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background-color: var(--input-focus-border);
+      transition: width 0.3s ease;
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+    }
+    &:focus-within::after {
+      width: 100%;
+    }
+  }
+}

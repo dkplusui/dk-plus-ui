@@ -1,4 +1,5 @@
 import { withInstall } from '../_utils/index'
+
 import i_shanchu1 from './src/i-shanchu1/index.vue'
 import i_Shanchu2 from './src/i-shanchu2/index.vue'
 import i_Refresh from './src/i-Refresh/index.vue'
@@ -173,6 +174,11 @@ import i_Reduce1 from './src/i-Reduce1/index.vue'
 import i_searchSmall from './src/i-searchSmall/index.vue'
 import i_ArrowTop from './src/i-ArrowTop/index.vue'
 import i_ArrowBottom from './src/i-ArrowBottom/index.vue'
+import i_check from './src/i-Check/index.vue'
+import i_close from './src/i-Close/index.vue'
+import i_loading from './src/i-Loading/index.vue'
+import i_star from './src/i-Star/index.vue'
+import i_stared from './src/i-Stared/index.vue'
 export const IconShanchu1 = withInstall(i_shanchu1)
 export const IconShanchu2 = withInstall(i_Shanchu2)
 export const IconRefresh = withInstall(i_Refresh)
@@ -347,6 +353,12 @@ export const IconReduce1 = withInstall(i_Reduce1)
 export const IconSearchSmall = withInstall(i_searchSmall)
 export const IconArrowTop = withInstall(i_ArrowTop)
 export const IconArrowBottom = withInstall(i_ArrowBottom)
+export const IconCheck = withInstall(i_check)
+export const IconClose = withInstall(i_close)
+export const IconLoading = withInstall(i_loading)
+export const IconStar = withInstall(i_star)
+export const IconStared = withInstall(i_stared)
+
 import * as svgList from './default'
 export * from './default'
 export default svgList

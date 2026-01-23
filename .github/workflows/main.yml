@@ -1,0 +1,96 @@
+name: DK plus Ui Github Actions
+
+# 当 master 分支 push 代码的时候触发 workflow
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 下载仓库代码 / 校验
+      - name: Checkout
+        # actions/checkout@v3 是 github 官方的一个action，用于 clone 该仓库的源码到工作流中
+        uses: actions/checkout@v3
+
+      # 安装 pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7.18.2
+
+      # 安装 node
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          cache: 'pnpm'
+
+      # 安装依赖项
+      - name: Install
+        run: pnpm install
+
+      - name: Build(docs)
+        run: npm run build:docs
+
+      - name: Build(play)
+        run: npm run build:play
+
+      - name: Clear existing files (dev)
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -p ${{ secrets.REMOTE_PORT }} ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh -p ${{ secrets.REMOTE_PORT }} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "rm -rf /www/wwwWeb/test.cadwaladerss.com/*"
+
+      - name: Deploy to Web Server (dev)
+        uses: easingthemes/ssh-deploy@v2
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+          SOURCE: /play/dist/*
+          TARGET: /www/wwwWeb/test.cadwaladerss.com
+
+      - name: Clear existing files (master)
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -p ${{ secrets.REMOTE_PORT }} ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh -p ${{ secrets.REMOTE_PORT }} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "rm -rf /www/wwwWeb/dk-plus.com/*"
+
+      - name: Deploy to Web Server (master)
+        uses: easingthemes/ssh-deploy@v2
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+          SOURCE: /docs/.vitepress/dist/*
+          TARGET: /www/wwwWeb/dk-plus.com
+
+      - name: Deploy to Web electronicBook (master)
+        uses: easingthemes/ssh-deploy@v2
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+          SOURCE: /docs/assets/electronicBook/*
+          TARGET: /www/wwwWeb/dk-plus.com/assets/electronicBook/
+
+      - name: Deploy to robots Server (master)
+        uses: easingthemes/ssh-deploy@v2
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+          SOURCE: /docs/seo/*
+          TARGET: /www/wwwWeb/dk-plus.com

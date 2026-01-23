@@ -54,7 +54,7 @@ You can also use the `UMD` mode to include `dk-plus` in your `*.html` file and q
     <dk-button type="danger">Success Button</dk-button>
     <dk-button type="warning">Warning Button</dk-button>
   </div>
-  <script src="https://unpkg.com/vue@next/dist/vue.global.js"></script>
+  <script src="https://unpkg.com/vue@3.5.13/dist/vue.global.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dk-plus/dkPlus/index.umd.js"></script>
   <script type="module">
     const { createApp, ref } = Vue

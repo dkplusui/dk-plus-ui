@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang="ts" setup name="DkInput">
 /**
  * @name dk-input
  * @author WangYingJie
@@ -6,419 +6,291 @@
  * @description input component
  * @function getNull Get string array length
  * @function getBooleanAnd Obtaining Results from Relationships
+ * @function togglePassword Show or hide password
  * @example
  */
-import { defineComponent, computed, ref, shallowRef, nextTick, reactive, watch } from 'vue'
-import type { InputHTMLAttributes, ComputedRef, TextareaHTMLAttributes, CSSProperties } from 'vue'
-// eslint-disable-next-line
-import { DkInputProps, dkInputProps } from './props'
-import { getInputGlobal } from '../../_hooks'
-import { getInput, getBooleanAnd, getBooleanOr, getNull, getReturn } from '../../_hooks'
+import { computed, ref, shallowRef, nextTick, reactive, watch, useSlots } from 'vue'
+import type { InputHTMLAttributes, ComputedRef, TextareaHTMLAttributes } from 'vue'
+import { dkInputProps } from './props'
+import type { PendType } from './type'
+import { inputEmits } from './emit'
+import {
+  getInput,
+  getBooleanAnd,
+  getNull,
+  getReturn,
+  verifyInputType,
+  getValue,
+  getPendValue,
+  setData,
+  setPropData
+} from '../../_hooks'
 import type { dkInputType } from '../../_interface'
-import type { propDataModel, dataType, pendType } from './type'
 
-// todo 泛型入参RawBindings 应该是setup的returnProps 杰哥你自行修改下 我不太清楚你返回的数据结构 故使用Record<string, unknown>临时处理
-export default defineComponent<typeof dkInputProps, Record<string, unknown>, DkInputProps>({
-  name: 'DkInput',
-  props: dkInputProps,
-  emits: ['update:modelValue', 'focus', 'blur'],
-  setup(props, { slots, emit }) {
-    const { getInputType } = getInputGlobal(props)
-    const { type = getInputType() } = props
+const props = defineProps(dkInputProps)
+const emit = defineEmits(inputEmits)
+const slots = useSlots()
 
-    const input = shallowRef<HTMLInputElement>()
-    const textarea = shallowRef<HTMLTextAreaElement>()
-    const _ref = computed(() => input.value || textarea.value)
-    const { styleList, wrapperClassList, innerClassList, pendStyleList } = getInput(props)
-    const styleListRef: CSSProperties = styleList.value
-    const inputClassList = computed(() => getInput(props).classList)
-    const modelValueProp = ref<string | number>(props.modelValue)
-    const isFocus = ref<boolean>(false)
+const input = shallowRef<HTMLInputElement>()
+const textarea = shallowRef<HTMLTextAreaElement>()
+const _ref = computed(() => input.value || textarea.value)
+const { classList, styleList, wrapperClassList, innerClassList, pendStyleList } =
+  getInput(props)
+const modelValueProp = ref<string | number>(props.modelValue)
+const isFocus = ref<boolean>(false)
+const isPersonality = ref<boolean>(false)
 
-    const propData = reactive<propDataModel>({
-      prependText: props.prependText,
-      appendText: props.appendText,
-      placeholder: props.placeholder,
-      clearable: props.clearable,
-      showPassword: props.showPassword,
-      prependIcon: props.prependIcon,
-      appendIcon: props.appendIcon,
-      disabledProp: props.disabled,
-      typeProp: props.type,
-      prefixIcon: props.prefixIcon,
-      suffixIcon: props.suffixIcon,
-      maxlengthProp: props.maxlength,
-      minlengthProp: props.minlength,
-      autosizeProp: props.autosize,
-      rowsProp: props.rows,
-      readonlyProp: props.readonly,
-      showLengthProp: props.showLength
-    })
+const propData = setPropData(props)
 
-    const inputValue = ref<string | number>(props.modelValue)
+const inputValue = ref(props.modelValue)
 
-    const passwordShowOrHide = ref<Boolean>(false)
+let passwordShowOrHide: boolean = false
 
-    /**
-     * @name verifyInputType Get input type
-     * @returns {dkInputType}
-     */
-    const verifyInputType = (): dkInputType => {
-      let type: dkInputType = propData.typeProp
-      if (propData.typeProp === 'password') {
-        if (passwordShowOrHide.value) {
-          type = 'text'
-        } else {
-          type = 'password'
-        }
-      } else {
-        type = propData.typeProp
-      }
-      return type
+let inputType = ref(verifyInputType(propData.typeProp, passwordShowOrHide))
+
+const getLength = (value: string | number = ''): string => {
+  let lengthLimit = ''
+  if (propData.maxlengthProp && propData.minlengthProp) {
+    lengthLimit = `${propData.minlengthProp}/${propData.maxlengthProp}`
+  } else if (propData.maxlengthProp) {
+    lengthLimit = `${value.toString().length}/${propData.maxlengthProp}`
+  } else if (propData.minlengthProp) {
+    lengthLimit = `${propData.minlengthProp}`
+  }
+  return lengthLimit
+}
+
+const data = setData(propData, slots, inputType.value)
+
+const isShowClear = computed((): boolean => getNull(inputValue.value))
+
+let lengthLimit: string = getLength()
+
+const pendData = reactive<PendType>({
+  isPrependText: getBooleanAnd([
+    !slots.prepend,
+    getNull(propData.prependText),
+    !data.isPrependIcon
+  ]),
+  isAppendText: getBooleanAnd([
+    getNull(propData.appendText),
+    !slots.append,
+    !data.isAppendIcon
+  ])
+})
+
+const prependClassList: string[] = ['dk-input_prepend', 'dk-input_pend']
+
+const appendClassList: string[] = ['dk-input_append', 'dk-input_pend']
+
+const valueLength = ref(0)
+
+watch(
+  () => props.modelValue,
+  () => {
+    inputValue.value = getValue(
+      props.modelValue,
+      propData.prependText,
+      propData.prependIcon,
+      propData.appendText,
+      propData.appendIcon
+    )
+    modelValueProp.value = inputValue.value
+  }
+)
+
+watch(
+  () => inputValue.value,
+  val => {
+    const len = val.toString().length
+
+    // maxlength
+    if (propData.maxlengthProp) {
+      lengthLimit = `${len}/${propData.maxlengthProp}`
     }
 
-    let inputType = ref<dkInputType>(verifyInputType())
-
-    /**
-     * @name getIsClear Whether to display the clear button
-     * @returns {boolean}
-     */
-    const getIsClear = (): boolean => {
-      let isClearable = propData.clearable
-      let isDisabled = !propData.disabledProp
-      let isTextarea = inputType.value !== 'textarea'
-      let isPassword = inputType.value !== 'password'
-      return getBooleanAnd([isDisabled, isTextarea, isPassword, isClearable])
+    // autoSize
+    if (getTextareaRows().autosize) {
+      const textarea = _ref.value as HTMLTextAreaElement
+      textarea.style.height = 'auto'
+      textarea.style.height = `${textarea.scrollHeight + 2}px`
     }
 
-    const isShowLength = (): boolean => {
-      const isLength = getBooleanOr([
-        getNull(propData.maxlengthProp),
-        getNull(propData.minlengthProp)
-      ])
-      return getBooleanAnd([isLength, !propData.disabledProp])
+    // length-count
+    if (data.showLength) {
+      valueLength.value = len
     }
-
-    const getLength = (value: string | number = ''): string => {
-      let lengthLimit = ''
-      if (propData.maxlengthProp && propData.minlengthProp) {
-        lengthLimit = `${propData.minlengthProp}/${propData.maxlengthProp}`
-      } else if (propData.maxlengthProp) {
-        lengthLimit = `${value.toString().length}/${propData.maxlengthProp}`
-      } else if (propData.minlengthProp) {
-        lengthLimit = `${propData.minlengthProp}`
-      }
-      return lengthLimit
-    }
-
-    const getShowLengthProp = (): boolean => {
-      const isShowLen = propData.showLengthProp
-      if (!isShowLen) return false
-      let result = false
-      const isTextarea = inputType.value === 'textarea'
-      const isText = inputType.value === 'text'
-      const textOrTextarea = getBooleanOr([isTextarea, isText])
-      const isMaxlength = !propData.maxlengthProp
-      result = getBooleanAnd([textOrTextarea, isMaxlength])
-      return result
-    }
-
-    const data = reactive<dataType>({
-      isPrepend: getBooleanOr([
-        !!slots.prepend,
-        getNull(propData.prependText),
-        !!propData.prependIcon
-      ]),
-      isPrependIcon: getBooleanAnd([getNull(propData.prependIcon), !slots.prepend]),
-      isAppendIcon: getBooleanAnd([!slots.append, !!propData.appendIcon]),
-      isAppend: getBooleanOr([
-        !!slots.append,
-        getNull(propData.appendText),
-        !!propData.appendIcon
-      ]),
-      isPrefixIcon: getBooleanAnd([!!propData.prefixIcon, !slots.prefix]),
-      isAppendTextLen: getNull(propData.appendText),
-      isPrefix: getBooleanOr([!!slots.prefix, !!propData.prefixIcon]),
-      isClear: getIsClear(),
-      inputmode: type === 'number' ? 'numeric' : 'text',
-      isSuffix: getBooleanOr([!!slots.suffix, !!propData.suffixIcon]),
-      isSuffixIcon: getBooleanAnd([!!propData.suffixIcon, !slots.suffix]),
-      isShowPassword: getBooleanAnd([type === 'password', propData.showPassword]),
-      isLength: isShowLength(),
-      rows: propData.rowsProp || 2,
-      showLength: getShowLengthProp()
-    })
-
-    const isShowClear = computed((): boolean => getNull(inputValue.value))
-
-    let lengthLimit = ref<string>(getLength())
-
-    const pendData = reactive<pendType>({
-      isPrependText: getBooleanAnd([
-        !slots.prepend,
-        getNull(propData.prependText),
-        !data.isPrependIcon
-      ]),
-      isAppendText: getBooleanAnd([
-        getNull(propData.appendText),
-        !slots.append,
-        !data.isAppendIcon
-      ])
-    })
-
-    const prependClassList = (): string[] => ['dk-input_prepend', 'dk-input_pend']
-
-    const appendClassList = (): string[] => ['dk-input_append', 'dk-input_pend']
-
-    const valueLength = ref<number>(0)
-
-    const getValue = (value: string | number): string => {
-      value = value.toString()
-      let val = value
-      if (propData.prependText && !propData.prependIcon) {
-        const reg = new RegExp(`^${propData.prependText}`)
-        val = val.replace(reg, '')
-      }
-
-      if (propData.appendText && !propData.appendIcon) {
-        const reg = new RegExp(`${propData.appendText}$`)
-        val = val.replace(reg, '')
-      }
-      return val
-    }
-
-    const getPendValue = (value: string | number): string => {
-      value = value.toString()
-      let val = value
-      if (propData.prependText && !propData.prependIcon) {
-        const reg = new RegExp(`^${propData.prependText}`)
-        if (!reg.test(value)) {
-          val = propData.prependText + value
-        }
-      }
-
-      if (propData.appendText && !propData.appendIcon) {
-        const reg = new RegExp(`${propData.appendText}$`)
-        if (!reg.test(value)) {
-          val = val + propData.appendText
-        }
-      }
-      return val
-    }
-
-    watch(() => props.modelValue, () => {
-      inputValue.value = getValue(props.modelValue)
-      modelValueProp.value = inputValue.value
-    })
-
-    watch(() => inputValue.value, (val) => {
-      const len = val.toString().length
-
-      // maxlength
-      if (propData.maxlengthProp) {
-        lengthLimit.value = `${len}/${propData.maxlengthProp}`
-      }
-
-      // autoSize
-      if (getTextareaRows().autosize) {
-        const textarea = _ref.value as HTMLTextAreaElement
-        textarea.style.height = 'auto'
-        textarea.style.height = `${textarea.scrollHeight + 2}px`
-      }
-
-      // length-count
-      if (data.showLength) {
-        valueLength.value = len
-      }
-      if (propData.typeProp === 'number') {
-        emit('update:modelValue', Number(val))
-      } else {
-        emit('update:modelValue', getPendValue(val))
-      }
-    })
-
-    const update = (e: Event): void => {
-      const target = e.target as HTMLInputElement
-      inputValue.value = target.value
-    }
-
-    const prefixIconClass = (): string[] => {
-      const isDefault = typeof propData.prefixIcon === 'boolean'
-      return [
-        'dk-input_prefix-icon',
-        isDefault ? 'dk-icon-search' : propData.prefixIcon
-      ]
-    }
-
-    const suffixIconClass = (): string[] => {
-      const isDefault = typeof propData.suffixIcon === 'boolean'
-      return [
-        'dk-input_suffix-icon',
-        isDefault ? 'dk-icon-search' : propData.suffixIcon
-      ]
-    }
-
-    const clear = (): void => {
-      modelValueProp.value = ''
-      emit('update:modelValue', '')
-      focus()
-    }
-
-    // eslint-disable-next-line
-    const focus = async (): Promise<void> => {
-      await nextTick()
-      _ref.value?.focus()
-    }
-    let showPasswordIcon = ref<string>('IconPasswordSee')
-    const togglePassword = (): void => {
-      passwordShowOrHide.value = !passwordShowOrHide.value
-      showPasswordIcon.value = passwordShowOrHide.value ? 'IconPasswordShow' : 'IconPasswordSee'
-      inputType.value = passwordShowOrHide.value ? 'text' : 'password'
-      if (passwordShowOrHide.value) {
-        _ref.value?.setAttribute('type', 'text')
-      } else {
-        _ref.value?.setAttribute('type', 'password')
-      }
-      focus()
-    }
-
-    const showPasswordClass = (): string[] => {
-      return [
-        'dk-input_password-icon'
-      ]
-    }
-
-    const onfocus = (event: Event): void => {
-      isFocus.value = true
-      emit('focus', event)
-    }
-
-    const onblur = (event: Event): void => {
-      isFocus.value = false
-      emit('blur', event)
-    }
-
-    const { getRun } = getReturn()
-    const AppendIconEventClick = (event: MouseEvent): void => {
-      getRun(props.onAppendClick, event)
-    }
-    const PrependIconEventClick = (event: MouseEvent): void => {
-      getRun(props.onPrependClick, event)
-    }
-
-    const onKeydownEnter = (event: KeyboardEvent): void => {
-      if (event.which === 13) {
-        getRun(props.onEnter, event)
-      }
-    }
-
-    const getTextareaRows = (): Record<string, boolean | number> => {
-      let row = 1
-
-      const isTextarea = inputType.value === 'textarea'
-      const isAutosize = propData.autosizeProp
-      const rows = +propData.rowsProp
-      const isRows = rows > 0
-
-      if (isTextarea && isRows) {
-        row = rows
-      }
-
-      return {
-        row,
-        autosize: isTextarea && isAutosize
-      }
-    }
-
-    const inputAttrs = reactive({
-      class: innerClassList.value,
-      placeholder: propData.placeholder,
-      oninput: update,
-      disabled: propData.disabledProp,
-      inputmode: data.inputmode,
-      onfocus,
-      onblur,
-      maxlength: propData.maxlengthProp,
-      minlength: propData.minlengthProp,
-      readonly: propData.readonlyProp
-    } as InputHTMLAttributes)
-
-    const textareaAttrs = reactive({
-      class: wrapperClassList.value,
-      type: inputType.value as dkInputType | ComputedRef<dkInputType>,
-      placeholder: propData.placeholder,
-      onInput: update,
-      onfocus,
-      onblur,
-      disabled: propData.disabledProp,
-      maxlength: propData.maxlengthProp,
-      minlength: propData.minlengthProp,
-      autosize: propData.autosizeProp,
-      rows: getTextareaRows().row,
-      readonly: propData.readonlyProp
-    } as TextareaHTMLAttributes)
-    
-    return {
-      // ...propData,
-      ...data,
-      ...pendData,
-      classList: inputClassList.value,
-      styleList: styleListRef,
-      wrapperClassList,
-      value: modelValueProp,
-      inputAttrs: inputAttrs,
-      prefixIconClass: prefixIconClass(),
-      suffixIconClass: suffixIconClass(),
-      clear,
-      input,
-      textarea,
-      togglePassword,
-      showPasswordClass: showPasswordClass(),
-      textareaAttrs,
-      prependClassList: prependClassList(),
-      isAppend: data.isAppend,
-      appendClassList: appendClassList(),
-      pendStyleList,
-      AppendIconEventClick,
-      PrependIconEventClick,
-      onKeydownEnter,
-      lengthLimit,
-      isShowClear,
-      valueLength,
-      showPasswordIcon,
-      inputType,
-      passwordShowOrHide
+    if (propData.typeProp === 'number') {
+      emit('update:modelValue', Number(val))
+    } else {
+      emit(
+        'update:modelValue',
+        getPendValue(
+          val,
+          propData.prependText,
+          propData.prependIcon,
+          propData.appendText,
+          propData.appendIcon
+        )
+      )
     }
   }
-})
+)
+
+const update = (e: Event): void => {
+  const target = e.target as HTMLInputElement
+  inputValue.value = target.value
+}
+
+const prefixIconClass = (): string[] => {
+  const isDefault = typeof propData.prefixIcon === 'boolean'
+  return ['dk-input_prefix-icon', isDefault ? 'dk-icon-search' : propData.prefixIcon]
+}
+
+const suffixIconClass = (): string[] => {
+  const isDefault = typeof propData.suffixIcon === 'boolean'
+  return ['dk-input_suffix-icon', isDefault ? 'dk-icon-search' : propData.suffixIcon]
+}
+
+const clear = (): void => {
+  modelValueProp.value = ''
+  emit('update:modelValue', '')
+  focus()
+}
+
+// eslint-disable-next-line
+const focus = async (): Promise<void> => {
+  await nextTick()
+  _ref.value?.focus()
+}
+let showPasswordIcon = ref<string>('IconPasswordSee')
+const togglePassword = (): void => {
+  passwordShowOrHide = !passwordShowOrHide
+  showPasswordIcon.value = passwordShowOrHide ? 'IconPasswordShow' : 'IconPasswordSee'
+  inputType.value = passwordShowOrHide ? 'text' : 'password'
+  if (passwordShowOrHide) {
+    _ref.value?.setAttribute('type', 'text')
+  } else {
+    _ref.value?.setAttribute('type', 'password')
+  }
+  focus()
+}
+
+const showPasswordClass = (): string[] => {
+  return ['dk-input_password-icon']
+}
+
+const onfocus = (event: FocusEvent): void => {
+  isFocus.value = true
+  emit('focus', event)
+}
+
+const onblur = (event: FocusEvent): void => {
+  isFocus.value = false
+  emit('blur', event)
+}
+
+const { getRun } = getReturn()
+const AppendIconEventClick = (event: MouseEvent): void => {
+  getRun(props.onAppendClick, event)
+}
+const PrependIconEventClick = (event: MouseEvent): void => {
+  getRun(props.onPrependClick, event)
+}
+
+const onKeydownEnter = (event: KeyboardEvent): void => {
+  if (event.which === 13) {
+    const target = event.target as HTMLInputElement
+    getRun(props.onEnter, target.value)
+  }
+}
+
+const getTextareaRows = (): Record<string, boolean | number> => {
+  let row = 1
+
+  const isTextarea = inputType.value === 'textarea'
+  const isAutosize = propData.autosizeProp
+  const rows = +propData.rowsProp
+  const isRows = rows > 0
+
+  if (isTextarea && isRows) {
+    row = rows
+  }
+
+  return {
+    row,
+    autosize: isTextarea && isAutosize
+  }
+}
+
+const onChange = (event: Event): void => {
+  const target = event.target as HTMLInputElement
+  emit('change', target.value)
+}
+
+const inputAttrs = reactive<InputHTMLAttributes>({
+  class: innerClassList.value,
+  placeholder: propData.placeholder,
+  oninput: update,
+  disabled: propData.disabledProp,
+  inputmode: data.inputmode,
+  onfocus,
+  onblur,
+  onChange,
+  maxlength: propData.maxlengthProp,
+  minlength: propData.minlengthProp,
+  readonly: propData.readonlyProp
+} as InputHTMLAttributes)
+
+const textareaAttrs = reactive({
+  class: wrapperClassList.value,
+  type: inputType.value as dkInputType | ComputedRef<dkInputType>,
+  placeholder: propData.placeholder,
+  onInput: update,
+  onfocus,
+  onblur,
+  onChange,
+  disabled: propData.disabledProp,
+  maxlength: propData.maxlengthProp,
+  minlength: propData.minlengthProp,
+  autosize: propData.autosizeProp,
+  rows: getTextareaRows().row,
+  readonly: propData.readonlyProp
+} as TextareaHTMLAttributes)
 </script>
 
 <template>
-  <div v-if="type !== 'textarea'" :class="classList" :style="(styleList as CSSProperties)">
+  <div v-if="type !== 'textarea'" :class="classList" class="dk-input" :style="styleList">
     <!-- append -->
-    <template v-if="isPrepend">
-      <div :class="prependClassList" :style="(pendStyleList as CSSProperties)">
+    <template v-if="!isPersonality && data.isPrepend">
+      <div :class="prependClassList" :style="pendStyleList">
         <slot name="prepend"></slot>
-        <dk-icon v-if="isPrependIcon" :icon="prependIcon" @click="PrependIconEventClick"></dk-icon>
-        <span v-if="isPrependText">{{ prependText }}</span>
+        <dk-icon v-if="data.isPrependIcon" :icon="prependIcon" @click="PrependIconEventClick"></dk-icon>
+        <span v-if="pendData.isPrependText">{{ prependText }}</span>
       </div>
     </template>
 
     <!-- wrapper -->
     <div :class="wrapperClassList">
+      <!-- label text -->
+      <template v-if="!!data.labelText">
+        <div class="dk-input_label-text">
+          <span>{{ data.labelText }}</span>
+        </div>
+      </template>
       <!-- prefix -->
-      <template v-if="isPrefix">
+      <template v-if="data.isPrefix">
         <span class="dk-input_prefix">
           <slot name="prefix" />
-          <dk-icon v-if="isPrefixIcon" :class="prefixIconClass" :icon="prefixIcon" size="19px"></dk-icon>
+          <dk-icon v-if="data.isPrefixIcon" :class="prefixIconClass" :icon="prefixIcon" size="19px"></dk-icon>
         </span>
       </template>
 
       <!-- inner -->
-      <input ref="input" v-model="value" :type="inputType" v-bind="inputAttrs" @keydown.enter="(onKeydownEnter as  KeyboardEvent)" />
+      <input ref="input" v-model="modelValueProp" :type="inputType" v-bind="inputAttrs" @keydown.enter="onKeydownEnter" />
 
       <!-- length-limit -->
-      <template v-if="isLength">
+      <template v-if="data.isLength">
         <span class="dk-input_length">
           {{ lengthLimit }}
         </span>
@@ -431,39 +303,35 @@ export default defineComponent<typeof dkInputProps, Record<string, unknown>, DkI
         </span>
       </template>
 
-      <div v-if="isSuffix" class="dk-input_suffix">
+      <div v-if="data.isSuffix" class="dk-input_suffix">
         <slot name="suffix" />
-        <dk-icon v-if="isSuffixIcon" :class="suffixIconClass" :icon="suffixIcon"></dk-icon>
+        <dk-icon v-if="data.isSuffixIcon" :class="suffixIconClass" :icon="suffixIcon"></dk-icon>
       </div>
 
       <!-- clearable -->
-      <template v-if="isClear">
+      <template v-if="data.isClear">
         <dk-icon v-show="isShowClear" class="dk-input-clearable" :icon="'IconShanchu1'" @click="clear" />
       </template>
 
       <!-- show-password -->
-      <template v-if="isShowPassword">
-        <dk-icon
-          :class="showPasswordClass"
-          :icon="showPasswordIcon"
-          @click="togglePassword"
-        ></dk-icon>
+      <template v-if="data.isShowPassword">
+        <dk-icon :class="showPasswordClass" :icon="showPasswordIcon" @click="togglePassword"></dk-icon>
       </template>
     </div>
 
     <!-- prepend -->
-    <template v-if="isAppend">
-      <div :class="appendClassList" :style="(pendStyleList as CSSProperties)">
+    <template v-if="!isPersonality && data.isAppend">
+      <div :class="appendClassList" :style="pendStyleList">
         <slot name="append"></slot>
-        <dk-icon v-if="isAppendIcon" :icon="appendIcon" @click="AppendIconEventClick"></dk-icon>
-        <span v-if="isAppendText">{{ appendText }}</span>
+        <dk-icon v-if="data.isAppendIcon" :icon="appendIcon" @click="AppendIconEventClick"></dk-icon>
+        <span v-if="pendData.isAppendText">{{ appendText }}</span>
       </div>
     </template>
   </div>
-  <div v-else :class="classList" :style="(styleList as CSSProperties)">
+  <div v-else :class="classList" :style="styleList">
     <textarea ref="textarea" :type="inputType" v-bind="textareaAttrs"></textarea>
     <!-- length limit -->
-    <template v-if="isLength">
+    <template v-if="data.isLength">
       <span class="dk-input_textarea_length">
         {{ lengthLimit }}
       </span>

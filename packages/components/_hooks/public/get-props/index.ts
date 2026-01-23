@@ -1,7 +1,7 @@
 /**
  * @name get-props
  * @Time 2023年05月04日
- * @author dk-plus-ui(范先生) <https://github.com/dk-plus-ui>
+ * @author dk-plus-ui(范先生) <https://github.com/isMrFan>
  * @description 用于过滤掉不需要的props参数 例如特殊的Function(不要了),Object(解析)
  */
 import { reactive, toRef } from 'vue'

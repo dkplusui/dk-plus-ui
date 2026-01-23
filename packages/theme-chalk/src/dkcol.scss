@@ -1,0 +1,9 @@
+@use "../mixins/mixin.scss" as *;
+@use "../mixins/configuration/var-col.scss" as *;
+
+@include block(col){
+  // flex: var(--col-span, 1);
+  flex: 1 0 calc(var(--col-span)/ 24);
+  height: fit-content;
+  margin-left: var(--col-margin-left);
+}

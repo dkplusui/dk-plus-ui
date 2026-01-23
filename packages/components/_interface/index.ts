@@ -8,8 +8,10 @@
  * inputNumber  inputNumber组件接口
  * **************公共接口定义(public)**************
  * dkPlus-types  全局用的接口定义
+ * dkEvent       全局用的接口定义_事件用
  */
 export * from './public/dkPlus-types'
+export * from './public/dkPlus-event'
 export * from './component/input'
 export * from './component/personalitybutton'
 export * from './component/inputNumber'

@@ -1,19 +1,29 @@
 {
   "friendlyList": [
+     {
+      "logoImg": "https://oss.cadwaladerss.com/dk-plus/images/uView.png",
+      "logoSrc": "https://uviewui.com/",
+      "name": "uView UI"
+    },
     {
       "logoImg": "https://oss.cadwaladerss.com/dk-plus/images/vue-admin-beautiful.png",
-      "logoSrc": "http://chu1204505056.gitee.io/admin-pro/?hmsr=dk-plus&hmpl=&hmcu=&hmkw=&hmci=",
+      "logoSrc": "https://vue-admin-beautiful.com/admin-plus/?hmsr=dk-plus&hmpl=&hmcu=&hmkw=&hmci=#/index",
       "name": "Vue Admin Plus"
     },
     {
-      "logoImg": "https://oss.cadwaladerss.com/dk-plus/images/chat.aurai.online.png",
-      "logoSrc": "https://chat.aurai.online/",
-      "name": "志伟的智能AI聊天机器人"
+      "logoImg": "https://oss.cadwaladerss.com/dk-plus/images/vue-admin-beautiful.png",
+      "logoSrc": "https://vue-admin-beautiful.com/shop-vite/?hmsr=dk-plus&hmpl=&hmcu=&hmkw=&hmci=",
+      "name": "Vue Shop Vite"
     },
     {
       "logoImg": "https://oss.cadwaladerss.com/dk-plus/images/gongjux.png?v=1",
       "logoSrc": "https://www.npmjs.com/package/@bugfix2019/utils",
       "name": "@bugfix2019的中台工具包"
+    },
+    {
+      "logoImg": "https://oss.cadwaladerss.com/dk-plus/images/dk-chat-gpt.png",
+      "logoSrc": "https://dk-chat-gpt-public.cadwaladerss.com/#/",
+      "name": "@Dk-ChatGpt"
     }
   ]
 }

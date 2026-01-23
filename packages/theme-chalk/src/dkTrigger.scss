@@ -1,0 +1,29 @@
+@use '../mixins/mixin.scss' as *;
+
+.#{$namespace}-Trigger{
+  height: inherit;
+  .#{$namespace}-Trigger__trigger{
+    height: inherit;
+  }
+  .#{$namespace}-Trigger__content-box{
+    width: 100%;
+    .#{$namespace}-Trigger__content{
+      width: 100%;
+    }
+  }
+  .#{$namespace}-Trigger__arrow::before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin: auto;
+    top: 3px;
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transform: rotate(45deg);
+    z-index: -1;
+  }
+}

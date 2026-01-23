@@ -1,0 +1,19 @@
+@use '../mixins/mixin.scss' as *;
+
+@include block(checkbox-group){
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  @include element(border){
+    .dk-checkbox-wrapper{
+      padding: 6px 4px;
+      border: 1px solid var(--checkbox-border-color);
+      border-radius: var(--checkbox-border-radius);
+    }
+    .checked{
+      border-color: var(--checkbox-checked-color);
+    }
+  }
+}

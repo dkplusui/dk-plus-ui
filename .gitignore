@@ -19,6 +19,7 @@ docs/build.log
 .eslintcache
 
 # 特定文件或目录的忽略
-pnpm-lock.yaml
 .DS_Store
 
+
+helper.json

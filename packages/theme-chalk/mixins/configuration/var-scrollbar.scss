@@ -1,0 +1,11 @@
+@use '../mixin.scss' as *;
+
+@include block('scrollbar') {
+  --scrollbar-width: 100%;
+  --scrollbar-height: 100%;
+  --scrollbar-max-height: 100%;
+  --scrollbar-bar-width: 6px;
+  --scrollbar-track-color: transparent;
+  --scrollbar-thumb-radius: 4px;
+  --scrollbar-thumb-color: #c1c1c1;
+}

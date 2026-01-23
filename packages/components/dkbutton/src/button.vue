@@ -1,15 +1,15 @@
 <script lang="ts">
   /**
-   * @name dk-button
+   * @name dk-collapse
    * @author fanKai16
    * @Time 2023/05/08
-   * @description 自定义按钮组件
+   * @description 折叠面板
    **/
   import { defineComponent, toRefs, reactive, ref } from 'vue'
   import { getButton, getReturn, getGlobal, getRipples } from '../../_hooks'
   import type { RipplesType } from '../../_hooks'
   import { dkButtonProps } from './props'
-  export default defineComponent({
+export default defineComponent({
     name: 'DkButton',
     props: dkButtonProps,
     setup(Props) {

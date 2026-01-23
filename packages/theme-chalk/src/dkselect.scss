@@ -1,0 +1,13 @@
+@use '../mixins/mixin.scss' as *;
+
+.#{$namespace}-select{
+  width: var(--select-width);
+  display: inline-block;
+  cursor: pointer;
+  .#{$namespace}-trigger__content-box{
+    width: 100%;
+    .#{$namespace}-dropdown__content {
+      width: 100%;
+    }
+  }
+}

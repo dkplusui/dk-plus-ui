@@ -9,16 +9,26 @@ export default function getNavs() {
     },
     {
       text: '基础组件',
-      activeMatch: '^/zh/components/',
-      link: '/zh/components/icon'
+      activeMatch: '^/zh/components/basics/icon',
+      link: '/zh/components/basics/icon'
     },
     {
       text: '技术拓展',
       items: [
         {
           text: '1.Flutter',
-          activeMatch: '^/expansion/Flutter/',
-          link: '/expansion/Flutter/windows/WinInstall'
+          activeMatch: '^/zh/expansion/Flutter/',
+          link: '/zh/expansion/Flutter/windows/WinInstall'
+        }
+      ]
+    },
+    {
+      text: '其他',
+      items: [
+        {
+          text: '1.电子书',
+          activeMatch: '^/zh/electronicBook/',
+          link: '/zh/electronicBook/StereotypedWriting'
         }
       ]
     },

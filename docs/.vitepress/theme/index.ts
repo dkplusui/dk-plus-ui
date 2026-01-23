@@ -4,10 +4,10 @@ import onSearch from './components/search.vue'
 import './style/vitepress.scss'
 import './style/global.scss'
 import dkPlus, { Dkcodedisplay } from '../../../packages/components/index'
-console.log('dkPlus', dkPlus)
+
 import '@dk-plus/theme-chalk/index.scss'
 
-// import { loadStyle } from '../plugins/set-style'
+import { loadStyle } from '../plugins/set-style'
 
 export default {
   ...Theme,
@@ -36,6 +36,7 @@ export default {
         'box-shadow': '0 0 10px #ccc',
         'text-align': 'center',
         'font-size': '14px',
+        'z-index': '9999',
         color: '#333',
         'line-height': '20px',
         'word-break': 'break-all',
@@ -81,6 +82,6 @@ export default {
 
     app.use(dkPlus)
     app.component('CustomModule', Dkcodedisplay)
-    // loadStyle && loadStyle?.init()
+    loadStyle && loadStyle?.init()
   }
 }

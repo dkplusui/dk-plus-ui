@@ -24,8 +24,10 @@ export default defineComponent({
 <template>
   <div class="number">
     <h4>位置</h4>
+    <dk-input-number v-model="value" position placeholder="left"></dk-input-number>
     <dk-input-number v-model="value" position="left" placeholder="left"></dk-input-number>
-    <dk-input-number position="asdfasdfasd" placeholder="asdfasdfasd"></dk-input-number>
+    <dk-input-number v-model="value" position="right" placeholder="left"></dk-input-number>
+    <dk-input-number v-model="value" position="aa" placeholder="number"></dk-input-number>
     <h4>浮点型</h4>
     <dk-input-number v-model="value" precision="2" step="0.2" strict @change="handleChange"></dk-input-number>
     <h4>禁用</h4>
@@ -37,10 +39,10 @@ export default defineComponent({
     <h4>步长</h4>
     <dk-input-number v-model="value" :step="2"></dk-input-number>
     <h4>尺寸</h4>
-    <dk-input-number v-model="value" size="large"></dk-input-number>
-    <dk-input-number v-model="value" size="medium"></dk-input-number>
-    <dk-input-number v-model="value" size="small"></dk-input-number>
-    <dk-input-number v-model="value" size="mini"></dk-input-number>
+    <dk-input-number v-model="value" position="left" size="large"></dk-input-number>
+    <dk-input-number v-model="value" position="left" size="medium"></dk-input-number>
+    <dk-input-number v-model="value" position="left" size="small"></dk-input-number>
+    <dk-input-number v-model="value" position="left" size="mini"></dk-input-number>
     父组件{{ value }}
   </div>
 </template>
@@ -51,4 +53,4 @@ export default defineComponent({
     flex-direction: column;
     gap: 10px;
   }
-</style>
+</style>./DkNumber.vue
