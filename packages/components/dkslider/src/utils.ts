@@ -39,4 +39,3 @@ export const normalizeSliderValue = (
 }
 
 export const isRangeValue = (v: SliderModelValue): v is [number, number] => Array.isArray(v)
-

@@ -39,7 +39,7 @@ export const dkSelectProps = {
   },
   clearable: {
     type: Boolean,
-    default: true
+    default: false
   },
   filterable: {
     type: Boolean,
@@ -164,4 +164,4 @@ export const dkSelectProps = {
 /** select 组件 props 类型 */
 export type SelectProps = ExtractPropTypes<typeof dkSelectProps>
 /** select 组件注入的依赖项 */
-export const SELECT_PROPS_TOKEN: InjectionKey<SelectProvide> = Symbol('DK_SELECT_PROPS_TOKEN')
+export const SELECT_PROPS_TOKEN: InjectionKey<SelectProvide> = Symbol.for('DK_SELECT_PROPS_TOKEN')

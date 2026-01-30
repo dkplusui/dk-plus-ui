@@ -3,24 +3,52 @@ import { defineComponent, reactive, toRefs, watch, computed, nextTick, ref, onBe
 import { dkSelectProps, SELECT_PROPS_TOKEN } from './props'
 
 type SelectValue = string | number | boolean | Record<string, unknown>
-type Option = { label: string; value: SelectValue; disabled?: boolean }
+interface Option {
+  label: string
+  value: SelectValue
+  disabled?: boolean
+}
 type Model = SelectValue | SelectValue[]
 
 export default defineComponent({
   name: 'DkSelect',
   props: dkSelectProps,
   emits: {
-    'update:modelValue': (_v: Model) => true,
-    change: (_v: Model) => true,
+    'update:modelValue': (v: Model) => {
+      void v
+      return true
+    },
+    change: (v: Model) => {
+      void v
+      return true
+    },
     clear: () => true,
-    'visible-change': (_v: boolean) => true,
-    focus: (_evt: FocusEvent) => true,
-    blur: (_evt: FocusEvent) => true,
-    'remove-tag': (_tagValue: SelectValue) => true,
-    'popup-scroll': (_evt: Event) => true
+    'visible-change': (v: boolean) => {
+      void v
+      return true
+    },
+    focus: (evt: FocusEvent) => {
+      void evt
+      return true
+    },
+    blur: (evt: FocusEvent) => {
+      void evt
+      return true
+    },
+    'remove-tag': (tagValue: SelectValue) => {
+      void tagValue
+      return true
+    },
+    'popup-scroll': (evt: Event) => {
+      void evt
+      return true
+    }
   },
   setup(props, { emit, slots }) {
-    const triggerCompRef = ref<any>(null)
+    const triggerCompRef = ref<{
+      handelClose?: () => void
+      close?: () => void
+    } | null>(null)
     const triggerElRef = ref<HTMLElement | null>(null)
     const dropdownRef = ref<HTMLElement | null>(null)
 
@@ -30,8 +58,20 @@ export default defineComponent({
       hoverIndex: -1,
       hovering: false,
       dropdownStyle: {} as Record<string, string>,
-      debounceTimer: 0 as unknown as number
+      debounceTimer: 0 as unknown as number,
+      // 用于 slot 方式（dk-option）时回显 label
+      selectedLabelMap: {} as Record<string, string>
     })
+
+    const getLabelKey = (val: SelectValue): string => {
+      if (val == null) return ''
+      if (typeof val === 'object') {
+        const key = props.valueKey || 'value'
+        const k = (val as Record<string, unknown>)[key]
+        return k == null ? '' : String(k)
+      }
+      return String(val)
+    }
 
     const optionKeys = computed(() => {
       const p = props.props || {}
@@ -53,10 +93,11 @@ export default defineComponent({
     }
 
     const normalizeOptions = computed((): Option[] => {
-      const list = (props.options || []) as Array<Record<string, unknown>>
+      const list = (props.options || []) as Record<string, unknown>[]
       const keys = optionKeys.value
       return list.map(item => {
-        const value = item[keys.value] as SelectValue
+        const valueRaw = item[keys.value]
+        const value = (valueRaw ?? item) as SelectValue
         const labelRaw = item[keys.label]
         const label = String(labelRaw ?? value ?? '')
         const disabled = !!item[keys.disabled]
@@ -71,9 +112,21 @@ export default defineComponent({
       return values
         .map(v => {
           const found = opts.find(o => equalsValue(o.value, v))
-          return found ? { value: found.value, label: found.label } : null
+          if (found) return { value: found.value, label: found.label }
+
+          // slot 模式：options 可能为空，但 dk-option 提供了 label
+          const k = getLabelKey(v)
+          const cached = k ? state.selectedLabelMap[k] : undefined
+          if (cached != null && cached !== '') return { value: v, label: cached }
+
+          // 最后兜底：基础类型直接展示 value
+          if (typeof v === 'string' || typeof v === 'number' || typeof v === 'boolean') {
+            return { value: v, label: String(v) }
+          }
+
+          return null
         })
-        .filter(Boolean) as Array<{ value: SelectValue; label: string }>
+        .filter(Boolean) as { value: SelectValue; label: string }[]
     })
 
     const displayText = computed(() => {
@@ -259,6 +312,10 @@ export default defineComponent({
     const onPick = (opt: Option): void => {
       if (props.disabled || opt.disabled) return
 
+      // 缓存 label，供 slot 模式回显
+      const key = getLabelKey(opt.value)
+      if (key) state.selectedLabelMap[key] = String(opt.label ?? '')
+
       if (props.multiple) {
         const arr = Array.isArray(props.modelValue) ? ([...props.modelValue] as SelectValue[]) : ([] as SelectValue[])
         const idx = arr.findIndex(v => equalsValue(v, opt.value))
@@ -286,6 +343,7 @@ export default defineComponent({
       if (props.multiple) updateModel([])
       else updateModel('')
       state.query = ''
+      state.selectedLabelMap = {}
       emit('clear')
       closeByTrigger()
     }
@@ -440,19 +498,19 @@ export default defineComponent({
         <template v-if="multiple">
           <dk-input
             :id="id"
-            :name="name"
             v-model="inputText"
+            :name="name"
             :disabled="disabled"
             :readonly="!filterable"
             :clearable="false"
             :placeholder="multiplePlaceholder"
-            :size="size"
+            :size="size ?? undefined"
             :width="width"
             @focus="onFocus"
             @blur="onBlur"
           >
-            <template v-if="collapsedTags.length || (collapseTags && collapsedMoreCount)" #prefix>
-              <div class="dk-select_tags">
+            <template #prefix>
+              <div v-if="collapsedTags.length || (collapseTags && collapsedMoreCount)" class="dk-select_tags">
                 <span v-for="t in collapsedTags" :key="String(t.value)" class="dk-select_tag">
                   {{ t.label }}
                   <button class="dk-select_tag-close" type="button" @click.stop="onRemoveTag(t.value)">×</button>
@@ -465,13 +523,13 @@ export default defineComponent({
         <template v-else>
           <dk-input
             :id="id"
-            :name="name"
             v-model="inputText"
+            :name="name"
             :disabled="disabled"
             :readonly="!filterable"
             :clearable="false"
             :placeholder="displayText || placeholder"
-            :size="size"
+            :size="size ?? undefined"
             :width="width"
             @focus="onFocus"
             @blur="onBlur"
@@ -492,7 +550,7 @@ export default defineComponent({
             <template v-else>
               <button
                 v-for="opt in filteredOptions"
-                :key="String(opt.label) + String((opt as any).value)"
+                :key="String(opt.label) + String(opt.value)"
                 class="dk-select_option"
                 :class="{ 'is-selected': isSelected(opt), 'is-hover': hoverIndex >= 0 && filteredOptions[hoverIndex]?.label === opt.label }"
                 type="button"
@@ -521,7 +579,7 @@ export default defineComponent({
           <template v-else>
             <button
               v-for="opt in filteredOptions"
-              :key="String(opt.label) + String((opt as any).value)"
+              :key="String(opt.label) + String(opt.value)"
               class="dk-select_option"
               :class="{ 'is-selected': isSelected(opt), 'is-hover': hoverIndex >= 0 && filteredOptions[hoverIndex]?.label === opt.label }"
               type="button"

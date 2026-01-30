@@ -7,7 +7,7 @@ export const timeSelectEmits = {
     void v
     return true
   },
-  clear: () => true,
+  clear: (): boolean => true,
   focus: (evt: FocusEvent): boolean => {
     void evt
     return true

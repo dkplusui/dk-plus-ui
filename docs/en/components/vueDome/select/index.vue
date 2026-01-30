@@ -119,6 +119,16 @@ const sizeValueLarge = ref('A')
 const sizeValueMedium = ref('A')
 const sizeValueSmall = ref('A')
 const sizeValueMini = ref('A')
+
+const headerFooterAllValues = computed(() => optionsNoDisabled.map(o => o.value))
+const headerFooterChecked = computed(() => {
+  const v = value.value
+  if (!Array.isArray(v)) return false
+  return headerFooterAllValues.value.every(i => (v as unknown[]).includes(i))
+})
+const toggleHeaderFooterAll = (checked: boolean): void => {
+  value.value = checked ? [...headerFooterAllValues.value] : []
+}
 </script>
 
 <template>
@@ -172,10 +182,15 @@ const sizeValueMini = ref('A')
     </template>
 
     <template v-else-if="mode === 'slotHeaderFooter'">
-      <dk-select v-model="value" :options="optionsNoDisabled">
+      <dk-select v-model="value" multiple :options="optionsNoDisabled">
         <template #header>
           <div style="padding: 6px 10px; border-bottom: 1px solid #ebeef5">
-            <dk-checkbox style="margin-right: 8px" /> All (demo)
+            <dk-checkbox
+              style="margin-right: 8px"
+              :model-value="headerFooterChecked"
+              @update:model-value="toggleHeaderFooterAll"
+            />
+            All (demo)
           </div>
         </template>
         <template #footer>

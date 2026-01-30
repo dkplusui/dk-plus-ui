@@ -17,7 +17,7 @@ export const timePickerEmits = {
     void evt
     return true
   },
-  clear: () => true,
+  clear: (): boolean => true,
   'visible-change': (v: boolean): boolean => {
     void v
     return true

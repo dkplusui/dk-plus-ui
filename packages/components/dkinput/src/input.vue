@@ -261,6 +261,16 @@ const textareaAttrs = reactive({
   id: props.id || undefined,
   name: props.name || undefined
 } as TextareaHTMLAttributes)
+
+watch(
+  () => props.placeholder,
+  val => {
+    propData.placeholder = val
+    inputAttrs.placeholder = val
+    textareaAttrs.placeholder = val
+  },
+  { immediate: true }
+)
 </script>
 
 <template>
