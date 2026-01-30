@@ -1,13 +1,210 @@
 @use '../mixins/mixin.scss' as *;
 
-.#{$namespace}-select{
-  width: var(--select-width);
+@include block(('select')) {
   display: inline-block;
-  cursor: pointer;
-  .#{$namespace}-trigger__content-box{
+
+  &.is-disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  @include element(trigger) {
+    position: relative;
+    width: 240px;
+
+    .dk-input_wrapper {
+      padding-right: 34px;
+    }
+  }
+
+  &.is-multiple {
+    .dk-input {
+      height: auto;
+      min-height: var(--input-height, 30px);
+      align-items: stretch;
+    }
+
+    @include element(trigger) {
+      .dk-input_wrapper {
+        height: auto;
+        min-height: var(--input-height, 30px);
+        flex-wrap: wrap;
+        align-items: flex-start;
+        align-content: flex-start;
+        gap: 0;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 8px;
+      }
+    }
+
+    .dk-input_prefix {
+      height: auto;
+      padding-right: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .dk-input_inner {
+      flex: 1;
+      min-width: 20px;
+      width: 0;
+      height: 24px;
+      line-height: 24px;
+      padding: 0;
+      margin: 2px 0;
+    }
+  }
+
+  @include element(arrow) {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    color: rgba(0, 0, 0, 0.45);
+    pointer-events: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+
+    &.is-open {
+      transform: translateY(-50%) rotate(180deg);
+    }
+  }
+
+  @include element(clear) {
+    position: absolute;
+    right: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: #fff;
+    cursor: pointer;
+    line-height: 16px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.is-show-clear {
+    @include element(trigger) {
+      .dk-input_wrapper {
+        padding-right: 56px;
+      }
+    }
+  }
+
+  @include element(dropdown) {
+    width: 240px;
+    max-height: 260px;
+    overflow: auto;
+    background: #fff;
+    border: 1px solid #e4e7ed;
+    border-radius: 6px;
+    padding: 6px;
+    box-sizing: border-box;
+  }
+
+  @include element(option) {
     width: 100%;
-    .#{$namespace}-dropdown__content {
-      width: 100%;
+    text-align: left;
+    border: 0;
+    background: transparent;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(64, 158, 255, 0.12);
+    }
+
+    &.is-hover {
+      background: rgba(64, 158, 255, 0.12);
+    }
+
+    &.is-selected {
+      color: #409eff;
+      font-weight: 600;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  }
+
+  .dk-select_group {
+    padding: 4px 0;
+
+    &.is-disabled {
+      opacity: 0.6;
+    }
+  }
+
+  .dk-select_group-label {
+    padding: 6px 12px;
+    font-size: 12px;
+    line-height: 1;
+    color: var(--dk-text-color-secondary, #909399);
+  }
+
+  .dk-select_group-options {
+    display: flex;
+    flex-direction: column;
+  }
+  @include element(empty) {
+    padding: 10px;
+    color: #909399;
+  }
+
+  @include element(tags) {
+    display: flex;
+    gap: 0;
+    flex-wrap: wrap;
+    margin: 0;
+  }
+
+  @include element(tag) {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 24px;
+    line-height: 22px;
+    padding: 0 8px;
+    border-radius: 4px;
+    border: 1px solid #e9e9eb;
+    background: #f4f4f5;
+    color: #909399;
+    font-size: 12px;
+    margin: 2px 6px 2px 0;
+    max-width: 100%;
+  }
+
+  @include element(tag-close) {
+    width: 14px;
+    height: 14px;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    color: inherit;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+
+    &:hover {
+      background: #c0c4cc;
+      color: #fff;
     }
   }
 }

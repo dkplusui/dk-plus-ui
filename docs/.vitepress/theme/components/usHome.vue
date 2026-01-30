@@ -13,7 +13,7 @@
       }
 
       const handleToGitClick = (): void => {
-        window.open('https://github.com/dk-plus-ui/dk-plus-ui')
+        window.open('https://github.com/isMrFan/dk-plus-ui')
       }
 
       const data = reactive({

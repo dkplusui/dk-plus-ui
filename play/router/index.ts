@@ -15,6 +15,13 @@ const pageList = import.meta.glob('../views/component/**/page.ts', {
 })
 const componentList = import.meta.glob('../views/component/**/**.vue', {})
 
+// Windows 下文件系统大小写不敏感，但 import.meta.glob 的 key 匹配是严格字符串匹配。
+// 这里做一次小写映射，避免 DKSelect.vue / DkSelect.vue 这类大小写差异导致页面空白。
+const componentListLowerCase: Record<string, unknown> = {}
+for (const key in componentList) {
+  componentListLowerCase[key.toLowerCase()] = componentList[key]
+}
+
 const routerList: RouteRecordRaw[] = []
 
 for (const key in pageList) {
@@ -27,7 +34,9 @@ for (const key in pageList) {
   const route: RouteRecordRaw = {
     path: path,
     name: tPath,
-    component: componentList[targetComponent],
+    component:
+      componentList[targetComponent] ||
+      (componentListLowerCase[targetComponent.toLowerCase()] as unknown),
     meta: {
       title: title,
       keepAlive: false,

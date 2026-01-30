@@ -23,7 +23,7 @@ Before contributing, you need to get the project up and running so that you can 
 
 If you have completed the previous preparations, you can skip ahead and start from here:
 
-- Fork [dk-plus](https://github.com/dk-plus-ui/dk-plus-ui)
+- Fork [dk-plus](https://github.com/isMrFan/dk-plus-ui)
 
 - Clone your fork to your local machine.
 
@@ -172,7 +172,7 @@ Next execute the command:
 
 ```shell
 # clone 项目
-git clone https://github.com/dk-plus-ui/dk-plus-ui.git
+git clone https://github.com/isMrFan/dk-plus-ui.git
 
 # 进入项目目录
 cd dk-ui
@@ -201,14 +201,14 @@ The editor is highly recommended [Visual Studio Code](https://code.visualstudio.
 
 - [Vue Language Features (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.volar)Vue3 official development plugin:
 - [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) Used to support importing `*.vue` files in TS
-- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) Code format verification, if not installed, then [dk-eslint](https://github.com/dk-plus-ui/dk-plus-ui/tree/master/packages/dk-eslint) Do not take effect
-- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) Code format verification, if not installed, then [dk-eslint](https://github.com/dk-plus-ui/dk-plus-ui/tree/master/packages/dk-eslint) Do not take effect
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) Code format verification, if not installed, then [dk-eslint](https://github.com/isMrFan/dk-plus-ui/tree/master/packages/dk-eslint) Do not take effect
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) Code format verification, if not installed, then [dk-eslint](https://github.com/isMrFan/dk-plus-ui/tree/master/packages/dk-eslint) Do not take effect
 
 - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) Used to detect spelling errors in code
 
 ## 🔓 Command description
 
-dk-plus Internally set up a lot of commands in [package.json](https://github.com/dk-plus-ui/dk-plus-ui/blob/master/package.json) Is available for viewing. Each command is described in detail below:
+dk-plus Internally set up a lot of commands in [package.json](https://github.com/isMrFan/dk-plus-ui/blob/master/package.json) Is available for viewing. Each command is described in detail below:
 
 | script fields | Corresponding command                                                     | Command description                         |
 | ------------- | ------------------------------------------------------------------------- | ------------------------------------------- |
@@ -226,10 +226,10 @@ dk-plus Internally set up a lot of commands in [package.json](https://github.com
 
 ## 🚨 Development specification
 
-The main source files are all there [packages](https://github.com/dk-plus-ui/dk-plus-ui/tree/master/packages) Directory, where each subdirectory has a separate `README.md` For a description of the specified directory, refer to the following documents for detailed specifications of each module:
+The main source files are all there [packages](https://github.com/isMrFan/dk-plus-ui/tree/master/packages) Directory, where each subdirectory has a separate `README.md` For a description of the specified directory, refer to the following documents for detailed specifications of each module:
 
-- [dk-plus-components](https://github.com/dk-plus-ui/dk-plus-ui/tree/master/packages/components/README.md) Create a new component
-- [dk-plus-components](https://github.com/dk-plus-ui/dk-plus-ui/tree/master/packages/theme-chalk/README.md) Style subject directory
+- [dk-plus-components](https://github.com/isMrFan/dk-plus-ui/tree/master/packages/components/README.md) Create a new component
+- [dk-plus-components](https://github.com/isMrFan/dk-plus-ui/tree/master/packages/theme-chalk/README.md) Style subject directory
 
 ## ⚠️ Submission specification
 
@@ -263,14 +263,16 @@ Available by [Markdown Emoji](https://tianyuhao.cn/emoji) Add emoticons after "m
 
 When you create a new component, you don't need to register in `router/index.ts`, just create a `page.ts` file in the `play/views/components/current component directory`. The content of the `page.ts` file is as follows:
 
-```ts 
+```ts
 export default {
   path: '/DkLoading',
   order: 9,
   title: 'loading'
 }
 ```
+
 > Parameter Description:
+>
 > - `path`: Routing address (must maintain consistency between the current component directory name and component file name)
 > - `order`: Routing sorting
 > - `title`: Route Title
@@ -285,29 +287,29 @@ Before you commit `PR`, make sure that your `fork` repository is up to date to a
 git clone <repository-url>
 ```
 
-2. Add a remote repository:
+1. Add a remote repository:
 
 ```shell
 git checkout -b <branch-name>
 ```
 
-3. Make modifications and submit to local warehouse:
+1. Make modifications and submit to local warehouse:
 
 ```shell
 git add .
 git commit -m 'feat: 新增***组件'
 ```
 
-4.Push a branch to a remote repository
+1. Push a branch to a remote repository
 
 ```shell
   git push origin <branch-name>
 ```
 
-5. Create a PR in the remote repository
+1. Create a PR in the remote repository
    On a code hosting platform like GitHub or GitLab, find the branch you just pushed and create a PR. You can provide details about the changes you have made and any other comments about PR in the PR.
 
-6.Pending review and consolidation:
+1. Pending review and consolidation:
 Once your PR is submitted, team members will review and discuss your code and may suggest changes. Once all issues have been resolved and approved, your PR will be merged into the main branch.
 
 Matters needing attention:
@@ -316,7 +318,7 @@ PR commits should be as small as possible, and each PR should contain only one s
 
 Add a description to your PR to let other developers know about the changes you've made and their purpose
 
-8.Set submission email
+1. Set submission email
 
 ```shell
 git config --global user.email "your-email@example.com"  //Global mailbox
@@ -342,14 +344,14 @@ npm publish
 If you feel that dk-plus has helped you, you can ask the author for a cup of coffee to encourage you.
 
 <div style='display: flex;'>
-<img width="200px" style='margin-right:50px;' src="https://oss.cadwaladerss.com/dk-plus/images/zfb.jpg" />
-<img width="200px" src="https://oss.cadwaladerss.com/dk-plus/images/wx.jpg" />
+<img width="200px" style='margin-right:50px;' src="https://oss.cadwaladerss.com/dk-plus/images/zfb.jpg" alt="alipay" />
+<img width="200px" src="https://oss.cadwaladerss.com/dk-plus/images/wx.jpg" alt="wechat-pay" />
 </div>
 
 ## 💌 Thank you very much
 
-Thanks for all that has been done DK-plus [People who contribute](https://github.com/dk-plus-ui/dk-plus-ui/graphs/contributors)！
+Thanks for all that has been done DK-plus [People who contribute](https://github.com/isMrFan/dk-plus-ui/graphs/contributors)！
 
-<a href="https://github.com/dk-plus-ui/dk-plus-ui/graphs/contributors">
-  <img src="https://github.com/dk-plus-ui/dk-plus-ui/graphs/contributors" />
+<a href="https://github.com/isMrFan/dk-plus-ui/graphs/contributors">
+  <img src="https://github.com/isMrFan/dk-plus-ui/graphs/contributors" alt="contributors" />
 </a>

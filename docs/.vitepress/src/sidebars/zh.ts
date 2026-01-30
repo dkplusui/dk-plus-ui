@@ -3,7 +3,6 @@
  *
  * @see sidebar https://vitepress.vuejs.org/guide/theme-sidebar#sidebar
  */
-import { link } from 'fs'
 import { znExpansionNav } from '../../data/znExpansionNav'
 export const sidebar = {
   '/zh/document/': [
@@ -34,7 +33,7 @@ export const sidebar = {
     {
       text: '设计',
       items: [
-        {text:'Palette 色板',link:'/zh/components/design/swatches'}
+        { text: 'Palette 色板', link: '/zh/components/design/swatches' }
       ]
     },
     {
@@ -54,6 +53,14 @@ export const sidebar = {
       text: '表单组件',
       items: [
         { text: 'Input 输入框', link: '/zh/components/form/input' },
+        { text: 'Autocomplete 自动补全', link: '/zh/components/form/autocomplete' },
+        { text: 'Color Picker Panel 颜色选择器面板', link: '/zh/components/form/colorPickerPanel' },
+        { text: 'Date Picker 日期选择器', link: '/zh/components/form/datePicker' },
+        { text: 'Date Picker Panel 日期选择器面板', link: '/zh/components/form/datePickerPanel' },
+        { text: 'Select 选择器', link: '/zh/components/form/select' },
+        { text: 'Slider 滑块', link: '/zh/components/form/slider' },
+        { text: 'Time Select 时间选择', link: '/zh/components/form/timeSelect' },
+        { text: 'Time Picker 时间选择器', link: '/zh/components/form/timePicker' },
         { text: 'InputNumber 计数器', link: '/zh/components/form/inputNumber' },
         { text: 'Checkbox 多选框', link: '/zh/components/form/checkbox' },
         { text: 'Radio 单选框', link: '/zh/components/form/radio' },

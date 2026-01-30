@@ -23,8 +23,8 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "prepare": "husky install",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint . --ignore-pattern '!docs/.vitepress/**'",
+    "lint:fix": "eslint . --fix --ignore-pattern '!docs/.vitepress/**'",
     "lint-staged": "lint-staged",
     "commitlint": "commitlint --config commitlint.config.js -e -V"
   },

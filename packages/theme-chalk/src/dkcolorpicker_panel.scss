@@ -1,0 +1,160 @@
+@use '../mixins/mixin.scss' as *;
+
+@include block(('color-picker-panel')) {
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 12px;
+  border: 1px solid #e4e7ed;
+  border-radius: 6px;
+  background: #ffffff;
+
+  @include state(disabled) {
+    opacity: 0.6;
+    cursor: not-allowed;
+    user-select: none;
+  }
+
+  @include element(main) {
+    display: flex;
+    gap: 12px;
+  }
+
+  @include element(sv) {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    border-radius: 4px;
+    cursor: crosshair;
+    overflow: hidden;
+  }
+
+  @include element(sv-white) {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0));
+  }
+
+  @include element(sv-black) {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, #000000, rgba(0, 0, 0, 0));
+  }
+
+  @include element(sv-thumb) {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+    transform: translate(-6px, -6px);
+  }
+
+  @include element(controls) {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 72px;
+  }
+
+  @include element(preview) {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border-radius: 4px;
+    border: 1px solid #e4e7ed;
+    overflow: hidden;
+  }
+
+  @include element(preview-color) {
+    position: absolute;
+    inset: 0;
+  }
+
+  @include element(bars) {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  @include element(bar) {
+    position: relative;
+    height: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  @include element(hue) {
+    background: linear-gradient(
+      to right,
+      rgb(255, 0, 0),
+      rgb(255, 255, 0),
+      rgb(0, 255, 0),
+      rgb(0, 255, 255),
+      rgb(0, 0, 255),
+      rgb(255, 0, 255),
+      rgb(255, 0, 0)
+    );
+  }
+
+  @include element(alpha) {
+    background: transparent;
+  }
+
+  @include element(alpha-bg) {
+    position: absolute;
+    inset: 0;
+  }
+
+  @include element(bar-thumb) {
+    position: absolute;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+    transform: translate(-6px, -50%);
+    background: transparent;
+  }
+
+  @include element(footer) {
+    margin-top: 12px;
+    display: flex;
+  }
+
+  @include element(input) {
+    width: 100%;
+    height: 30px;
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+    padding: 0 10px;
+    outline: none;
+    font-size: 12px;
+    color: #606266;
+
+    &:focus {
+      border-color: #409eff;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      background: #f5f7fa;
+      color: #c0c4cc;
+    }
+  }
+
+  @include element(checker) {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.08) 25%, transparent 25%),
+      linear-gradient(-45deg, rgba(0, 0, 0, 0.08) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.08) 75%),
+      linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.08) 75%);
+    background-size: 10px 10px;
+    background-position: 0 0, 0 5px, 5px -5px, -5px 0;
+  }
+}

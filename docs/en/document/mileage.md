@@ -38,4 +38,4 @@ The warehouse welcomes its first contributor [WangYingJay](https://github.com/Wa
 
 ## 2023-03-20
 
-Warehouse official development logs `2023-03-20`by[dk-plus-ui(Mr. Fan)](https://github.com/dk-plus-ui)First submission of infrastructure, on this day `DK-plus` Born!
+Warehouse official development logs `2023-03-20`by[dk-plus-ui(Mr. Fan)](https://github.com/isMrFan)First submission of infrastructure, on this day `DK-plus` Born!

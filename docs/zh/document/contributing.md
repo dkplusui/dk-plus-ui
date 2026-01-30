@@ -21,7 +21,7 @@
 
 如果你已经做好了前面的准备，可以直接跳过，从这里开始:
 
-- Fork [dk-plus](https://github.com/dk-plus-ui/dk-plus-ui)
+- Fork [dk-plus](https://github.com/isMrFan/dk-plus-ui)
 
 - 克隆你的 fork 到本地
 
@@ -169,7 +169,7 @@
 
 ```shell
 # clone 项目
-git clone https://github.com/dk-plus-ui/dk-plus-ui.git
+git clone https://github.com/isMrFan/dk-plus-ui.git
 
 # 进入项目目录
 cd dk-ui
@@ -196,14 +196,14 @@ pnpm dev:docs
 
 - [Vue Language Features (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) Vue3 官方开发插件
 - [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) 用于支持在 TS 中 import `*.vue` 文件
-- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) 代码格式校验，如果不安装，那么 [dk-eslint](https://github.com/dk-plus-ui/dk-plus-ui/tree/master/packages/dk-eslint) 则不生效
-- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) 代码格式校验，如果不安装，那么 [dk-eslint](https://github.com/dk-plus-ui/dk-plus-ui/tree/master/packages/dk-eslint) 则不生效
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) 代码格式校验，如果不安装，那么 [dk-eslint](https://github.com/isMrFan/dk-plus-ui/tree/master/packages/dk-eslint) 则不生效
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) 代码格式校验，如果不安装，那么 [dk-eslint](https://github.com/isMrFan/dk-plus-ui/tree/master/packages/dk-eslint) 则不生效
 
 - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) 用于检测代码中的拼写错误
 
 ## 🔓 命令说明
 
-dk-plus 内部设置了很多的命令，在 [package.json](https://github.com/dk-plus-ui/dk-plus-ui/blob/master/package.json) 中可进行查看。下面详细介绍每一条命令：
+dk-plus 内部设置了很多的命令，在 [package.json](https://github.com/isMrFan/dk-plus-ui/blob/master/package.json) 中可进行查看。下面详细介绍每一条命令：
 
 | script 字段 | 对应命令                                                                  | 命令说明         |
 | ----------- | ------------------------------------------------------------------------- | ---------------- |
@@ -221,10 +221,10 @@ dk-plus 内部设置了很多的命令，在 [package.json](https://github.com/d
 
 ## 🚨 开发规范
 
-主要源文件都在 [packages](https://github.com/dk-plus-ui/dk-plus-ui/tree/master/packages) 目录下，其中每个子目录都有单独的 `README.md` 对指定目录进行说明，每个模块详细的规范参考下面文档:
+主要源文件都在 [packages](https://github.com/isMrFan/dk-plus-ui/tree/master/packages) 目录下，其中每个子目录都有单独的 `README.md` 对指定目录进行说明，每个模块详细的规范参考下面文档:
 
-- [dk-plus-components](https://github.com/dk-plus-ui/dk-plus-ui/tree/master/packages/components/README.md) 创建新组件
-- [dk-plus-components](https://github.com/dk-plus-ui/dk-plus-ui/tree/master/packages/theme-chalk/README.md) 样式主题目录
+- [dk-plus-components](https://github.com/isMrFan/dk-plus-ui/tree/master/packages/components/README.md) 创建新组件
+- [dk-plus-components](https://github.com/isMrFan/dk-plus-ui/tree/master/packages/theme-chalk/README.md) 样式主题目录
 
 ## ⚠️ 提交规范
 
@@ -258,14 +258,16 @@ Git 允许我们在每次提交时，附带一个提交信息作为说明，当�
 
 在你创建新的组件时，不需要在`router/index.ts`中注册，只需在`play/views/components/当前组件目录`中创建`page.ts`文件即可，`page.ts`文件中的内容如下：
 
-```ts 
+```ts
 export default {
   path: '/DkLoading',
   order: 9,
   title: 'loading 加载中'
 }
 ```
+
 > 参数说明：
+>
 > - `path`: 路由地址（必须保持当前组件目录名称和组件文件名称一致）
 > - `order`: 路由排序
 > - `title`: 路由标题
@@ -367,14 +369,14 @@ npm publish
 如果您觉得 dk-plus 帮助到了您，您可以请作者喝杯咖啡，以资鼓励。
 
 <div style='display: flex;'>
-<img width="200px" style='margin-right:50px;' src="https://oss.cadwaladerss.com/dk-plus/images/zfb.jpg" />
-<img width="200px" src="https://oss.cadwaladerss.com/dk-plus/images/wx.jpg" />
+<img width="200px" style='margin-right:50px;' src="https://oss.cadwaladerss.com/dk-plus/images/zfb.jpg" alt="支付宝" />
+<img width="200px" src="https://oss.cadwaladerss.com/dk-plus/images/wx.jpg" alt="微信支付" />
 </div>
 
 ## 💌 非常感谢
 
-感谢所有已经为 DK-plus [做出贡献的人](https://github.com/dk-plus-ui/dk-plus-ui/graphs/contributors)！
+感谢所有已经为 DK-plus [做出贡献的人](https://github.com/isMrFan/dk-plus-ui/graphs/contributors)！
 
-<a href="https://github.com/dk-plus-ui/dk-plus-ui/graphs/contributors">
-  <img src="https://github.com/dk-plus-ui/dk-plus-ui/graphs/contributors" />
+<a href="https://github.com/isMrFan/dk-plus-ui/graphs/contributors">
+  <img src="https://github.com/isMrFan/dk-plus-ui/graphs/contributors" alt="contributors" />
 </a>

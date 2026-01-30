@@ -2,8 +2,8 @@
 
 使用 svg 的图标库，可以减少项目体积，提高加载速度。
 
-- [源代码](https://github.com/dk-plus-ui/dk-plus-ui/tree/master/packages/components/dkicon)
-- [文档编辑](https://github.com/dk-plus-ui/dk-plus-ui/blob/master/docs/zh/components/icon.md)
+- [源代码](https://github.com/isMrFan/dk-plus-ui/tree/master/packages/components/dkicon)
+- [文档编辑](https://github.com/isMrFan/dk-plus-ui/blob/master/docs/zh/components/icon.md)
 
 ## 1.基本使用
 
@@ -68,7 +68,7 @@
 ## Contributors
 
 <div style='display: flex;'>
-  <a href="https://github.com/dk-plus-ui" target="_blank" style='margin-right:10px;'>
+  <a href="https://github.com/isMrFan" target="_blank" style='margin-right:10px;'>
     <img style='width:60px;height:60px;border-radius: 50%;' src="https://avatars.githubusercontent.com/u/88755587?v=4" />
   </a>
   <a href="https://github.com/WangYingJay" target="_blank">

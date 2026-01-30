@@ -1,0 +1,45 @@
+@use '../mixins/mixin.scss' as *;
+
+@include block(('time-select')) {
+  position: relative;
+  display: inline-block;
+
+  @include element(dropdown) {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    z-index: 2023;
+    width: 240px;
+    max-height: 240px;
+    overflow: auto;
+    border: 1px solid #e4e7ed;
+    border-radius: 6px;
+    background: #fff;
+    padding: 6px;
+    box-sizing: border-box;
+  }
+
+  @include element(option) {
+    width: 100%;
+    text-align: left;
+    border: 0;
+    background: transparent;
+    padding: 6px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(64, 158, 255, 0.12);
+    }
+  }
+
+  @include element(clear) {
+    margin-top: 6px;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: #fff;
+    padding: 6px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}

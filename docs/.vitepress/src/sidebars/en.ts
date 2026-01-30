@@ -33,7 +33,7 @@ export const sidebar = {
     {
       text: 'design',
       items: [
-        {text:'Palette swatches',link:'/en/components/design/swatches'}
+        { text: 'Palette swatches', link: '/en/components/design/swatches' }
       ]
     },
     {
@@ -53,6 +53,14 @@ export const sidebar = {
       text: 'Form',
       items: [
         { text: 'Input', link: '/en/components/form/input' },
+        { text: 'Autocomplete', link: '/en/components/form/autocomplete' },
+        { text: 'Color Picker Panel', link: '/en/components/form/colorPickerPanel' },
+        { text: 'Date Picker', link: '/en/components/form/datePicker' },
+        { text: 'Date Picker Panel', link: '/en/components/form/datePickerPanel' },
+        { text: 'Select', link: '/en/components/form/select' },
+        { text: 'Slider', link: '/en/components/form/slider' },
+        { text: 'Time Select', link: '/en/components/form/timeSelect' },
+        { text: 'Time Picker', link: '/en/components/form/timePicker' },
         { text: 'InputNumber', link: '/en/components/form/inputNumber' },
         { text: 'Checkbox', link: '/en/components/form/checkbox' },
         { text: 'Radio', link: '/en/components/form/radio' },

@@ -5,36 +5,12 @@
  * @user FanKai <https://github.com/isMrFan>
  * @function interface 定义
 */
-import type { VNode } from 'vue'
-
-/** 绑定值类型 */
-export type SelectModelValue = string | number | boolean
-
 /**
- * 绑定值发生改变时触发的回调
+ * Select 注入给 Option/OptionGroup 的依赖
  *
- * @param { string | number | boolean } newValue 最新 value
- * @param { string | number | boolean } newLabel 最新 label
- * @param { Object } evt 事件对象
- */
-export type SelectChange = (
-  newValue: SelectModelValue,
-  newLabel: SelectModelValue,
-  evt: MouseEvent
-) => void
-
-/**
- * 提供给自组件注入的依赖项类型接口
- *
- * @param { Function } setValue 设置新的选中值
+ * 这里保持轻量：Option 只需能触发 setValue，并可获取选中态。
  */
 export interface SelectProvide {
-  setValue: SelectChange
-}
-
-/** 获取子元素插槽类型接口 */
-export interface SelectChildren extends VNode {
-  children: {
-    default(): VNode[]
-  }
+  setValue: (value: unknown, label: unknown, evt: MouseEvent, disabled?: boolean) => void
+  isSelected?: (value: unknown) => boolean
 }

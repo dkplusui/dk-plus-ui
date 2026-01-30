@@ -239,7 +239,9 @@ const inputAttrs = reactive<InputHTMLAttributes>({
   onChange,
   maxlength: propData.maxlengthProp,
   minlength: propData.minlengthProp,
-  readonly: propData.readonlyProp
+  readonly: propData.readonlyProp,
+  id: props.id || undefined,
+  name: props.name || undefined
 } as InputHTMLAttributes)
 
 const textareaAttrs = reactive({
@@ -255,7 +257,9 @@ const textareaAttrs = reactive({
   minlength: propData.minlengthProp,
   autosize: propData.autosizeProp,
   rows: getTextareaRows().row,
-  readonly: propData.readonlyProp
+  readonly: propData.readonlyProp,
+  id: props.id || undefined,
+  name: props.name || undefined
 } as TextareaHTMLAttributes)
 </script>
 
@@ -310,7 +314,7 @@ const textareaAttrs = reactive({
 
       <!-- clearable -->
       <template v-if="data.isClear">
-        <dk-icon v-show="isShowClear" class="dk-input-clearable" :icon="'IconShanchu1'" @click="clear" />
+        <dk-icon v-show="isShowClear" class="dk-input-clearable" :icon="props.clearIcon || 'IconShanchu1'" @click="clear" />
       </template>
 
       <!-- show-password -->

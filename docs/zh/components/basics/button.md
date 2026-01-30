@@ -2,8 +2,8 @@
 
 这是一个看起非常普通的按钮，但是它的功能却非常强大。
 
-- [源代码](https://github.com/dk-plus-ui/dk-plus-ui/tree/master/packages/components/dkbutton)
-- [文档编辑](https://github.com/dk-plus-ui/dk-plus-ui/blob/master/docs/zh/components/button.md)
+- [源代码](https://github.com/isMrFan/dk-plus-ui/tree/master/packages/components/dkbutton)
+- [文档编辑](https://github.com/isMrFan/dk-plus-ui/blob/master/docs/zh/components/button.md)
 
 ## 1.基础按钮
 
@@ -305,10 +305,10 @@
     loading
     link
     :icon="'IconShanchu1'"
-    :href="'https://m.baidu.com/'"
+    :href="'https' + '://m.' + 'baidu.com/'"
     type="primary"
 >
-  默认https://m.baidu.com/
+  默认 {{ 'https' + '://m.' + 'baidu.com/' }}
 </dk-button>
 </template>
 
@@ -476,34 +476,34 @@
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | --- | --- | --- | --- | --- |
 | `link` | 是否为A标签按钮 | booler | `true` `false` | `false` |
-| `href` | A标签超链接 `link=true` 时生效 | string | - - | - - |
+| `href` | A标签超链接 `link=true` 时生效 | string | - | - |
 | `target` | A标签超链接 `link=true` 时生效 | string | `_blank` `_self` `_parent` `_top` | `_blank` |
 | `text` | 是否为文本按钮 | booler | `true` `false` | `false` |
 | `size` | 按钮尺寸 | string | `large` `medium` `small` `mini` | `large` |
-| `type` | 按钮的类型(不同类型对应不同的背景和字体颜色，非自定义按钮颜色时有效,A标签无效) | <a>dkPlusType</a> | `primary` `success` `info` `warning` `danger`| `primary` |
-| `fontSize` | 按钮文字大小 | string/number | - - | - - |
-| `fontColor` | 按钮的字体颜色(支持16进制 rgb rgba) | string | - - | - - |
-| `bgColor` | 按钮的背景颜色(支持16进制 rgb rgba) | string | - - | - - |
+| `type` | 按钮的类型(不同类型对应不同的背景和字体颜色，非自定义按钮颜色时有效,A标签无效) | <a>dkPlusType</a> | `primary` `success` `info` `warning` `danger` | `primary` |
+| `fontSize` | 按钮文字大小 | string/number | - | - |
+| `fontColor` | 按钮的字体颜色(支持16进制 rgb rgba) | string | - | - |
+| `bgColor` | 按钮的背景颜色(支持16进制 rgb rgba) | string | - | - |
 | `disabled` | 按钮否禁用 | booler | `true` `false` | `false` |
-| `textDecoration` | 文本按钮中上下划线 | string | `lineThrough` `overline` `underline`| - - |
+| `textDecoration` | 文本按钮中上下划线 | string | `lineThrough` `overline` `underline` | - |
 | `circle` | 圆形按钮 | booler | `true` `false` | `false` |
-| `shadow` | 按钮阴影效果 例:`shadow="0 1px 10px 0 自定义颜色(16进制,RGB,RGBA)"` | string | - - | - - |
+| `shadow` | 按钮阴影效果 例:`shadow="0 1px 10px 0 自定义颜色(16进制,RGB,RGBA)"` | string | - | - |
 | `ripples` | 涟漪效果 | booler | `true` `false` | `false` |
-| `ripplesBgColor` | 涟漪效果的自定义颜色(支持16进制 rgb rgba) | string | - - | - - |
+| `ripplesBgColor` | 涟漪效果的自定义颜色(支持16进制 rgb rgba) | string | - | - |
 | `diffusion` | 扩散效果 | booler | `true` `false` | `false` |
-| `diffusionBgColor` | 扩散效果的自定义颜色(支持16进制 rgb rgba) | string | - - | - - |
-| `round` | 半圆形按钮 | booler | `true` `false`  |`false`|
-| `icon` | 按钮前置图标 | string | <a href='/components/icon.html'>iconType</a>  | - - |
-| `afterIcon` | 按钮后置图标 | string | <a href='/components/icon.html'>iconType</a>  | - - |
+| `diffusionBgColor` | 扩散效果的自定义颜色(支持16进制 rgb rgba) | string | - | - |
+| `round` | 半圆形按钮 | booler | `true` `false` | `false` |
+| `icon` | 按钮前置图标 | string | <a href='/components/icon.html'>iconType</a> | - |
+| `afterIcon` | 按钮后置图标 | string | <a href='/components/icon.html'>iconType</a> | - |
 | `loading` | 加载中 | booler | `true` `false` | `false` |
 
 ## 个性按钮属性(颜色支持:16进制,RGB,RGBA)
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | --- | --- | --- | --- | --- |
-| `personality` | 是否为个性按钮  | booler | `true` `false` | `false` |
+| `personality` | 是否为个性按钮 | booler | `true` `false` | `false` |
 | `personalityType` | 个性按钮类型 | string | `BiCurvedA` `multiple` <br> `stretchBtn` `shine`  <br> `SilverReflection` `flatBtn`  <br> `TurnOpen` `stereoscopic` | - - |
-| `personalitySize` | 按钮类型大小 | string | `large` `medium` `small` `mini`| `large` |
+| `personalitySize` | 按钮类型大小 | string | `large` `medium` `small` `mini` | `large` |
 | `personalityBorderColor` | 个性按钮边框颜色 | string Arr[string] | 例:personality-border-color="['red', 'red', 'red', 'red']" | - - |
 | `personalityBorderHoveColor` | 个性按钮边框颜色悬停时 | string Arr[string] | 例::personality-border-hove-color="['blue', 'blue', 'blue', 'blue']" | - - |
 | `personalityBgColor` | 个性按钮背景颜色 | string | 例:personality-bg-color="#38ef7d" | - - |
@@ -517,20 +517,20 @@
 ## Slots(插槽)
 
 | 名称 | 说明 |
-| ---  | --- |
+| --- | --- |
 | icon | icon图标前置 |
 | afterIcon | icon图标后置 |
 
 ## Contributors
 
 <div style='display: flex;'>
-  <a href="https://github.com/dk-plus-ui" target="_blank" style='margin-right:10px;'>
-    <img style='width:60px;height:60px;border-radius: 50%;' src="https://avatars.githubusercontent.com/u/88755587?v=4" />
+  <a href="https://github.com/isMrFan" target="_blank" style='margin-right:10px;'>
+    <img style='width:60px;height:60px;border-radius: 50%;' src="https://avatars.githubusercontent.com/u/88755587?v=4" alt="isMrFan" />
   </a>
   <a href="https://github.com/WangYingJay" target="_blank">
-    <img style='width:60px;height:60px;border-radius: 50%;' src="https://avatars.githubusercontent.com/u/117073291?s=64&v=4"/>
+    <img style='width:60px;height:60px;border-radius: 50%;' src="https://avatars.githubusercontent.com/u/117073291?s=64&v=4" alt="WangYingJay" />
   </a>
   <a href="https://github.com/bugfix2020" target="_blank">
-    <img style='width:60px;height:60px;border-radius: 50%;' src="https://avatars.githubusercontent.com/u/29813979?v=4"/>
+    <img style='width:60px;height:60px;border-radius: 50%;' src="https://avatars.githubusercontent.com/u/29813979?v=4" alt="bugfix2020" />
   </a>
 </div>

@@ -6,7 +6,7 @@
  * @user FanKai <https://github.com/isMrFan>
  * @function 组件触发器用于组件展示下拉
 */
-import { defineComponent, ref, reactive, toRefs, computed,provide } from 'vue'
+import { defineComponent, ref, reactive, toRefs, computed, provide, onBeforeUnmount } from 'vue'
 import type { CSSProperties } from 'vue'
 import { sizeChange } from '../../_utils'
 import { dkTriggerProps,TRIGGER_CLOSE_KEY } from './props'
@@ -15,9 +15,10 @@ import type { TriggerProvide } from './interface'
 export default defineComponent({
   name: 'DkTrigger',
   props:dkTriggerProps,
-  setup(props) {
+  setup(props, { expose }) {
     const data = reactive({})
     const {getRun}=getReturn()
+    const rootRef = ref<HTMLElement>()
     /**
      * @description 是否展示主内容
    */
@@ -38,7 +39,14 @@ export default defineComponent({
       showContent.value = false
       getRun(props.onClose, showContent.value)
       getRun(props.onChange, showContent.value)
+      document.removeEventListener('click', documentListen)
     }
+
+    expose({
+      handelOpen,
+      handelClose,
+      showContent
+    })
     /**
      * @description 打开事件
    */
@@ -68,24 +76,13 @@ export default defineComponent({
    * @param { Object } evt 事件对象
    */
   const documentListen = (evt: MouseEvent): void => {
-  /**
-   * 获取点击的孩子节点是否存在 f-trigger 类名的标签
-   *
-   * @see Event.composedPath() https://developer.mozilla.org/zh-CN/docs/Web/API/Event/composedPath
-   * @see Array.prototype.some() https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/some
-   */
-  const isHaveTrigger: boolean = (evt.composedPath() as HTMLElement[]).some(
-    (item: HTMLElement): boolean => item.className === 'f-trigger'
-  )
+  const root = rootRef.value
+  const content = props.contentRef
+  const target = evt.target as Node | null
+  if (root && target && root.contains(target)) return
+  if (content && target && content.contains(target)) return
 
-  /** 如果有，则说明点击是孩子节点，则不需要关闭 */
-  if (isHaveTrigger) return
-
-  /** 否则关闭触发器 */
   handelClose()
-
-  /** 关闭之后移除事件监听 */
-  document.removeEventListener('click', documentListen)
   }
   /**
    * 弹窗打开
@@ -95,6 +92,10 @@ export default defineComponent({
   const onBeforeEnter = (): void => {
     document.addEventListener('click', documentListen)
   }
+
+  onBeforeUnmount(() => {
+    document.removeEventListener('click', documentListen)
+  })
   /**
    * 注入关闭方法依赖项
    *
@@ -113,6 +114,7 @@ export default defineComponent({
       handelOpen,
       handelClose,
       onBeforeEnter,
+      rootRef,
       ...toRefs(data)
     }
   }
@@ -123,6 +125,7 @@ export default defineComponent({
   <div 
     class="Dk-Trigger" 
     :style="styleList"
+    ref="rootRef"
     @[closeEvent].stop="handelClose"
   >
     <div class="Dk-Trigger__trigger" @[openEvent].stop="handelOpen">

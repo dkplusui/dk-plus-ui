@@ -20,7 +20,7 @@ export const zhConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
     socialLinks: [
       {
         icon: 'github',
-        link: 'https://github.com/dk-plus-ui/dk-plus-ui'
+        link: 'https://github.com/isMrFan/dk-plus-ui'
       }
     ],
     nav: getNavs(),

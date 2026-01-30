@@ -57,5 +57,5 @@
   ],
   "vue.codeActions.enabled": false,
   "cSpell.languageSettings": [],
-  "editor.minimap.autohide": true
+  "editor.minimap.autohide": "mouseover"
 }

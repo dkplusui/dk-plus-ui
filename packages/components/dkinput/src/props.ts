@@ -145,6 +145,12 @@ export const dkInputProps = {
   readonly: setBooleanProps(),
   /** Tip message */
   placeholder: setStringProp(),
+  /** Native input id */
+  id: setStringProp(),
+  /** Native input name */
+  name: setStringProp(),
+  /** Clear icon name (dk-icon) */
+  clearIcon: setStringProp<string>('IconShanchu1'),
   /** Whether display length limit */
   showLengthLimit: setBooleanProps(),
   /** Max length */

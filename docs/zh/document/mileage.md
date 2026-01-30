@@ -38,4 +38,4 @@ dk-plus 官网首页改版
 
 ## 2023-03-20
 
-仓库正式开发日志 `2023-03-20`由[dk-plus-ui(Mr. Fan)](https://github.com/dk-plus-ui)第一次提交基础架构，就在这一天 `DK-plus` 诞生！
+仓库正式开发日志 `2023-03-20`由[dk-plus-ui(Mr. Fan)](https://github.com/isMrFan)第一次提交基础架构，就在这一天 `DK-plus` 诞生！

@@ -1,12 +1,18 @@
 @use '../mixins/mixin.scss' as *;
 
 .#{$namespace}-Trigger{
+  position: relative;
+  display: inline-block;
   height: inherit;
   .#{$namespace}-Trigger__trigger{
     height: inherit;
   }
   .#{$namespace}-Trigger__content-box{
+    position: absolute;
+    left: 0;
+    top: calc(100% + var(--trigger-spacing-size, 6px));
     width: 100%;
+    z-index: 2000;
     .#{$namespace}-Trigger__content{
       width: 100%;
     }

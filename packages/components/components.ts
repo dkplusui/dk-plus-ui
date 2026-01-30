@@ -87,6 +87,31 @@ export * from './dkdialog'
 
 export { DkSelect } from './dkselect'
 export * from './dkselect'
+export { DkOption } from './dkoption'
+export { DkOptionGroup } from './dkoption_group'
+export * from './dkoption'
+export * from './dkoption_group'
+
+export { DkAutocomplete } from './dkautocomplete'
+export * from './dkautocomplete'
+
+export { DkColorPickerPanel } from './dkcolorpicker_panel'
+export * from './dkcolorpicker_panel'
+
+export { DkDatePickerPanel } from './dkdatepicker_panel'
+export * from './dkdatepicker_panel'
+
+export { DkDatePicker } from './dkdatepicker'
+export * from './dkdatepicker'
+
+export { DkSlider } from './dkslider'
+export * from './dkslider'
+
+export { DkTimeSelect } from './dktime_select'
+export * from './dktime_select'
+
+export { DkTimePicker } from './dktime_picker'
+export * from './dktime_picker'
 
 export { DkTrigger } from './dktrigger'
 export * from './dktrigger'

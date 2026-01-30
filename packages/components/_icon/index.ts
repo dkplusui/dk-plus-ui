@@ -104,6 +104,7 @@ import i_UpperTriangle from './src/i-UpperTriangle/index.vue'
 import i_LowerTriangle from './src/i-LowerTriangle/index.vue'
 import i_LeftTriangle from './src/i-LeftTriangle/index.vue'
 import i_RightTriangle from './src/i-RightTriangle/index.vue'
+import i_CaretDown from './src/i-caret-down/index.vue'
 import i_Return from './src/i-Return/index.vue'
 import i_Contraction1 from './src/i-Contraction1/index.vue'
 import i_LeftFold from './src/i-LeftFold/index.vue'
@@ -179,6 +180,8 @@ import i_close from './src/i-Close/index.vue'
 import i_loading from './src/i-Loading/index.vue'
 import i_star from './src/i-Star/index.vue'
 import i_stared from './src/i-Stared/index.vue'
+import i_Clock from './src/i-clock/index.vue'
+import i_Calendar from './src/i-calendar/index.vue'
 export const IconShanchu1 = withInstall(i_shanchu1)
 export const IconShanchu2 = withInstall(i_Shanchu2)
 export const IconRefresh = withInstall(i_Refresh)
@@ -283,6 +286,7 @@ export const IconUpperTriangle = withInstall(i_UpperTriangle)
 export const IconLowerTriangle = withInstall(i_LowerTriangle)
 export const IconLeftTriangle = withInstall(i_LeftTriangle)
 export const IconRightTriangle = withInstall(i_RightTriangle)
+export const IconCaretDown = withInstall(i_CaretDown)
 export const IconReturn = withInstall(i_Return)
 export const IconContraction1 = withInstall(i_Contraction1)
 export const IconLeftFold = withInstall(i_LeftFold)
@@ -358,6 +362,8 @@ export const IconClose = withInstall(i_close)
 export const IconLoading = withInstall(i_loading)
 export const IconStar = withInstall(i_star)
 export const IconStared = withInstall(i_stared)
+export const IconClock = withInstall(i_Clock)
+export const IconCalendar = withInstall(i_Calendar)
 
 import * as svgList from './default'
 export * from './default'

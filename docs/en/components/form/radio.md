@@ -2,8 +2,8 @@
 
 In the given set of options, **single select**. The difference between `Checkbox` and `Checkbox` is that radio boxes are generally used in scenarios where **status changes and submission** is required.
 
-- [source code](https://github.com/dk-plus-ui/dk-plus-ui/tree/master/packages/components/radio)
-- [documents editing](https://github.com/dk-plus-ui/dk-plus-ui/blob/master/docs/en/components/radio.md)
+- [source code](https://github.com/isMrFan/dk-plus-ui/tree/master/packages/components/radio)
+- [documents editing](https://github.com/isMrFan/dk-plus-ui/blob/master/docs/en/components/radio.md)
 
 ## <a id='Basicusage'>Basic usage</a>
 
@@ -242,7 +242,7 @@ Through the `size` property to set the size of the radio box, support `large`, `
 ## Contributors
 
 <div style='display: flex;'>
-  <a href="https://github.com/dk-plus-ui" target="_blank" style='margin-right:10px;'>
+  <a href="https://github.com/isMrFan" target="_blank" style='margin-right:10px;'>
     <img style='width:60px;height:60px;border-radius: 50%;' src="https://avatars.githubusercontent.com/u/88755587?v=4" />
   </a>
   <a href="https://github.com/WangYingJay" target="_blank">

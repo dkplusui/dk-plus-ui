@@ -6,6 +6,7 @@
 node_modules/
 dist/
 cache/
+.hc/
 .history
 packages/theme-chalk/dist
 play/report.html

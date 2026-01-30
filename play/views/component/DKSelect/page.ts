@@ -1,5 +1,5 @@
 export default {
-  path: '/DKSelect',
-  order: 21,
-  title: 'Select 搜索框'
+  path: '/DkSelect',
+  order: 29,
+  title: 'Select 选择器'
 }

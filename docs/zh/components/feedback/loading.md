@@ -2,8 +2,8 @@
 
 自定义加载中指令，用于异步请求时的加载中状态。
 
-- [源代码](https://github.com/dk-plus-ui/dk-plus-ui/tree/master/packages/components/dkloading)
-- [文档编辑](https://github.com/dk-plus-ui/dk-plus-ui/blob/master/docs/zh/components/loading.md)
+- [源代码](https://github.com/isMrFan/dk-plus-ui/tree/master/packages/components/dkloading)
+- [文档编辑](https://github.com/isMrFan/dk-plus-ui/blob/master/docs/zh/components/loading.md)
 
 ## 基本使用
 
@@ -306,7 +306,7 @@ row-reverse(右) column-reverse(下)
 ## Contributors
 
 <div style='display: flex;'>
-  <a href="https://github.com/dk-plus-ui" target="_blank" style='margin-right:10px;'>
+  <a href="https://github.com/isMrFan" target="_blank" style='margin-right:10px;'>
     <img style='width:60px;height:60px;border-radius: 50%;' src="https://avatars.githubusercontent.com/u/88755587?v=4" />
   </a>
   <a href="https://github.com/WangYingJay" target="_blank">

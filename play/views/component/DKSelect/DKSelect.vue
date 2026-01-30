@@ -1,20 +1,24 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
+
 export default defineComponent({
-  name: 'DKselect',
+  name: 'DkSelectPlay',
   setup() {
-    console.log('委屈')
+    const value = ref('')
+    const options = [
+      { label: '选项 A', value: 'A' },
+      { label: '选项 B', value: 'B' },
+      { label: '禁用项', value: 'X', disabled: true }
+    ]
+    return { value, options }
   }
 })
 </script>
+
 <template>
-  <div class="DKSelect">
-    嘻嘻阿
-    <dk-select></dk-select>
+  <div style="padding: 12px">
+    <h3>基础用法</h3>
+    <dk-select v-model="value" :options="options" />
+    <div style="margin-top: 8px">value: {{ value }}</div>
   </div>
 </template>
-<style lang="scss" scoped>
-.DKSelect{
-  width: 100%;
-}
-</style>

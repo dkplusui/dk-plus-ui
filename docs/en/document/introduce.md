@@ -12,15 +12,15 @@
 
 ## 💌 Special Thanks
 
-Thanks to all the people who have contributed to  `DK-plus` [on GitHub！](https://github.com/dk-plus-ui/dk-plus-ui/graphs/contributors)
+Thanks to all the people who have contributed to  `DK-plus` [on GitHub！](https://github.com/isMrFan/dk-plus-ui/graphs/contributors)
 
-<a href="https://github.com/dk-plus-ui/dk-plus-ui/graphs/contributors">
-  <img src="https://github.com/dk-plus-ui/dk-plus-ui/graphs/contributors" />
+<a href="https://github.com/isMrFan/dk-plus-ui/graphs/contributors">
+  <img src="https://github.com/isMrFan/dk-plus-ui/graphs/contributors" />
 </a>
 
 ## 📃 License
 
-[MIT](https://github.com/dk-plus-ui/dk-plus-ui/blob/master/LICENSE)
+[MIT](https://github.com/isMrFan/dk-plus-ui/blob/master/LICENSE)
 
 ## 📈 Downloads
 

@@ -14,4 +14,4 @@
 
 ## 社区组织
 
-- [dk-plus](https://github.com/dk-plus-ui/dk-plus-ui)
+- [dk-plus](https://github.com/isMrFan/dk-plus-ui)

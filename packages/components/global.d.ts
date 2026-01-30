@@ -12,10 +12,17 @@ declare module '@vue/runtime-core' {
     DkHeader: typeof components.DkHeader
     DkIcon: typeof components.DkIcon
     DkInput: typeof components.DkInput
+    DkAutocomplete: typeof components.DkAutocomplete
+    DkColorPickerPanel: typeof components.DkColorPickerPanel
+    DkDatePickerPanel: typeof components.DkDatePickerPanel
+    DkDatePicker: typeof components.DkDatePicker
     DkInputNumber: typeof components.DkInputNumber
     DkMain: typeof components.DkMain
     DkShadow: typeof components.DkShadow
     DkSpace: typeof components.DkSpace
+    DkSelect: typeof components.DkSelect
+    DkOption: typeof components.DkOption
+    DkOptionGroup: typeof components.DkOptionGroup
     IconRefresh: typeof componentsIcon.IconRefresh
     DkAlert: typeof components.DkAlert
     DkRow: typeof components.DkRow
@@ -30,6 +37,9 @@ declare module '@vue/runtime-core' {
     DkPopover: typeof components.DkPopover
     DkScrollbar: typeof components.DkScrollbar
     DkRate: typeof components.DkRate
+    DkSlider: typeof components.DkSlider
+    DkTimeSelect: typeof components.DkTimeSelect
+    DkTimePicker: typeof components.DkTimePicker
   }
   export interface ImportMetaEnv {
     VITE_APP_BASE_API: string

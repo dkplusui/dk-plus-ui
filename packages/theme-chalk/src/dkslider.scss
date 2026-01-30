@@ -1,0 +1,144 @@
+@use '../mixins/mixin.scss' as *;
+
+@include block(('slider')) {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  &.is-disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  @include element(runway) {
+    position: relative;
+    width: 240px;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 999px;
+    cursor: pointer;
+    user-select: none;
+    box-sizing: border-box;
+  }
+
+  @include element(bar) {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    width: 0;
+    background: #409eff;
+    border-radius: 999px;
+  }
+
+  @include element(button-wrapper) {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+
+  @include element(button) {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #409eff;
+    box-sizing: border-box;
+    cursor: grab;
+    outline: none;
+
+    &:focus {
+      box-shadow: 0 0 0 4px rgba(64, 158, 255, 0.18);
+    }
+  }
+
+  @include element(tooltip) {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    padding: 4px 8px;
+    font-size: 12px;
+    line-height: 1.2;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.78);
+    border-radius: 6px;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  @include element(stop) {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.22);
+  }
+
+  @include element(mark) {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, 10px);
+    color: #606266;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  @include element(mark-text) {
+    display: inline-block;
+    padding-top: 4px;
+  }
+
+  @include element(input) {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  @include element(input-separator) {
+    color: #909399;
+    user-select: none;
+  }
+
+  &.is-vertical {
+    align-items: flex-start;
+
+    @include element(runway) {
+      width: 6px;
+      height: 200px;
+    }
+
+    @include element(bar) {
+      width: 100%;
+      height: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    @include element(button-wrapper) {
+      left: 50%;
+      top: auto;
+      transform: translate(-50%, 50%);
+    }
+
+    @include element(tooltip) {
+      left: 18px;
+      bottom: 50%;
+      transform: translateY(50%);
+    }
+
+    @include element(stop) {
+      left: 50%;
+      top: auto;
+      transform: translate(-50%, 50%);
+    }
+
+    @include element(mark) {
+      left: 50%;
+      top: auto;
+      transform: translate(10px, 50%);
+    }
+  }
+}

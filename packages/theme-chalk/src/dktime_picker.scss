@@ -1,0 +1,42 @@
+@use '../mixins/mixin.scss' as *;
+
+@include block(('time-picker')) {
+  position: relative;
+  display: inline-block;
+
+  @include element(dropdown) {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    z-index: 2023;
+    background: #fff;
+    border: 1px solid #e4e7ed;
+    border-radius: 6px;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+
+  @include element(footer) {
+    margin-top: 8px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  @include element(btn) {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: #fff;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  @include element(range) {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  @include element(range-separator) {
+    color: #909399;
+  }
+}

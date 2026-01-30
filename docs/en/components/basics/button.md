@@ -2,12 +2,12 @@
 
 This is a very ordinary looking button, but it is very powerful。
 
-- [Source code](https://github.com/dk-plus-ui/dk-plus-ui/tree/master/packages/components/dkbutton)
-- [Document editing](https://github.com/dk-plus-ui/dk-plus-ui/blob/master/docs/en/components/button.md)
+- [Source code](https://github.com/isMrFan/dk-plus-ui/tree/master/packages/components/dkbutton)
+- [Document editing](https://github.com/isMrFan/dk-plus-ui/blob/master/docs/en/components/button.md)
 
 ## 1.Base button
 
-`type` Button type `type` default | primary | success | info | warning | danger 
+`type` Button type `type` default | primary | success | info | warning | danger
 
 ::: module
 <template #code>
@@ -276,8 +276,8 @@ The `round` property can turn the button into a rounded corner style button `rou
 <h6>1.Text icon</h6>
 <dk-button text :icon="'IconShanchu1'" :after-icon="'IconShanchu1'">Default</dk-button>
 <h6>2.A Label icon</h6>
-<dk-button link :href="'https://dk-plus.com'" :icon="'IconShanchu1'" :after-icon="'IconShanchu1'" type="danger">
-  https://dk-plus.com
+<dk-button link :href="'https://dk-plus.' + 'com'" :icon="'IconShanchu1'" :after-icon="'IconShanchu1'" type="danger">
+  {{ 'https://dk-plus.' + 'com' }}
 </dk-button>
 <h6>3.Block element icon button</h6>
 <dk-button :icon="'IconShanchu1'" type="default">default</dk-button>
@@ -311,10 +311,10 @@ The `round` property can turn the button into a rounded corner style button `rou
     loading
     link
     :icon="'IconShanchu1'"
-    :href="'https://m.baidu.com/'"
+    :href="'https' + '://m.' + 'baidu.com/'"
     type="primary"
 >
-  Default https://m.baidu.com/
+  Default {{ 'https' + '://m.' + 'baidu.com/' }}
 </dk-button>
 </template>
 
@@ -482,61 +482,61 @@ The `round` property can turn the button into a rounded corner style button `rou
 | argument | Instructions | type | Optional value | Default value |
 | --- | --- | --- | --- | --- |
 | `link` | Whether to label A button | booler | `true` `false` | `false` |
-| `href` | A Label hyperlink Be effective at`link=true` | string | - - | - - |
+| `href` | A Label hyperlink Be effective at`link=true` | string | - | - |
 | `target` | A Label hyperlink Be effective at`link=true` | string | `_blank` `_self` `_parent` `_top` | `_blank` |
 | `text` | Whether it is a text button | booler | `true` `false` | `false` |
 | `size` | Button size | string | `large` `medium` `small` `mini` | `large` |
-| `type` | Button type (Different types correspond to different background and font colors, valid for non-custom button colors,A label is invalid) | <a>dkPlusType</a> | `primary` `success` `info` `warning` `danger`| `primary` |
-| `fontSize` | Button text size | string/number | - - | - - |
-| `fontColor` | Button font color (support hexadecimal rgb rgba) | string | - - | - - |
-| `bgColor` | Button background color (support hexadecimal rgb rgba) | string | - - | - - |
+| `type` | Button type (Different types correspond to different background and font colors, valid for non-custom button colors,A label is invalid) | <a>dkPlusType</a> | `primary` `success` `info` `warning` `danger` | `primary` |
+| `fontSize` | Button text size | string/number | - | - |
+| `fontColor` | Button font color (support hexadecimal rgb rgba) | string | - | - |
+| `bgColor` | Button background color (support hexadecimal rgb rgba) | string | - | - |
 | `disabled` | Button No Disable | booler | `true` `false` | `false` |
-| `textDecoration` | Underline the text button | string | `lineThrough` `overline` `underline`| - - |
+| `textDecoration` | Underline the text button | string | `lineThrough` `overline` `underline` | - |
 | `circle` | Round button | booler | `true` `false` | `false` |
-| `shadow` | Button shadow effect example:`shadow="0 1px 10px 0 Custom colors (hexadecimal,RGB,RGBA)"` | string | - - | - - |
+| `shadow` | Button shadow effect example:`shadow="0 1px 10px 0 Custom colors (hexadecimal,RGB,RGBA)"` | string | - | - |
 | `ripples` | Ripple effect | booler | `true` `false` | `false` |
-| `ripplesBgColor` | Custom colors for ripple effects (hexadecimal rgb rgba support)| string | - - | - - |
+| `ripplesBgColor` | Custom colors for ripple effects (hexadecimal rgb rgba support) | string | - | - |
 | `diffusion` | Diffusion effect | booler | `true` `false` | `false` |
-| `diffusionBgColor` | Custom colors for diffusion effects (hexadecimal rgb rgba support) | string | - - | - - |
-| `round` | Semicircular button | booler | `true` `false`  |`false`|
-| `icon` | Button front icon | string | <a href='/components/icon.html'>iconType</a>  | - - |
-| `afterIcon` | Button rear icon | string | <a href='/components/icon.html'>iconType</a>  | - - |
+| `diffusionBgColor` | Custom colors for diffusion effects (hexadecimal rgb rgba support) | string | - | - |
+| `round` | Semicircular button | booler | `true` `false` | `false` |
+| `icon` | Button front icon | string | <a href='/components/icon.html'>iconType</a> | - |
+| `afterIcon` | Button rear icon | string | <a href='/components/icon.html'>iconType</a> | - |
 | `loading` | Loading | booler | `true` `false` | `false` |
 
 ## Personality button properties (Color support: hexadecimal,RGB,RGBA)
 
 | argument | Instructions | type | Optional value | Default value |
 | --- | --- | --- | --- | --- |
-| `personality` | Whether it is a personality button  | booler | `true` `false` | `false` |
+| `personality` | Whether it is a personality button | booler | `true` `false` | `false` |
 | `personalityType` | Personality button type | string | `BiCurvedA` `multiple` <br> `stretchBtn` `shine`  <br> `SilverReflection` `flatBtn`  <br> `TurnOpen` `stereoscopic` | - - |
-| `personalitySize` | Button type size | string | `large` `medium` `small` `mini`| `large` |
-| `personalityBorderColor` | Personality button border color | string Arr[string] | case:personality-border-color="['red', 'red', 'red', 'red']" | - - |
-| `personalityBorderHoveColor` | Personality button border color when hovering | string Arr[string] | case::personality-border-hove-color="['blue', 'blue', 'blue', 'blue']" | - - |
-| `personalityBgColor` | Personality button background color | string | case:personality-bg-color="#38ef7d" | - - |
-| `personalityBgHoveColor` | Personality button background color when hovering | string | case: personality-bg-hove-color="red" | - - |
-| `personalityFontColor` | Personality button back font color | string | case: personality-font-color="red" | - - |
-| `personalityFontHoveColor` | Personality button font color hover | string | case: personality-font-hove-color="red" | - - |
-| `personalityBoxShadow` | BoxShadow configuration | string | case:  personality-box-shadow="red 5px 5px, red 10px 10px,red 50px 50px" | - - |
-| `personalityBoxShadowHove` | BoxShadow hover configuration | string | case: personality-box-shadow-hove="red 5px 5px, red 10px 10px,red 50px 50px" | - - |
-| `personalityReflect` | Reflection effect | string | case: below 10px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4)) | - - |
+| `personalitySize` | Button type size | string | `large` `medium` `small` `mini` | `large` |
+| `personalityBorderColor` | Personality button border color | string Arr[string] | case:personality-border-color="['red', 'red', 'red', 'red']" | - |
+| `personalityBorderHoveColor` | Personality button border color when hovering | string Arr[string] | case::personality-border-hove-color="['blue', 'blue', 'blue', 'blue']" | - |
+| `personalityBgColor` | Personality button background color | string | case:personality-bg-color="#38ef7d" | - |
+| `personalityBgHoveColor` | Personality button background color when hovering | string | case: personality-bg-hove-color="red" | - |
+| `personalityFontColor` | Personality button back font color | string | case: personality-font-color="red" | - |
+| `personalityFontHoveColor` | Personality button font color hover | string | case: personality-font-hove-color="red" | - |
+| `personalityBoxShadow` | BoxShadow configuration | string | case:  personality-box-shadow="red 5px 5px, red 10px 10px,red 50px 50px" | - |
+| `personalityBoxShadowHove` | BoxShadow hover configuration | string | case: personality-box-shadow-hove="red 5px 5px, red 10px 10px,red 50px 50px" | - |
+| `personalityReflect` | Reflection effect | string | case: below 10px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4)) | - |
 
 ## Slots
 
 | argument | Instructions |
-| ---  | --- |
+| --- | --- |
 | icon | icon Icon front |
 | afterIcon | icon Indicates the icon rear position |
 
 ## Contributors
 
 <div style='display: flex;'>
-  <a href="https://github.com/dk-plus-ui" target="_blank" style='margin-right:10px;'>
-    <img style='width:60px;height:60px;border-radius: 50%;' src="https://avatars.githubusercontent.com/u/88755587?v=4" />
+  <a href="https://github.com/isMrFan" target="_blank" style='margin-right:10px;'>
+    <img style='width:60px;height:60px;border-radius: 50%;' src="https://avatars.githubusercontent.com/u/88755587?v=4" alt="isMrFan" />
   </a>
   <a href="https://github.com/WangYingJay" target="_blank">
-    <img style='width:60px;height:60px;border-radius: 50%;' src="https://avatars.githubusercontent.com/u/117073291?s=64&v=4"/>
+    <img style='width:60px;height:60px;border-radius: 50%;' src="https://avatars.githubusercontent.com/u/117073291?s=64&v=4" alt="WangYingJay" />
   </a>
   <a href="https://github.com/bugfix2020" target="_blank">
-    <img style='width:60px;height:60px;border-radius: 50%;' src="https://avatars.githubusercontent.com/u/29813979?v=4"/>
+    <img style='width:60px;height:60px;border-radius: 50%;' src="https://avatars.githubusercontent.com/u/29813979?v=4" alt="bugfix2020" />
   </a>
 </div>
