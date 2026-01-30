@@ -50,7 +50,8 @@ export default (): UserConfigExport => {
         insertTypesEntry: true,
         cleanVueFileName: true,
         copyDtsFiles: true,
-        include: ['./packages/components'],
+        include: ['./packages/components/**/*.ts', './packages/components/**/*.tsx', './packages/components/**/*.d.ts'],
+        exclude: ['./packages/components/**/*.vue'],
         afterBuild: (): void => {
           move()
         }

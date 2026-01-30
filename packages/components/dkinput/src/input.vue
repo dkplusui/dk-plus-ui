@@ -241,7 +241,9 @@ const inputAttrs = reactive<InputHTMLAttributes>({
   minlength: propData.minlengthProp,
   readonly: propData.readonlyProp,
   id: props.id || undefined,
-  name: props.name || undefined
+  name: props.name || undefined,
+  tabindex: props.tabindex as unknown as InputHTMLAttributes['tabindex'],
+  'aria-label': props.ariaLabel || undefined
 } as InputHTMLAttributes)
 
 const textareaAttrs = reactive({
@@ -259,7 +261,9 @@ const textareaAttrs = reactive({
   rows: getTextareaRows().row,
   readonly: propData.readonlyProp,
   id: props.id || undefined,
-  name: props.name || undefined
+  name: props.name || undefined,
+  tabindex: props.tabindex as unknown as TextareaHTMLAttributes['tabindex'],
+  'aria-label': props.ariaLabel || undefined
 } as TextareaHTMLAttributes)
 
 watch(
@@ -268,6 +272,24 @@ watch(
     propData.placeholder = val
     inputAttrs.placeholder = val
     textareaAttrs.placeholder = val
+  },
+  { immediate: true }
+)
+
+watch(
+  () => props.tabindex,
+  val => {
+    inputAttrs.tabindex = val as unknown as InputHTMLAttributes['tabindex']
+    textareaAttrs.tabindex = val as unknown as TextareaHTMLAttributes['tabindex']
+  },
+  { immediate: true }
+)
+
+watch(
+  () => props.ariaLabel,
+  val => {
+    inputAttrs['aria-label'] = val || undefined
+    textareaAttrs['aria-label'] = val || undefined
   },
   { immediate: true }
 )

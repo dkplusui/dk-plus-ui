@@ -7,6 +7,5 @@ const value = ref('')
 <template>
   <div style="padding: 12px">
     <dk-time-select v-model="value" start="09:00" end="18:00" step="00:30" />
-    <div style="margin-top: 8px">value: {{ value }}</div>
   </div>
 </template>

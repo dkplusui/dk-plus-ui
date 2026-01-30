@@ -149,6 +149,10 @@ export const dkInputProps = {
   id: setStringProp(),
   /** Native input name */
   name: setStringProp(),
+  /** Native input aria-label */
+  ariaLabel: setStringProp(),
+  /** Native input tabindex */
+  tabindex: setStringNumberProps(0),
   /** Clear icon name (dk-icon) */
   clearIcon: setStringProp<string>('IconShanchu1'),
   /** Whether display length limit */

@@ -1,4 +1,4 @@
-import { setBooleanProps, setStringProp } from '../../_utils'
+import { setBooleanProps, setFunctionProps, setStringProp } from '../../_utils'
 import type { ExtractPropTypes } from 'vue'
 
 export const dkTimeSelectProps = {
@@ -8,6 +8,9 @@ export const dkTimeSelectProps = {
   step: setStringProp<string>('00:30'),
   minTime: setStringProp<string>(''),
   maxTime: setStringProp<string>(''),
+  disabledHours: setFunctionProps<() => number[]>(),
+  disabledMinutes: setFunctionProps<(hour: number) => number[]>(),
+  disabledSeconds: setFunctionProps<(hour: number, minute: number) => number[]>(),
   disabled: setBooleanProps(false),
   editable: setBooleanProps(true),
   clearable: setBooleanProps(true),

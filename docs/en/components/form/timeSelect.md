@@ -34,8 +34,17 @@ const value = ref('')
 | start | start | string | '09:00' |
 | end | end | string | '18:00' |
 | step | step | string | '00:30' |
+| min-time | minimum selectable time | string | '' |
+| max-time | maximum selectable time | string | '' |
+| disabled-hours | disable hours options | () => number[] | — |
+| disabled-minutes | disable minutes options | (hour: number) => number[] | — |
+| disabled-seconds | disable seconds options | (hour: number, minute: number) => number[] | — |
 | disabled | disabled | boolean | false |
+| editable | whether the input is editable | boolean | true |
 | clearable | clearable | boolean | true |
+| placeholder | placeholder | string | '' |
+| name | native input name attribute | string | '' |
+| id | native input id attribute | string | '' |
 
 ## Events
 
@@ -44,6 +53,15 @@ const value = ref('')
 | update:modelValue | v-model update | (value: string) |
 | change | change | (value: string) |
 | clear | clear | - |
+| focus | triggered when input gets focus | (evt: FocusEvent) |
+| blur | triggered when input loses focus | (evt: FocusEvent) |
+
+## Exposes
+
+| Name | Description |
+| --- | --- |
+| focus | focus the input |
+| blur | blur the input |
 
 <script lang='ts' setup>
 import VueDomeTimeSelect from '../vueDome/timeSelect/index.vue'

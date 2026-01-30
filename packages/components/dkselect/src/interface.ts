@@ -3,6 +3,7 @@
  * @description Trigger
  * @date December 13, 2024
  * @user FanKai <https://github.com/isMrFan>
+ * @author FanKai <https://github.com/isMrFan>
  * @function interface 定义
 */
 /**
