@@ -1,29 +1,53 @@
 {
   "friendlyList": [
-     {
+    {
       "logoImg": "https://oss.cadwaladerss.com/dk-plus/images/uView.png",
       "logoSrc": "https://uviewui.com/",
-      "name": "uView UI"
+      "name": "uView UI",
+      "description": "多平台快速开发 UI 框架",
+      "descriptionEn": "A multi-platform UI framework"
     },
     {
       "logoImg": "https://oss.cadwaladerss.com/dk-plus/images/vue-admin-beautiful.png",
       "logoSrc": "https://vue-admin-beautiful.com/admin-plus/?hmsr=dk-plus&hmpl=&hmcu=&hmkw=&hmci=#/index",
-      "name": "Vue Admin Plus"
+      "name": "Vue Admin Plus",
+      "description": "Vue 管理后台解决方案",
+      "descriptionEn": "A Vue admin dashboard solution"
     },
     {
       "logoImg": "https://oss.cadwaladerss.com/dk-plus/images/vue-admin-beautiful.png",
       "logoSrc": "https://vue-admin-beautiful.com/shop-vite/?hmsr=dk-plus&hmpl=&hmcu=&hmkw=&hmci=",
-      "name": "Vue Shop Vite"
+      "name": "Vue Shop Vite",
+      "description": "基于 Vite 的 Vue 商城后台",
+      "descriptionEn": "A Vite-powered Vue shop dashboard"
     },
     {
       "logoImg": "https://oss.cadwaladerss.com/dk-plus/images/gongjux.png?v=1",
       "logoSrc": "https://www.npmjs.com/package/@bugfix2019/utils",
-      "name": "@bugfix2019的中台工具包"
+      "name": "@bugfix2019 的中台工具包",
+      "description": "面向中后台开发的实用工具包",
+      "descriptionEn": "Utilities for admin application development"
     },
     {
       "logoImg": "https://oss.cadwaladerss.com/dk-plus/images/dk-chat-gpt.png",
       "logoSrc": "https://dk-chat-gpt-public.cadwaladerss.com/#/",
-      "name": "@Dk-ChatGpt"
+      "name": "Dk-ChatGPT",
+      "description": "在线 AI 对话应用",
+      "descriptionEn": "An online AI chat application"
+    },
+    {
+      "logoImg": "/karui/karuibi-friendly.svg",
+      "logoSrc": "https://karuibi.docs.dk-plus.com/",
+      "name": "KaruiBI",
+      "description": "项目型 BI 平台与操作文档",
+      "descriptionEn": "A project-oriented BI platform and guide"
+    },
+    {
+      "logoImg": "/karui/toolbox-friendly.svg",
+      "logoSrc": "https://karuibi.docs.dk-plus.com/toolknit-desktop.html",
+      "name": "Karui 工具箱",
+      "description": "聚合 PDF、图片、音视频、文本和 AI 的桌面效率工具",
+      "descriptionEn": "Desktop tools for PDF, media, text, and AI workflows"
     }
   ]
 }

@@ -1,0 +1,11 @@
+<svg width="720" height="220" viewBox="0 0 720 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(18 20)">
+    <circle cx="90" cy="90" r="54" fill="none" stroke="#163D8F" stroke-width="18"/>
+    <path d="M90 14 A76 76 0 0 1 166 90" stroke="#36B8C8" stroke-width="16" stroke-linecap="round"/>
+    <path d="M14 90 A76 76 0 0 1 90 14" stroke="#78D7E0" stroke-width="16" stroke-linecap="round"/>
+    <circle cx="90" cy="90" r="14" fill="#163D8F"/>
+    <circle cx="176" cy="90" r="11" fill="#36B8C8"/>
+    <circle cx="44" cy="24" r="11" fill="#78D7E0"/>
+  </g>
+  <text x="250" y="120" font-family="Segoe UI, Arial, sans-serif" font-size="82" font-weight="700" fill="#18355E">Karui<tspan fill="#2C8FBB">BI</tspan></text>
+</svg>

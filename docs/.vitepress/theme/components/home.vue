@@ -77,17 +77,55 @@
 <template>
   <div class="home">
     <div class="main">
-      <div class="explain">
-        <p class="text">dk-plus</p>
-        <p class="text">一套基于 Vue3.0 的 UI 组件库</p>
-        <p class="text">轻量便捷，打造高效界面，<br />简单灵活，提升用户体验。</p>
-      </div>
-      <div class="button-list">
-        <dk-button type="success" round @click="start">现在开始</dk-button>
-        <dk-button class="to-github" round @click="handleToGitClick">
-          查看 GitHub
-        </dk-button>
-      </div>
+      <section class="home-hero">
+        <div class="hero-copy">
+          <div class="explain">
+            <p class="text">dk-plus</p>
+            <p class="text">一套基于 Vue 3 的 UI 组件库</p>
+            <p class="text">轻量便捷，打造高效界面；简单灵活，提升开发体验。</p>
+          </div>
+          <div class="button-list">
+            <dk-button type="success" round @click="start">现在开始</dk-button>
+            <dk-button class="to-github" round @click="handleToGitClick">
+              查看 GitHub
+            </dk-button>
+          </div>
+          <div class="hero-tags" aria-label="技术特点">
+            <span>Vue 3</span>
+            <span>TypeScript</span>
+            <span>轻量组件</span>
+          </div>
+        </div>
+        <div class="hero-showcase" aria-hidden="true">
+          <div class="showcase-window">
+            <div class="showcase-toolbar">
+              <i></i><i></i><i></i>
+              <span>dk-plus / components</span>
+            </div>
+            <div class="showcase-body">
+              <div class="showcase-nav">
+                <span class="active"></span><span></span><span></span><span></span>
+              </div>
+              <div class="showcase-content">
+                <div class="showcase-heading"><strong>组件预览</strong><span>LIVE</span></div>
+                <div class="showcase-line"><span>请输入内容...</span><b>搜索</b></div>
+                <div class="showcase-cards">
+                  <div><b>Button</b><span class="sample-button">确认</span></div>
+                  <div><b>Input</b><span class="sample-input">dk-plus</span></div>
+                  <div><b>Alert</b><span class="sample-alert">✓ 成功</span></div>
+                </div>
+                <div class="showcase-controls">
+                  <span class="sample-check">✓ Checkbox</span>
+                  <span class="sample-switch"><i></i></span>
+                  <span class="sample-progress"><i></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-badge showcase-badge--top">Vue 3</div>
+          <div class="showcase-badge showcase-badge--bottom">轻量 · 灵活</div>
+        </div>
+      </section>
       <div class="container">
         <div class="banner-list">
           <div v-for="item in bannerList" :key="item.id" class="list-item">
@@ -100,7 +138,15 @@
         </div>
       </div>
       <div class="contributions">
-        <div class="contributions-title">贡献者名单：</div>
+        <div class="contributions-head">
+          <div>
+            <div class="contributions-title">共建 dk-plus</div>
+            <p class="contributions-description">感谢每一位贡献者，让组件库持续变得更好。</p>
+          </div>
+          <dk-button type="success" round size="mini" @click="handleToGitClick">
+            加入其中
+          </dk-button>
+        </div>
         <div class="contributions-list">
           <div
             v-for="item in contributionList"
@@ -115,12 +161,9 @@
             <p class="name">{{ item.name }}</p>
           </div>
         </div>
-        <dk-button type="success" round size="mini" @click="handleToGitClick">
-          加入其中
-        </dk-button>
       </div>
-      <div class="friendship">
-        <div class="friendship-title">友情链接：</div>
+      <section class="friendship" aria-labelledby="friendly-links-title">
+        <h2 id="friendly-links-title" class="friendship-title">友情链接：</h2>
         <div class="friendship-list">
           <a
             v-for="(item, ind) in FriendlyLink"
@@ -128,12 +171,14 @@
             class="friendship-item"
             :title="item.name"
             target="_blank"
+            rel="noopener noreferrer external"
             :href="item.logoSrc"
+            :aria-label="`访问 ${item.name}：${item.description}`"
           >
-            <img :src="item.logoImg" />
+            <img :src="item.logoImg" :alt="`${item.name} 标志`" loading="lazy" />
           </a>
         </div>
-      </div>
+      </section>
     </div>
   </div>
   <div class="footer">

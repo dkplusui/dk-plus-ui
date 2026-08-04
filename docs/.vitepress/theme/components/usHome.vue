@@ -67,20 +67,53 @@
 <template>
   <div class="home">
     <div class="main">
-      <div class="explain">
-        <p class="text">dk-plus</p>
-        <p class="text">A UI component library based on Vue 3.0.</p>
-        <p class="text">
-          Lightweight and convenient, creating efficient user interfaces.<br />Simple and
-          flexible, enhancing the user experience.
-        </p>
-      </div>
-      <div class="button-list">
-        <dk-button type="success" round @click="start">Now let's get started!</dk-button>
-        <dk-button class="to-github" round @click="handleToGitClick">
-          view GitHub
-        </dk-button>
-      </div>
+      <section class="home-hero">
+        <div class="hero-copy">
+          <div class="explain">
+            <p class="text">dk-plus</p>
+            <p class="text">A UI component library built for Vue 3.</p>
+            <p class="text">Lightweight, flexible components for building polished interfaces faster.</p>
+          </div>
+          <div class="button-list">
+            <dk-button type="success" round @click="start">Get started</dk-button>
+            <dk-button class="to-github" round @click="handleToGitClick">View GitHub</dk-button>
+          </div>
+          <div class="hero-tags" aria-label="Technical highlights">
+            <span>Vue 3</span>
+            <span>TypeScript</span>
+            <span>Lightweight</span>
+          </div>
+        </div>
+        <div class="hero-showcase" aria-hidden="true">
+          <div class="showcase-window">
+            <div class="showcase-toolbar">
+              <i></i><i></i><i></i>
+              <span>dk-plus / components</span>
+            </div>
+            <div class="showcase-body">
+              <div class="showcase-nav">
+                <span class="active"></span><span></span><span></span><span></span>
+              </div>
+              <div class="showcase-content">
+                <div class="showcase-heading"><strong>Component preview</strong><span>LIVE</span></div>
+                <div class="showcase-line"><span>Enter a value...</span><b>Search</b></div>
+                <div class="showcase-cards">
+                  <div><b>Button</b><span class="sample-button">Confirm</span></div>
+                  <div><b>Input</b><span class="sample-input">dk-plus</span></div>
+                  <div><b>Alert</b><span class="sample-alert">✓ Success</span></div>
+                </div>
+                <div class="showcase-controls">
+                  <span class="sample-check">✓ Checkbox</span>
+                  <span class="sample-switch"><i></i></span>
+                  <span class="sample-progress"><i></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-badge showcase-badge--top">Vue 3</div>
+          <div class="showcase-badge showcase-badge--bottom">Light · Flexible</div>
+        </div>
+      </section>
       <div class="container">
         <div class="banner-list">
           <div v-for="item in bannerList" :key="item.id" class="list-item">
@@ -93,7 +126,13 @@
         </div>
       </div>
       <div class="contributions">
-        <div class="contributions-title">List of contributors:</div>
+        <div class="contributions-head">
+          <div>
+            <div class="contributions-title">Built together</div>
+            <p class="contributions-description">Thanks to every contributor who helps dk-plus improve.</p>
+          </div>
+          <dk-button type="success" round size="mini" @click="handleToGitClick">Join us</dk-button>
+        </div>
         <div class="contributions-list">
           <div
             v-for="item in contributionList"
@@ -108,12 +147,9 @@
             <p class="name">{{ item.name }}</p>
           </div>
         </div>
-        <dk-button type="success" round size="mini" @click="handleToGitClick">
-          Join in
-        </dk-button>
       </div>
-      <div class="friendship">
-        <div class="friendship-title">Friendly links:</div>
+      <section class="friendship" aria-labelledby="friendly-links-title">
+        <h2 id="friendly-links-title" class="friendship-title">Friendly links:</h2>
         <div class="friendship-list">
           <a
             v-for="(item, ind) in FriendlyLink"
@@ -121,12 +157,14 @@
             class="friendship-item"
             :title="item.name"
             target="_blank"
+            rel="noopener noreferrer external"
             :href="item.logoSrc"
+            :aria-label="`Visit ${item.name}: ${item.descriptionEn}`"
           >
-            <img :src="item.logoImg" />
+            <img :src="item.logoImg" :alt="`${item.name} logo`" loading="lazy" />
           </a>
         </div>
-      </div>
+      </section>
     </div>
   </div>
   <div class="footer">

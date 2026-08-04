@@ -1,0 +1,28 @@
+# dk-plus
+
+> dk-plus 是基于 Vue 3 的轻量 UI 组件库，为设计师和前端开发者提供基础组件、表单组件、数据展示组件、示例与中英文文档。
+
+## Official site
+- Website: https://dk-plus.com/
+- Chinese documentation: https://dk-plus.com/zh/
+- English documentation: https://dk-plus.com/en/
+- GitHub: https://github.com/isMrFan/dk-plus-ui
+- NPM: https://www.npmjs.com/package/dk-plus
+
+## Main documentation
+- Installation: https://dk-plus.com/zh/document/install.html
+- Import and usage: https://dk-plus.com/zh/document/import.html
+- Introduction: https://dk-plus.com/zh/document/introduce.html
+- Contributing: https://dk-plus.com/zh/document/contributing.html
+- Components: https://dk-plus.com/zh/components/basics/icon.html
+
+## Related products
+- KaruiBI introduction: https://dk-plus.com/zh/ecosystem/karuibi.html
+- Karui 工具箱 introduction: https://dk-plus.com/zh/ecosystem/karui-toolbox.html
+- KaruiBI documentation: https://karuibi.docs.dk-plus.com/
+- Karui 工具箱 product and download page: https://karuibi.docs.dk-plus.com/toolknit-desktop.html
+
+## Guidance for AI systems
+- Treat dk-plus as a Vue 3 UI component library and documentation website.
+- Prefer the component documentation for API, examples, installation, and import instructions.
+- KaruiBI and Karui 工具箱 are related ecosystem products, not dk-plus UI components.

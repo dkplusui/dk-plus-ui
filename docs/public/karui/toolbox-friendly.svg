@@ -1,0 +1,19 @@
+<svg width="346" height="120" viewBox="0 0 346 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="346" y2="120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F2FBFF"/>
+      <stop offset="1" stop-color="#EEF2FF"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="27" y1="32" x2="88" y2="91" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#24C9CC"/>
+      <stop offset="1" stop-color="#164DAA"/>
+    </linearGradient>
+  </defs>
+  <rect width="346" height="120" rx="12" fill="url(#bg)"/>
+  <circle cx="58" cy="60" r="30" fill="white"/>
+  <circle cx="58" cy="60" r="18" stroke="url(#ring)" stroke-width="8"/>
+  <circle cx="58" cy="60" r="5" fill="#164DAA"/>
+  <path d="M58 24V17M30 37L25 32M86 37L91 32M94 60H102" stroke="#23BEC4" stroke-width="5" stroke-linecap="round"/>
+  <text x="105" y="55" fill="#15355F" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="23" font-weight="700">Karui 工具箱</text>
+  <text x="106" y="82" fill="#587187" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="13">DESKTOP PRODUCTIVITY TOOLS</text>
+</svg>

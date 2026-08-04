@@ -33,6 +33,16 @@ export default function getNavs() {
       ]
     },
     {
+      text: 'KaruiBI',
+      activeMatch: '^/zh/ecosystem/karuibi',
+      link: '/zh/ecosystem/karuibi'
+    },
+    {
+      text: 'Karui 工具箱',
+      activeMatch: '^/zh/ecosystem/karui-toolbox',
+      link: '/zh/ecosystem/karui-toolbox'
+    },
+    {
       text: version,
       link: 'https://www.npmjs.com/package/dk-plus'
     }

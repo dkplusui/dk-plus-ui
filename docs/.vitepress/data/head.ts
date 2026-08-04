@@ -22,20 +22,13 @@ export const head: HeadConfig[] = [
       content: 'width=device-width, initial-scale=1.0,user-scalable=no'
     }
   ],
-  [
-    'meta',
-    {
-      name: 'robots',
-      content: 'index, follow'
-    }
-  ],
   /** 网站关键词，有助于 SEO 优化 */
   [
     'meta',
     {
-      name: 'Keywords',
+      name: 'keywords',
       content:
-        'Vue3组件,dk-plus,dk-plus-ui,dk-plus组件库,dk-plus-ui组件库,Vue3组件库,Vue3组件,Vue3 UI组件库,Vue3 UI组件,Vue3 UI,dkPlus,dkPlusUI,dkPlus组件库,dkPlusUI组件库'
+        'Vue3组件,dk-plus,dk-plus-ui,dk-plus组件库,dk-plus-ui组件库,Vue3组件库,Vue3 UI组件库,dkPlus,dkPlusUI,KaruiBI,Karui工具箱,KaruToolbox'
     }
   ],
   /** 网站作者 */
@@ -44,14 +37,6 @@ export const head: HeadConfig[] = [
     {
       name: 'author',
       content: 'Mr·Fan,isMrFan,范凯,刘宇轩,王英杰,bugfix2019'
-    }
-  ],
-  /** OG 标题 */
-  [
-    'meta',
-    {
-      property: 'og:title',
-      content: 'dk-plus 可在 vue3Web 应用快速创建。'
     }
   ],
   /** OG 类型 */
@@ -68,16 +53,6 @@ export const head: HeadConfig[] = [
     {
       property: 'og:image',
       content: 'https://oss.cadwaladerss.com/dk-plus/images/isicon.png'
-    }
-  ],
-  /** OG 描述 */
-  [
-    'meta',
-    {
-      property: 'og:description',
-      // content: '面向设计人员和开发人员的基于Vue 3的组件库'
-      content: `Vue 3 组件库，专为设计师与开发者而生简单集成，开发无压力加速开发，效率倍增立即体验，开启全新的前端之旅!
-      `
     }
   ],
   /** OG 页面所在网站名 */
