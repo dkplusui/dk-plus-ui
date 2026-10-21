@@ -7,7 +7,7 @@ description: Copy-ready AI comic prompt templates — novel adaptation, original
   <div>
     <span class="ecosystem-product-eyebrow">KARUI CREATOR NOTES</span>
     <h1>Prompts and Asset Standards</h1>
-    <p class="ecosystem-product-lead">Every block below is ready to paste straight into a model. {{}} marks a variable to replace; the surrounding notes explain why it is written that way and which values you must test on your own model.</p>
+    <p class="ecosystem-product-lead">Every block below is ready to paste straight into a model. <span v-pre>{{}}</span> marks a variable to replace; the surrounding notes explain why it is written that way and which values you must test on your own model.</p>
     <div class="ecosystem-product-actions">
       <a href="#storyboard-output-format">Copy the storyboard prompt</a>
       <a href="#characters-and-style">Characters and style</a>
@@ -349,14 +349,14 @@ complete reusable description.
 
 Classify camera moves and fix them as templates combined with shot-size changes, instead of describing them ad hoc. Ad-hoc descriptions differ from shot to shot and the result visibly shakes.
 
-| Move     | Reusable camera wording                                                             |
-| -------- | ----------------------------------------------------------------------------------- |
-| Push in  | Slow dolly forward from {{medium shot}} to {{close-up}}, constant speed, no shake   |
-| Pull out | Slow dolly back from {{close-up}} to {{wide shot}}, constant speed, no shake        |
-| Pan      | Camera position fixed, panning horizontally from {{A}} to {{B}}, constant speed     |
-| Track    | Camera tracks sideways with {{character}}, who stays in the same position in frame  |
-| Crane    | Camera moves {{up/down}} vertically, tilt angle unchanged, constant speed           |
-| Orbit    | Camera orbits {{character}} 90 degrees at constant speed, clear background parallax |
+| Move     | Reusable camera wording                                                                                                 |
+| -------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Push in  | Slow dolly forward from <span v-pre>{{medium shot}}</span> to <span v-pre>{{close-up}}</span>, constant speed, no shake |
+| Pull out | Slow dolly back from <span v-pre>{{close-up}}</span> to <span v-pre>{{wide shot}}</span>, constant speed, no shake      |
+| Pan      | Camera position fixed, panning horizontally from <span v-pre>{{A}}</span> to <span v-pre>{{B}}</span>, constant speed   |
+| Track    | Camera tracks sideways with <span v-pre>{{character}}</span>, who stays in the same position in frame                   |
+| Crane    | Camera moves <span v-pre>{{up/down}}</span> vertically, tilt angle unchanged, constant speed                            |
+| Orbit    | Camera orbits <span v-pre>{{character}}</span> 90 degrees at constant speed, clear background parallax                  |
 
 How to use it: a storyboard's camera field may only contain these six moves plus a shot size (extreme wide, wide, medium, close-up, extreme close-up). If you need a new move, add it to the table first and then use it across the whole episode — never invent a term for a single shot.
 
@@ -615,16 +615,16 @@ lower-risk version.
 
 ## Variable Table
 
-Use `{{ }}` for everything you need to replace. It makes each prompt easy to freeze as your own template and saves you re-reading the whole block every episode.
+Use <code v-pre>{{ }}</code> for everything you need to replace. It makes each prompt easy to freeze as your own template and saves you re-reading the whole block every episode.
 
-| Variable                       | Fill it with                            | Notes                                                 |
-| ------------------------------ | --------------------------------------- | ----------------------------------------------------- |
-| `{{paste the script}}`         | The scene-level script                  | Shared by adaptation and storyboard prompts           |
-| `{{character sheet}}`          | The full character sheet                | Image generation, review, and mixing all depend on it |
-| `{{season-wide style prompt}}` | The locked style paragraph              | Chosen once per season, reused everywhere             |
-| `{{colour scheme}}`            | Primary / secondary / accent HEX values | Same                                                  |
-| `{{storyboard}}`               | The five-field storyboard table         | Dialogue generation consumes it directly              |
-| `{{previous shot notes}}`      | Blocking, eyeline, lighting             | Mandatory when generating images to avoid axis jumps  |
-| `{{X}}` / `{{N}}`              | Durations, word counts, shot counts     | **This is the part that needs testing**               |
+| Variable                                            | Fill it with                            | Notes                                                 |
+| --------------------------------------------------- | --------------------------------------- | ----------------------------------------------------- |
+| <code v-pre>{{paste the script}}</code>             | The scene-level script                  | Shared by adaptation and storyboard prompts           |
+| <code v-pre>{{character sheet}}</code>              | The full character sheet                | Image generation, review, and mixing all depend on it |
+| <code v-pre>{{season-wide style prompt}}</code>     | The locked style paragraph              | Chosen once per season, reused everywhere             |
+| <code v-pre>{{colour scheme}}</code>                | Primary / secondary / accent HEX values | Same                                                  |
+| <code v-pre>{{storyboard}}</code>                   | The five-field storyboard table         | Dialogue generation consumes it directly              |
+| <code v-pre>{{previous shot notes}}</code>          | Blocking, eyeline, lighting             | Mandatory when generating images to avoid axis jumps  |
+| <code v-pre>{{X}}</code> / <code v-pre>{{N}}</code> | Durations, word counts, shot counts     | **This is the part that needs testing**               |
 
 > This page is original Karui content. It does not reproduce anyone's prompt library, asset pack, or contact details. Update it after finishing an episode — it should become your own production asset.
