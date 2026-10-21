@@ -36,27 +36,30 @@ jobs:
       - name: Build(docs)
         run: npm run build:docs
 
-      - name: Build(play)
-        run: npm run build:play
+      # play 的构建产物只发布到 dev 站点（见下方注释掉的步骤），dev 停用后不再需要构建
+      # - name: Build(play)
+      #   run: npm run build:play
 
-      - name: Clear existing files (dev)
-        run: |
-          mkdir -p ~/.ssh
-          # keyscan 只用于免掉首次连接的主机确认，取不到密钥不应中断部署
-          ssh-keyscan -p ${{ secrets.REMOTE_PORT }} ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || true
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh -p ${{ secrets.REMOTE_PORT }} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "rm -rf /www/wwwWeb/test.cadwaladerss.com/*"
+      # dev 站点（test.cadwaladerss.com）已下线，暂时停用。
+      # 需要恢复时把下面两段取消注释即可。
+      # - name: Clear existing files (dev)
+      #   run: |
+      #     mkdir -p ~/.ssh
+      #     # keyscan 只用于免掉首次连接的主机确认，取不到密钥不应中断部署
+      #     ssh-keyscan -p ${{ secrets.REMOTE_PORT }} ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || true
+      #     echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+      #     chmod 600 ~/.ssh/id_rsa
+      #     ssh -p ${{ secrets.REMOTE_PORT }} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "rm -rf /www/wwwWeb/test.cadwaladerss.com/*"
 
-      - name: Deploy to Web Server (dev)
-        uses: easingthemes/ssh-deploy@v2
-        with:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
-          SOURCE: /play/dist/*
-          TARGET: /www/wwwWeb/test.cadwaladerss.com
+      # - name: Deploy to Web Server (dev)
+      #   uses: easingthemes/ssh-deploy@v2
+      #   with:
+      #     SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+      #     REMOTE_USER: ${{ secrets.REMOTE_USER }}
+      #     REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+      #     SOURCE: /play/dist/*
+      #     TARGET: /www/wwwWeb/test.cadwaladerss.com
 
       - name: Clear existing files (master)
         run: |
