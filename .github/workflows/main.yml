@@ -71,12 +71,12 @@ jobs:
           printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           echo "target host=${{ secrets.REMOTE_HOST }} port=${{ secrets.REMOTE_PORT }} user=${{ secrets.REMOTE_USER }}"
-          OUT=$(ssh -v -p ${{ secrets.REMOTE_PORT }} -i ~/.ssh/id_rsa \
+          OUT=$(ssh -p ${{ secrets.REMOTE_PORT }} -i ~/.ssh/id_rsa \
             -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=15 \
             ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} \
-            "id; ls -ld /www/wwwWeb /www/wwwWeb/dk-plus.com; test -w /www/wwwWeb/dk-plus.com && echo DIR_WRITABLE || echo DIR_NOT_WRITABLE" 2>&1 || true)
+            "id; ls -ld /www/wwwWeb /www/wwwWeb/dk-plus.com; test -w /www/wwwWeb/dk-plus.com && echo DIR_WRITABLE || echo DIR_NOT_WRITABLE; rm -rf /www/wwwWeb/dk-plus.com/__ci_probe_nonexistent__; echo RM_PROBE_RC=\$?" 2>&1 || true)
           echo "$OUT" | tail -30
-          echo "::error title=Deploy access check::$(echo "$OUT" | grep -Ei 'permission denied|connection refused|timed out|invalid format|no such file|could not resolve|host key|banner' | head -6 | tr '\n' ' ')"
+          echo "::error title=Deploy access check::$(echo "$OUT" | tr '\n' ' ' | cut -c1-900)"
 
       - name: Clear existing files (master)
         run: |
@@ -85,7 +85,14 @@ jobs:
           ssh-keyscan -p ${{ secrets.REMOTE_PORT }} ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || true
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh -p ${{ secrets.REMOTE_PORT }} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "rm -rf /www/wwwWeb/dk-plus.com/*"
+          OUT=$(ssh -p ${{ secrets.REMOTE_PORT }} -i ~/.ssh/id_rsa \
+            -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=15 \
+            ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} \
+            "rm -rf /www/wwwWeb/dk-plus.com/*" 2>&1) || {
+              echo "::error title=Deploy cleanup failed::$(echo "$OUT" | tr '\n' ' ' | cut -c1-900)"
+              exit 1
+            }
+          echo "$OUT"
 
       - name: Deploy to Web Server (master)
         uses: easingthemes/ssh-deploy@v2
