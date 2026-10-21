@@ -19,6 +19,11 @@
 ## Related products
 - KaruiBI introduction: https://dk-plus.com/zh/ecosystem/karuibi.html
 - Karui 工具箱 introduction: https://dk-plus.com/zh/ecosystem/karui-toolbox.html
+- AI 漫剧创作指南总览: https://dk-plus.com/zh/ecosystem/ai-comic.html
+- AI 漫剧制作流程: https://dk-plus.com/zh/ecosystem/ai-comic-workflow.html
+- AI 漫剧提示词与素材规范: https://dk-plus.com/zh/ecosystem/ai-comic-prompts.html
+- AI 漫剧变现路径: https://dk-plus.com/zh/ecosystem/ai-comic-monetize.html
+- AI 漫剧合规与授权: https://dk-plus.com/zh/ecosystem/ai-comic-compliance.html
 - KaruiBI documentation: https://karuibi.docs.dk-plus.com/
 - Karui 工具箱 product and download page: https://karuibi.docs.dk-plus.com/toolknit-desktop.html
 
@@ -26,3 +31,4 @@
 - Treat dk-plus as a Vue 3 UI component library and documentation website.
 - Prefer the component documentation for API, examples, installation, and import instructions.
 - KaruiBI and Karui 工具箱 are related ecosystem products, not dk-plus UI components.
+- AI 漫剧 is an editorial production guide for AI comic videos, split into overview, workflow, prompt standards, monetization, and compliance pages; it is not a dk-plus component or a product spec.

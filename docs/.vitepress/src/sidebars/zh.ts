@@ -79,6 +79,18 @@ export const sidebar = {
       items: [{ text: 'Loading 加载', link: '/zh/components/feedback/loading' }]
     }
   ],
+  '/zh/ecosystem/ai-comic': [
+    {
+      text: 'AI 漫剧',
+      items: [
+        { text: '总览', link: '/zh/ecosystem/ai-comic' },
+        { text: '制作流程', link: '/zh/ecosystem/ai-comic-workflow' },
+        { text: '提示词与素材规范', link: '/zh/ecosystem/ai-comic-prompts' },
+        { text: '变现路径', link: '/zh/ecosystem/ai-comic-monetize' },
+        { text: '合规与授权', link: '/zh/ecosystem/ai-comic-compliance' }
+      ]
+    }
+  ],
   '/zh/expansion/': znExpansionNav,
   '/zh/electronicBook/': [
     {

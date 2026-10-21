@@ -79,6 +79,18 @@ export const sidebar = {
       items: [{ text: 'Loading', link: '/en/components/feedback/loading' }]
     }
   ],
+  '/en/ecosystem/ai-comic': [
+    {
+      text: 'AI Comic',
+      items: [
+        { text: 'Overview', link: '/en/ecosystem/ai-comic' },
+        { text: 'Production Workflow', link: '/en/ecosystem/ai-comic-workflow' },
+        { text: 'Prompts and Asset Standards', link: '/en/ecosystem/ai-comic-prompts' },
+        { text: 'Monetization Paths', link: '/en/ecosystem/ai-comic-monetize' },
+        { text: 'Compliance and Rights', link: '/en/ecosystem/ai-comic-compliance' }
+      ]
+    }
+  ],
   '/en/expansion/': enExpansionNav,
   '/en/electronicBook/': [
     {
