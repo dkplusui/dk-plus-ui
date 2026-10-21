@@ -42,10 +42,11 @@ jobs:
       - name: Clear existing files (dev)
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -p ${{ secrets.REMOTE_PORT }} ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
+          # keyscan 只用于免掉首次连接的主机确认，取不到密钥不应中断部署
+          ssh-keyscan -p ${{ secrets.REMOTE_PORT }} ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || true
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh -p ${{ secrets.REMOTE_PORT }} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "rm -rf /www/wwwWeb/test.cadwaladerss.com/*"
+          ssh -p ${{ secrets.REMOTE_PORT }} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "rm -rf /www/wwwWeb/test.cadwaladerss.com/*"
 
       - name: Deploy to Web Server (dev)
         uses: easingthemes/ssh-deploy@v2
@@ -60,10 +61,11 @@ jobs:
       - name: Clear existing files (master)
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -p ${{ secrets.REMOTE_PORT }} ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
+          # keyscan 只用于免掉首次连接的主机确认，取不到密钥不应中断部署
+          ssh-keyscan -p ${{ secrets.REMOTE_PORT }} ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || true
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh -p ${{ secrets.REMOTE_PORT }} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "rm -rf /www/wwwWeb/dk-plus.com/*"
+          ssh -p ${{ secrets.REMOTE_PORT }} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "rm -rf /www/wwwWeb/dk-plus.com/*"
 
       - name: Deploy to Web Server (master)
         uses: easingthemes/ssh-deploy@v2
