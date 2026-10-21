@@ -77,6 +77,18 @@ jobs:
             "id; ls -ld /www/wwwWeb /www/wwwWeb/dk-plus.com; test -w /www/wwwWeb/dk-plus.com && echo DIR_WRITABLE || echo DIR_NOT_WRITABLE; rm -rf /www/wwwWeb/dk-plus.com/__ci_probe_nonexistent__; echo RM_PROBE_RC=\$?" 2>&1 || true)
           echo "$OUT" | tail -30
           echo "::error title=Deploy access check::$(echo "$OUT" | tr '\n' ' ' | cut -c1-900)"
+          mkdir -p "$GITHUB_WORKSPACE/ci-diagnostics"
+          printf '%s\n' "$OUT" > "$GITHUB_WORKSPACE/ci-diagnostics/deploy-access.txt"
+          printf 'host=%s port=%s user=%s\n' "${{ secrets.REMOTE_HOST }}" "${{ secrets.REMOTE_PORT }}" "${{ secrets.REMOTE_USER }}" > "$GITHUB_WORKSPACE/ci-diagnostics/target.txt"
+
+      - name: Publish deploy diagnostics
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: deploy-diagnostics
+          path: ci-diagnostics/
+          retention-days: 1
 
       - name: Clear existing files (master)
         run: |
